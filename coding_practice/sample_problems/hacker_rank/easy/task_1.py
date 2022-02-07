@@ -3,7 +3,7 @@ import typing as t
 from memory_profiler import profile
 
 
-'''
+"""
 Test inspired by https://www.hackerrank.com/challenges/python-loops/problem?isFullScreen=true
 
 Apparently reversed(range()) do not accumulate the entire sequence in memory
@@ -37,7 +37,8 @@ Line #    Mem usage    Increment  Occurrences   Line Contents
     40                                         
     41  13.074219 MiB   0.035156 MiB      100001       for number in get_next_number(n - 1):
     42  13.074219 MiB   0.042969 MiB      100000           print(number)
-'''
+"""
+
 
 def get_next_number(n: int) -> t.Iterator[int]:
     while n >= 0:
@@ -53,5 +54,5 @@ def main():
         print(number)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
