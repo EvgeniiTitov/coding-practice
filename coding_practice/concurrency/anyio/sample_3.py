@@ -25,6 +25,5 @@ async def main():
                 await anyio.sleep(random.random())
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     anyio.run(main)

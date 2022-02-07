@@ -4,9 +4,9 @@ from dataclasses import dataclass
 import random
 
 
-'''
+"""
 Is missing the two bad? I like nurseries
-'''
+"""
 
 
 @dataclass
@@ -46,7 +46,7 @@ async def main() -> None:
     echo_task = asyncio.create_task(echo())
     print("Echo task started")
 
-    queue = asyncio.Queue()
+    queue: "asyncio.Queue[Message]" = asyncio.Queue()
 
     # Nurseries are cool
     print("Creating a nursery")
@@ -75,5 +75,5 @@ async def main() -> None:
     print("All tasks terminated")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     anyio.run(main)

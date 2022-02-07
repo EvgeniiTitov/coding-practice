@@ -8,9 +8,12 @@ That will loop forever unless you use await tg.cancel_scope.cancel()
 
 
 async def loop_forever():
-    while True:
-        print("Looping")
-        await anyio.sleep(random.random())
+    try:
+        while True:
+            print("Looping")
+            await anyio.sleep(random.random())
+    except anyio.get_cancelled_exc_class():
+        print("Looper cancelled, terminating")
 
 
 async def main():
@@ -18,7 +21,7 @@ async def main():
         tg.start_soon(loop_forever)
         print("Looper started")
         await anyio.sleep(random.random())
-        # await tg.cancel_scope.cancel()
+        await tg.cancel_scope.cancel()
     print("Done")
 
 

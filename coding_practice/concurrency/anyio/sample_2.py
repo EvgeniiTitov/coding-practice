@@ -27,7 +27,5 @@ async def main() -> None:
         print(f"Exception {e} caught. Cancelled:", scope.cancel_called)
 
 
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     anyio.run(main)
