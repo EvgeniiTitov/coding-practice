@@ -13,7 +13,7 @@ class Message:
 @dataclass
 class WorkItem(Message):
     name: str
-    func: t.Callable[[...], t.Any]
+    func: t.Callable[[t.Any], t.Any]
     args: t.Sequence[t.Any]
     kwargs: t.MutableMapping[str, t.Any]
 
@@ -43,11 +43,15 @@ def worker(queue: Queue) -> None:
         try:
             result = func(*args, **kwargs)
         except Exception as e:
-            print(f"Failed while running {func.__name__} with "
-                  f"args {args} and kwargs {kwargs}. Error: {e}")
+            print(
+                f"Failed while running {func.__name__} with "
+                f"args {args} and kwargs {kwargs}. Error: {e}"
+            )
         else:
-            print(f"Successfully ran {func.__name__} with args"
-                  f" {args}, kwargs {kwargs}. Result: {result}")
+            print(
+                f"Successfully ran {func.__name__} with args"
+                f" {args}, kwargs {kwargs}. Result: {result}"
+            )
         queue.task_done()
 
 
@@ -55,10 +59,7 @@ def producer(queue: Queue) -> None:
     for i in range(10):
         queue.put(
             WorkItem(
-                name=str(i),
-                func=do_something,
-                args=(i,),
-                kwargs=dict(b=i)
+                name=str(i), func=do_something, args=(i,), kwargs=dict(b=i)
             )
         )
         print("Producer produced message:", i)
@@ -85,6 +86,5 @@ def main():
     print("Main done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
