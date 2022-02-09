@@ -3,7 +3,7 @@ import random
 
 
 """
-That will loop forever unless you use await tg.cancel_scope.cancel() 
+That will loop forever unless you use await tg.cancel_scope.cancel()
 """
 
 
