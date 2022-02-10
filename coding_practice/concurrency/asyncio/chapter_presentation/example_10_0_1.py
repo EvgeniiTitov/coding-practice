@@ -5,6 +5,7 @@ import asyncio
 Lock.locked()
 """
 
+
 async def locker(lock: asyncio.Lock) -> None:
     async with lock:
         print("--> Locker locked the lock")
@@ -30,6 +31,5 @@ async def main() -> None:
     print("Done")
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

@@ -15,9 +15,7 @@ async def worker(i: int, lock: asyncio.Lock) -> None:
 
 async def main() -> None:
     lock = asyncio.Lock()
-    worker_tasks = [
-        asyncio.create_task(worker(i, lock)) for i in range(5)
-    ]
+    worker_tasks = [asyncio.create_task(worker(i, lock)) for i in range(5)]
     print("Workers started")
     await asyncio.sleep(20)
 
@@ -26,5 +24,5 @@ async def main() -> None:
     _ = await asyncio.gather(*worker_tasks, return_exceptions=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

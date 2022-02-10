@@ -3,9 +3,10 @@ import signal
 import typing as t
 
 
-'''
+"""
 ASYNCIO SIGNAL HANDLING
-'''
+"""
+
 
 async def worker() -> None:
     try:
@@ -17,14 +18,14 @@ async def worker() -> None:
 
 
 async def shutdown(
-    sign: signal.Signals,
-    loop: asyncio.AbstractEventLoop
+    sign: signal.Signals, loop: asyncio.AbstractEventLoop
 ) -> None:
     print(f"Shutdown callback called with signal {sign.name}. Cleaning up")
     # TODO: Close DB connections, nack pending messages etc
 
     tasks = [
-        task for task in asyncio.all_tasks()
+        task
+        for task in asyncio.all_tasks()
         if task is not asyncio.current_task()
     ]
     for task in tasks:
@@ -49,5 +50,5 @@ async def main() -> None:
     print("Done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
