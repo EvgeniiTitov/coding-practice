@@ -1,12 +1,12 @@
 import asyncio
 
 
-'''
+"""
 RUNNING COROS DIRECTLY
 
 Sequential execution of coroutines -> await some_coro() blocks the logic, the
 code does not go further until some_coro() completes.
-'''
+"""
 
 
 async def say_after(delay: int, what: str) -> int:
@@ -21,5 +21,5 @@ async def main() -> None:
     print(delay_1, delay_2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

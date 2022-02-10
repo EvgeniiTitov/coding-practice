@@ -3,13 +3,12 @@ import random
 import typing as t
 
 
-'''
+"""
 Task cancellation: catching vs not catching cancel errors
-'''
+"""
 
 
 async def message_fetcher(message_queue: asyncio.Queue) -> None:
-
     def _generate_new_message() -> t.Iterator[float]:
         counter = 1
         while True:
@@ -60,5 +59,5 @@ async def main() -> None:
     print("Workers stopped")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

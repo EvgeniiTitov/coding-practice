@@ -12,7 +12,7 @@ TOTAL_TASKS = 10
 
 
 async def _make_request(
-        session: aiohttp.ClientSession, url: str, *args, **kwargs
+    session: aiohttp.ClientSession, url: str, *args, **kwargs
 ) -> str:
     await asyncio.sleep(random.random())
     response = await session.get(url, *args, **kwargs)
@@ -20,11 +20,12 @@ async def _make_request(
 
 
 async def make_request(
-        i: int,
-        sema: asyncio.Semaphore,
-        session: aiohttp.ClientSession,
-        url: str,
-        *args, **kwargs
+    i: int,
+    sema: asyncio.Semaphore,
+    session: aiohttp.ClientSession,
+    url: str,
+    *args,
+    **kwargs,
 ) -> str:
     async with sema:
         print(f"Making {i} request to {url}")
@@ -47,5 +48,5 @@ async def main() -> None:
             print("\n\nResults:", results)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

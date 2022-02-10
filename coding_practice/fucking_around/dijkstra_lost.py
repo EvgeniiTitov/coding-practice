@@ -2,13 +2,13 @@ import threading
 import time
 
 
-'''
+"""
 https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
 That stuff breaks lol, GO statements break automatic resource cleanup --> must be
 dont by hand with custom __exit__()?
 
 Apparently threads/coros can be as bad as goto
-'''
+"""
 
 
 def i_write_in_file(file) -> None:
@@ -28,6 +28,5 @@ def main():
     print("Thread joined")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

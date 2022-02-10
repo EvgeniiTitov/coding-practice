@@ -1,11 +1,12 @@
 import asyncio
 
 
-'''
+"""
 ASYNCIO WAIT_FOR
 
 If timeout occurs, the task is cancelled.
-'''
+"""
+
 
 async def make_request(url: str) -> str:
     print(f"Making request to {url}")
@@ -24,5 +25,5 @@ async def main() -> None:
         print(response)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

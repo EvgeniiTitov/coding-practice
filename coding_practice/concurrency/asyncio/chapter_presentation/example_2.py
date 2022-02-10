@@ -1,12 +1,12 @@
 import asyncio
 
 
-'''
+"""
 WRAPPING COROS INTO TASKS
 
 Wrapping coros into tasks, so that they could be run concurrently
 .ensure_future() = .create_task()
-'''
+"""
 
 
 async def say_after(delay: int, what: str) -> int:
@@ -24,5 +24,5 @@ async def main() -> None:
     print(delay_1, delay_2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

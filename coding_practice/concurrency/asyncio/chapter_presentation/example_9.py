@@ -4,9 +4,9 @@ import io
 from threading import Lock
 
 
-'''
+"""
 Running in threads
-'''
+"""
 
 stdout_lock = Lock()
 
@@ -43,14 +43,14 @@ async def main() -> None:
     coros = [
         asyncio.to_thread(blocking_sleep),
         asyncio.to_thread(
-            read_file_content,
-            "/Users/etitov1/Downloads/sample.txt", buffer
+            read_file_content, "/Users/etitov1/Downloads/sample.txt", buffer
         ),
         asyncio.to_thread(
             write_to_file,
-            "/Users/etitov1/Downloads/write_sample.txt", "Foo Bar"
+            "/Users/etitov1/Downloads/write_sample.txt",
+            "Foo Bar",
         ),
-        non_blocking_sleep()
+        non_blocking_sleep(),
     ]
     _ = await asyncio.gather(*coros, return_exceptions=True)
 
@@ -58,5 +58,5 @@ async def main() -> None:
     print(f"\nCoros finished. Buffer content: {buffer.getvalue()}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

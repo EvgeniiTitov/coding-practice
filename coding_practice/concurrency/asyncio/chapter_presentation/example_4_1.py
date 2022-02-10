@@ -2,11 +2,11 @@ import asyncio
 import random
 
 
-'''
+"""
 ASYNCIO GATHER 2
 
 GATHER propagates the first encountered exception
-'''
+"""
 
 
 async def make_request(url: str) -> None:
@@ -26,5 +26,5 @@ async def main() -> None:
         raise
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

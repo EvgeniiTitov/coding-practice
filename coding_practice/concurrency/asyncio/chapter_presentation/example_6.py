@@ -1,14 +1,14 @@
 import asyncio
 
 
-'''
+"""
 ASYNCIO SHIELD
 
 TBC
 
-writing/reading from disc?
-subprocesses?
-'''
+DOES NOT SAVE FROM SHUTDOWN ROUTINE WHEN SIGNAL ARRIVES BECAUSE A SHIELDED 
+CORO IS INCLUDED IN asyncio.all_tasks()
+"""
 
 
 async def make_request(url: str) -> str:
@@ -29,5 +29,5 @@ async def main() -> None:
     print("\nResult:", result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

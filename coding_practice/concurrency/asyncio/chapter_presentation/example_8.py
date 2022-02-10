@@ -1,11 +1,12 @@
 import asyncio
 import random
 
-'''
+"""
 AS COMPLETED
 
 Return iterator of coros
-'''
+"""
+
 
 async def do_some_work(i):
     sleep = random.randint(0, 6)
@@ -21,5 +22,5 @@ async def main() -> None:
         print(f"Work {result} is done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

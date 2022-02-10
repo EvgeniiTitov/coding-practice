@@ -3,15 +3,15 @@ import asyncio
 import aiohttp
 
 
-'''
+"""
 ASYNCIO GATHER 1
-'''
+"""
 
 
 URLS = [
     "https://api.agify.io?name={name}",
     "https://api.genderize.io?name={name}",
-    "https://api.nationalize.io?name={name}"
+    "https://api.nationalize.io?name={name}",
 ]
 
 
@@ -39,5 +39,5 @@ async def main() -> None:
                 print(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

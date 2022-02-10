@@ -3,7 +3,12 @@ import asyncio
 import time
 from functools import partial
 
-from gcloud.aio.pubsub import PublisherClient, PubsubMessage, SubscriberClient, SubscriberMessage
+from gcloud.aio.pubsub import (
+    PublisherClient,
+    PubsubMessage,
+    SubscriberClient,
+    SubscriberMessage,
+)
 import aiohttp
 
 
@@ -16,8 +21,7 @@ async def make_request(url: str, session: aiohttp.ClientSession) -> str:
 
 
 async def _process_message(
-        message: dict,
-        session: aiohttp.ClientSession
+    message: dict, session: aiohttp.ClientSession
 ) -> dict:
     name, index = message["name"], message["index"]
     requests_coro = asyncio.gather(
@@ -36,7 +40,11 @@ async def _process_message(
         print(f"Failed processing message {message}. Error: {e}")
         raise
     return {
-        "name": name, "index": index, "age": None, "gender": None, "nat": None
+        "name": name,
+        "index": index,
+        "age": None,
+        "gender": None,
+        "nat": None,
     }
 
 
@@ -44,7 +52,7 @@ async def _get_batch(
     queue: asyncio.Queue[T],
     *,
     time_window: float = 3.0,
-    max_items: t.Optional[int] = None
+    max_items: t.Optional[int] = None,
 ) -> t.List[T]:
     batch: t.List[T] = []
     item = await queue.get()
@@ -81,7 +89,7 @@ async def fetcher(
     client: SubscriberClient,
     *,
     batch_size: int = 10,
-    put_async: bool = False
+    put_async: bool = False,
 ) -> None:
     """
     Fetches messages from a PubSub topic and puts them in the queue
@@ -105,7 +113,7 @@ async def processor(
     ack_queue: asyncio.Queue[str],
     out_queue: asyncio.Queue[t.Any],
     callback: t.Callable[[t.Any], t.Awaitable[t.Any]],
-    max_concurrent_tasks: int
+    max_concurrent_tasks: int,
 ) -> None:
     """
     Processes messages by getting a message from the in_queue, running the
@@ -144,9 +152,7 @@ async def processor(
 
 
 async def acker(
-        ack_queue: asyncio.Queue[str],
-        client: SubscriberClient,
-        subscription: str
+    ack_queue: asyncio.Queue[str], client: SubscriberClient, subscription: str
 ) -> None:
     """Receives IDs of successfully processed messages and acks them"""
     try:
@@ -165,7 +171,7 @@ async def publisher(
     client: PublisherClient,
     topic: str,
     done_queue: asyncio.Queue[T],
-    batch_size: int = 15
+    batch_size: int = 15,
 ) -> None:
     try:
         while True:
@@ -190,15 +196,25 @@ async def main(subscription: str, topic: str) -> None:
         publisher_client = PublisherClient(session=session)
         print("Queues, Clients and the Session created")
         tasks.append(
-            asyncio.create_task(fetcher(subscription, message_queue, subscriber_client))
+            asyncio.create_task(
+                fetcher(subscription, message_queue, subscriber_client)
+            )
         )
         tasks.append(
-            asyncio.create_task(processor(message_queue, ack_queue, done_queue,
-                                          partial(_process_message, session=session),
-                                          max_concurrent_tasks=50))
+            asyncio.create_task(
+                processor(
+                    message_queue,
+                    ack_queue,
+                    done_queue,
+                    partial(_process_message, session=session),
+                    max_concurrent_tasks=50,
+                )
+            )
         )
         tasks.append(
-            asyncio.create_task(acker(ack_queue, subscriber_client, subscription))
+            asyncio.create_task(
+                acker(ack_queue, subscriber_client, subscription)
+            )
         )
         tasks.append(
             asyncio.create_task(publisher(publisher_client, topic, done_queue))
@@ -207,7 +223,7 @@ async def main(subscription: str, topic: str) -> None:
         done, _ = await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     subscription = ""
     topic = ""
     asyncio.run(main(subscription, topic), debug=True)

@@ -8,16 +8,20 @@ import typing as t
 QUEUE + EVENT
 """
 
+
 class BaseMessage:
     pass
 
+
 class StopMessage(BaseMessage):
     pass
+
 
 @dataclass
 class WorkItem(BaseMessage):
     id: str
     data: str
+
 
 async def fetcher(stop_event: asyncio.Event, queue: asyncio.Queue) -> None:
     def _new_item() -> t.Iterator[WorkItem]:
@@ -25,6 +29,7 @@ async def fetcher(stop_event: asyncio.Event, queue: asyncio.Queue) -> None:
         while True:
             yield WorkItem(str(i), f"Data: {i}")
             i += 1
+
     item_generator = _new_item()
     while not stop_event.is_set():
         item = item_generator.__next__()
@@ -35,6 +40,7 @@ async def fetcher(stop_event: asyncio.Event, queue: asyncio.Queue) -> None:
     await queue.put(StopMessage())
     await queue.join()
     print("Fetcher stopped")
+
 
 async def processor(queue_in: asyncio.Queue, queue_out: asyncio.Queue) -> None:
     while True:
@@ -49,6 +55,7 @@ async def processor(queue_in: asyncio.Queue, queue_out: asyncio.Queue) -> None:
     await queue_out.join()
     print("Producer stopped")
 
+
 async def publisher(queue: asyncio.Queue) -> None:
     while True:
         item = await queue.get()
@@ -59,13 +66,16 @@ async def publisher(queue: asyncio.Queue) -> None:
         await asyncio.sleep(random.random())
     print("Publisher stopped")
 
+
 async def main() -> None:
     message_queue = asyncio.Queue(20)
     result_queue = asyncio.Queue(20)
     stop_event = asyncio.Event()
 
     fetcher_task = asyncio.create_task(fetcher(stop_event, message_queue))
-    processor_task = asyncio.create_task(processor(message_queue, result_queue))
+    processor_task = asyncio.create_task(
+        processor(message_queue, result_queue)
+    )
     publisher_task = asyncio.create_task(publisher(result_queue))
     print("Workers started")
 
@@ -75,5 +85,5 @@ async def main() -> None:
     print("Done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
