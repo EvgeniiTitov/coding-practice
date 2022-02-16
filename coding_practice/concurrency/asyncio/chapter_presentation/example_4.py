@@ -26,7 +26,7 @@ async def make_request(session: aiohttp.ClientSession, url: str) -> str:
 async def main() -> None:
     async with aiohttp.ClientSession() as session:
         request_coros = [
-            make_request(session, url.format(name="Anton")) for url in URLS
+            make_request(session, url.format(name="Anthony")) for url in URLS
         ]
         print("Coros created, awaiting their completion")
 

@@ -14,14 +14,14 @@ keeping tasks (one cycle of event loop)
 
 
 async def worker() -> None:
-    for i in range(10):
+    for i in range(7):
         print("Worker working...")
         await asyncio.sleep(1.0)
 
 
 async def main() -> None:
     worker_task = asyncio.create_task(worker())
-    for i in range(10):
+    for i in range(4):
         print("Main working...")
         await asyncio.sleep(1.0)
     await worker_task

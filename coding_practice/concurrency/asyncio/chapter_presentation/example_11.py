@@ -25,8 +25,8 @@ async def main() -> None:
     await asyncio.gather(
         run_subprocess('sleep 1; echo "hello"'),
         run_subprocess('sleep 2; echo "world"'),
-        run_subprocess("gsutil ls"),
-        run_subprocess("docker images"),
+        run_subprocess("gsutil ls gs://akl_core/testing/"),
+        run_subprocess('docker images --filter "dangling=true"'),
         run_subprocess("makes no sense whatsoever"),
     )
 

@@ -10,6 +10,7 @@ Wrapping coros into tasks, so that they could be run concurrently
 
 
 async def say_after(delay: int, what: str) -> int:
+    print(f"Sleeping {delay}. Word: {what}")
     await asyncio.sleep(delay)
     print(what)
     return delay

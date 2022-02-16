@@ -6,6 +6,7 @@ from coding_practice.utils import timer
 
 LOCK = Lock()
 
+
 def safe_print(text):
     with LOCK:
         print(text)
@@ -27,6 +28,5 @@ def main() -> None:
         thread.join()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

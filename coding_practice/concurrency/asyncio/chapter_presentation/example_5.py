@@ -11,7 +11,7 @@ If timeout occurs, the task is cancelled.
 async def make_request(url: str) -> str:
     print(f"Making request to {url}")
     await asyncio.sleep(2.0)
-    return "123"
+    return "Response"
 
 
 async def main() -> None:

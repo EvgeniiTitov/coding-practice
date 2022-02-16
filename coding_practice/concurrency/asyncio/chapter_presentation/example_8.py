@@ -16,7 +16,7 @@ async def do_some_work(i):
 
 
 async def main() -> None:
-    work_coros = [do_some_work(i) for i in range(10)]
+    work_coros = [do_some_work(i) for i in range(5)]
     for coro in asyncio.as_completed(work_coros):
         result = await coro
         print(f"Work {result} is done")

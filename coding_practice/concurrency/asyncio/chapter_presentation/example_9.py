@@ -1,5 +1,4 @@
 import asyncio
-import time
 import io
 from threading import Lock
 
@@ -14,11 +13,6 @@ stdout_lock = Lock()
 def print_thread_safe(message: str) -> None:
     with stdout_lock:
         print(message)
-
-
-def blocking_sleep() -> None:
-    print_thread_safe(f"Block sleeping for {2} seconds")
-    time.sleep(2.0)
 
 
 def read_file_content(filepath: str, buffer: io.StringIO) -> None:
@@ -41,7 +35,6 @@ async def non_blocking_sleep() -> None:
 async def main() -> None:
     buffer = io.StringIO()
     coros = [
-        asyncio.to_thread(blocking_sleep),
         asyncio.to_thread(
             read_file_content, "/Users/etitov1/Downloads/sample.txt", buffer
         ),
@@ -53,9 +46,8 @@ async def main() -> None:
         non_blocking_sleep(),
     ]
     _ = await asyncio.gather(*coros, return_exceptions=True)
-
     buffer.seek(0)
-    print(f"\nCoros finished. Buffer content: {buffer.getvalue()}")
+    print(f"\nCoros finished. " f"Buffer content: {buffer.getvalue()}")
 
 
 if __name__ == "__main__":
