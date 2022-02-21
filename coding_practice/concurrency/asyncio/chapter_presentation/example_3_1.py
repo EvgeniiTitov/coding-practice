@@ -10,6 +10,7 @@ async def worker() -> None:
         print("CancelError caught. Terminating...")
         # Could reraise or just return
 
+
 async def main() -> None:
     worker_task = asyncio.create_task(worker())
     for i in range(4):
@@ -20,6 +21,6 @@ async def main() -> None:
     await worker_task
     print("Worker cancelled")
 
+
 if __name__ == "__main__":
     asyncio.run(main())
-

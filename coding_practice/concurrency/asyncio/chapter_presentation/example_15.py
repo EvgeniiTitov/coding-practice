@@ -16,6 +16,7 @@ async def producer(event: asyncio.Event, queue: asyncio.Queue) -> None:
         while True:
             yield f"Task {c}"
             c += 1
+
     gen = _task_generator()
     while not event.is_set():
         task = next(gen)
@@ -35,6 +36,5 @@ async def main() -> None:
     print("Done")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
-

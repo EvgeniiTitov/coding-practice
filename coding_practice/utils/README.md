@@ -15,3 +15,9 @@
    1. Front basics?
 6. Cloud (GCP certificate)
 7. Another language (Go vs Kotlin?)
+8. Proper tests / Test driven development
+
+
+#### Very long term:
+9. Type system
+10. Haskell
