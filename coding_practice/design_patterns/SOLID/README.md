@@ -24,7 +24,8 @@ closed for modification.
 ### 3. Liskov Substitution Principle (LSP)
 
 An overriden method of a subclass needs to accept the same input parameter 
-values as the method of the superclass. Signatures match.
+values as the method of the superclass. Signatures match, aka a child class 
+must be substitutable for its parent class.
 
 When you have an interface accepting some base class as its parameter, 
 we must be able to provide any of the base class inheritors without breaking 
@@ -39,7 +40,7 @@ things more granular --> have multiple interfaces encapsulating certain logic
 or behaviour. If an entity needs this one large interface, it just implements
 all smaller interfaces.
 
-### Dependency Inversion Principle
+### 5. Dependency Inversion Principle
 
 High level classes or modules should not depend on low level modules/classes,
 instead they need to depend on abstractions (interfaces abstracting away low 
@@ -59,3 +60,4 @@ To reiterate, high level objects rely on interfaces that are implemented by
 the lower level obejcts. As a result, low level objects could be swapped out 
 without having to modify the high level objects. Feelsgoodman been doing it 
 for a while now.
+ 
