@@ -2,9 +2,9 @@ import typing as t
 from enum import Enum, auto
 
 
-'''
+"""
 ProductFilterer IS BAD, WE COULD KEEP ADDING NEW FILTERING FUNCTIONS
-'''
+"""
 
 
 class Color(Enum):
@@ -20,7 +20,6 @@ class Size(Enum):
 
 
 class Product:
-
     def __init__(self, name, color, size):
         self.name = name
         self.color = color
@@ -31,7 +30,6 @@ class Product:
 
 
 class ProductFilterer:
-
     @staticmethod
     def filter_by_color(products: t.Sequence[Product], color):
         for p in products:
@@ -52,10 +50,10 @@ def main():
     product_2 = Product("knife", Color.WHITE, Size.MEDIUM)
 
     for product in ProductFilterer.filter_by_color(
-            (product_2, product_1), Color.WHITE
+        (product_2, product_1), Color.WHITE
     ):
         print(product)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

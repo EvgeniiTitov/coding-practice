@@ -1,6 +1,4 @@
-
-
-'''
+"""
 Journal has got clear responsibilities.
 
 Adding other methods such as saving/loading a journal would violate the
@@ -11,11 +9,10 @@ objects are saved/loaded, then we'd need to go and modify it for each god damn
 class --> extract the persistence logic to a separate class/module.
 
 Anti-pattern God Object - does everything
-'''
+"""
 
 
 class Journal:
-
     def __init__(self):
         self.entires = []
         self.count = 0
@@ -32,7 +29,6 @@ class Journal:
 
 
 class PersistenceManager:
-
     @staticmethod
     def save_to_disk(obj, filename):
         with open(filename, "w") as file:
@@ -51,5 +47,5 @@ def main():
     PersistenceManager.save_to_disk(j, "journal.txt")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

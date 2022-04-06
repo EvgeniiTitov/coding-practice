@@ -8,7 +8,7 @@ class Rectangle:
         return self._width * self._height
 
     def __str__(self):
-        return f'Width: {self.width}, height: {self.height}'
+        return f"Width: {self.width}, height: {self.height}"
 
     @property
     def width(self):
@@ -44,7 +44,7 @@ def use_it(rc: Rectangle):
     w = rc.width
     rc.height = 10  # unpleasant side effect
     expected = int(w * 10)
-    print(f'Expected an area of {expected}, got {rc.area}')
+    print(f"Expected an area of {expected}, got {rc.area}")
 
 
 def main():
@@ -55,5 +55,5 @@ def main():
     use_it(sq)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

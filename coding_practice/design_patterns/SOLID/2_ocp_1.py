@@ -19,7 +19,6 @@ class Size(Enum):
 
 
 class Product:
-
     def __init__(self, name, color, size):
         self.name = name
         self.color = color
@@ -31,25 +30,24 @@ class Product:
 
 # -----------------------------------------------------------------------------
 class BaseSpecification(abc.ABC):
-
     @abc.abstractmethod
     def is_satisfied(self, item) -> bool:
         ...
 
 
 class BaseFilter(abc.ABC):
-
     @abc.abstractmethod
     def filter(
-            self, items: t.Sequence[T], spec: BaseSpecification
+        self, items: t.Sequence[T], spec: BaseSpecification
     ) -> t.Iterator[T]:
         ...
+
+
 # -----------------------------------------------------------------------------
 # Interface implementations are different, and yet they are polymorphic
 
 
 class ColorSpecification(BaseSpecification):
-
     def __init__(self, color: Color):
         self.color = color
 
@@ -58,7 +56,6 @@ class ColorSpecification(BaseSpecification):
 
 
 class SizeSpecification(BaseSpecification):
-
     def __init__(self, size: Size):
         self.size = size
 
@@ -67,20 +64,16 @@ class SizeSpecification(BaseSpecification):
 
 
 class ANDSpecification(BaseSpecification):
-
     def __init__(self, *specs):
         self.specs = specs
 
     def is_satisfied(self, item) -> bool:
-        return all(
-            [step.is_satisfied(item) for step in self.specs]
-        )
+        return all([step.is_satisfied(item) for step in self.specs])
 
 
 class Filter(BaseFilter):
-
     def filter(
-            self, items: t.Sequence[T], spec: BaseSpecification
+        self, items: t.Sequence[T], spec: BaseSpecification
     ) -> t.Iterator[T]:
         for item in items:
             if spec.is_satisfied(item):
@@ -92,7 +85,7 @@ def main():
         Product("apple", Color.GREEN, Size.SMALL),
         Product("zucchini", Color.GREEN, Size.MEDIUM),
         Product("melon", Color.YELLOW, Size.MEDIUM),
-        Product("watermelon", Color.RED, Size.LARGE)
+        Product("watermelon", Color.RED, Size.LARGE),
     ]
     color_spec = ColorSpecification(Color.GREEN)
     size_spec = SizeSpecification(Size.MEDIUM)
@@ -112,5 +105,5 @@ def main():
         print(product)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

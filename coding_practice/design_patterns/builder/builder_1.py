@@ -74,7 +74,7 @@ class ConcreteBuilder1(Builder):
         self._product.add("PartC1")
 
 
-class Product1():
+class Product1:
     """
     It makes sense to use the Builder pattern only when your products are quite
     complex and require extensive configuration.
