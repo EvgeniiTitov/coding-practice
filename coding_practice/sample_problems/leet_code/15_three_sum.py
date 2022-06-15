@@ -79,7 +79,7 @@ class Solution:
         nums.sort()  # O(n log n)
         length = len(nums)
         left, right = 0, length - 1
-        triplets = []
+        triplets = set()
         while left < right:
             number_left = nums[left]
             number_right = nums[right]
@@ -87,17 +87,19 @@ class Solution:
 
             complement_index = _get_complement(left, right, complement)
             if complement_index:
-                triplets.append([number_left, complement, number_right])
+                triplets.add((number_left, complement, number_right))
 
             if complement >= number_right:
                 left += 1
             else:
                 right -= 1
-        return triplets
+        return [list(e) for e in triplets]
 
 
 def main():
-    numbers = [-1, 0, 1, 2, -1, -4]
+    # numbers = [-1, 0, 1, 2, -1, -4]
+    numbers = [0, 0, 0, 0]
+    numbers = [-1, 0, 1, 2, -1,-4, -2, -3, 3, 0, 4]
     print(Solution().threeSum(numbers))
 
 
