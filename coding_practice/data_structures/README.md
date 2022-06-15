@@ -6,3 +6,14 @@ to be considered as such.
 
 - Data Structure - the implementation of an Abstract Data Type.
 
+
+
+### TODO:
+
+- Doubly LL
+- Stacks
+- Queues
+- Trees (General, Binary)
+- Graphs
+- LRU Caches
+- etc
