@@ -24,26 +24,56 @@ Example 3:
 
 Input: nums = [0]
 Output: []
+
+Thoughts:
+2 pointers, left and right. We check what they add up to. Then, we know what
+number we need to find, so that we get 0 once summed up. The third complement
+number will be somewhere in between the 2 points, how do we find it? Binary 
+search? A function that once given an array finds the number / index of the 
+number in it? 
 '''
 
 
 class Solution:
+
+    # My brute force, ran out of time
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if not len(nums):
             return []
         if nums == [0]:
             return []
 
-        triplets = []
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
+        triplets = set()
+        for i in range(len(nums) - 2):
+            for j in range(i + 1, len(nums) - 1):
                 for k in range(j + 1, len(nums)):
                     if (
                             nums[i] + nums[j] + nums[k] == 0
                             and i != j != k
                     ):
-                        triplets.append([nums[i], nums[j], nums[k]])
-        return triplets
+                        triplets.add(
+                            ",".join(
+                                map(str, sorted([nums[i], nums[j], nums[k]]))
+                                )
+                        )
+        return [
+            list(map(int, triplet.split(","))) for triplet in triplets
+        ]
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if not len(nums):
+            return []
+        if nums == [0]:
+            return []
+
+        nums.sort()  # O(n log n)
+        length = len(nums)
+        left, right = 0, length - 1
+
+
+
+
+
 
 
 def main():
