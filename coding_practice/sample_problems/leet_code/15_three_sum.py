@@ -36,31 +36,41 @@ number in it?
 
 class Solution:
 
-    # My brute force, ran out of time
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        if not len(nums):
-            return []
-        if nums == [0]:
-            return []
+    # # My brute force, ran out of time
+    # def threeSum(self, nums: List[int]) -> List[List[int]]:
+    #     if not len(nums):
+    #         return []
+    #     if nums == [0]:
+    #         return []
+    #
+    #     triplets = set()
+    #     for i in range(len(nums) - 2):
+    #         for j in range(i + 1, len(nums) - 1):
+    #             for k in range(j + 1, len(nums)):
+    #                 if (
+    #                         nums[i] + nums[j] + nums[k] == 0
+    #                         and i != j != k
+    #                 ):
+    #                     triplets.add(
+    #                         ",".join(
+    #                             map(str, sorted([nums[i], nums[j], nums[k]]))
+    #                             )
+    #                     )
+    #     return [
+    #         list(map(int, triplet.split(","))) for triplet in triplets
+    #     ]
 
-        triplets = set()
-        for i in range(len(nums) - 2):
-            for j in range(i + 1, len(nums) - 1):
-                for k in range(j + 1, len(nums)):
-                    if (
-                            nums[i] + nums[j] + nums[k] == 0
-                            and i != j != k
-                    ):
-                        triplets.add(
-                            ",".join(
-                                map(str, sorted([nums[i], nums[j], nums[k]]))
-                                )
-                        )
-        return [
-            list(map(int, triplet.split(","))) for triplet in triplets
-        ]
-
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+
+        def _get_complement(left: int, right: int, complement: int):
+            # TODO: Could do binary search here
+            for index in range(left + 1, right):  # don't include pointers
+                number = nums[index]
+                if number == complement:
+                    return index
+            return None
+
+
         if not len(nums):
             return []
         if nums == [0]:
@@ -69,15 +79,26 @@ class Solution:
         nums.sort()  # O(n log n)
         length = len(nums)
         left, right = 0, length - 1
+        triplets = []
+        while left < right:
+            number_left = nums[left]
+            number_right = nums[right]
+            complement = 0 - (number_left + number_right)
 
+            complement_index = _get_complement(left, right, complement)
+            if complement_index:
+                triplets.append([number_left, complement, number_right])
 
-
-
-
+            if complement >= number_right:
+                left += 1
+            else:
+                right -= 1
+        return triplets
 
 
 def main():
-    pass
+    numbers = [-1, 0, 1, 2, -1, -4]
+    print(Solution().threeSum(numbers))
 
 
 if __name__ == '__main__':
