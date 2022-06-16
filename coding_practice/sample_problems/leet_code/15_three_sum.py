@@ -31,6 +31,9 @@ number we need to find, so that we get 0 once summed up. The third complement
 number will be somewhere in between the 2 points, how do we find it? Binary 
 search? A function that once given an array finds the number / index of the 
 number in it? 
+
+a + b + c = 0
+c = 0 - a - b ==> c = 0 - (a + b)
 '''
 
 
@@ -89,10 +92,12 @@ class Solution:
             if complement_index:
                 triplets.add((number_left, complement, number_right))
 
-            if complement >= number_right:
+            if complement > 0:
                 left += 1
             else:
                 right -= 1
+
+
         return [list(e) for e in triplets]
 
 
