@@ -10,45 +10,32 @@ You may assume that each input would have exactly one solution, and you may not 
 You can return the answer in any order.
 
 
---> Another interesting solution:
-
-If current value is smaller, we need to grow, start --> right, else end <- left
-
-def twoSum(self, nums, target):
-    # two point
-    nums_index = [(v, index) for index, v in enumerate(nums)]
-    nums_index.sort()
-    begin, end = 0, len(nums) - 1
-    while begin < end:
-        curr = nums_index[begin][0] + nums_index[end][0]
-        if curr == target:
-            return [nums_index[begin][1], nums_index[end][1]]
-        elif curr < target:
-            begin += 1
-        else:
-            end -= 1
 '''
 
 
 class Solution:
 
     # -- Brute force solution
-    # def twoSum(self, nums: List[int], target: int) -> List[int]:
-    #     for i in range(len(nums) - 1):
-    #         for j in range(i + 1, len(nums)):
-    #             if nums[i] + nums[j] == target:
-    #                 return [i, j]
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
 
-    # -- Doesn't work as [3, 3] results in unique_numbers = [3] but could add
-    # up to 6
-    # def twoSum(self, nums: List[int], target: int) -> List[int]:
-    #     unique_numbers = list(set(nums))
-    #     for i in range(len(unique_numbers) - 1):
-    #         for j in range(i + 1, len(unique_numbers)):
-    #             num_1 = unique_numbers[i]
-    #             num_2 = unique_numbers[j]
-    #             if num_1 + num_2 == target:
-    #                 return [nums.index(num_1), nums.index(num_2)]
+    # Interesting using pointers
+    def twoSum(self, nums, target):
+        # two point
+        nums_index = [(v, index) for index, v in enumerate(nums)]
+        nums_index.sort()
+        start, end = 0, len(nums) - 1
+        while start < end:
+            curr = nums_index[start][0] + nums_index[end][0]
+            if curr == target:
+                return [nums_index[start][1], nums_index[end][1]]
+            elif curr < target:
+                start += 1
+            else:
+                end -= 1
 
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         """

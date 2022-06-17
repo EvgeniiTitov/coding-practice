@@ -18,31 +18,31 @@ Output: false
 
 class Solution:
 
-    # This one solves a slightly different problem - any order is allowed:
+    # !NOTE: This one solves a slightly different problem - any order is allowed:
     # "([)]" returns True but Leetcode expects False
-    # def isValid(self, s: str) -> bool:
-    #     braces_encountered = {
-    #         "()": 0, "{}": 0, "[]": 0
-    #     }
-    #     opening_chars = {"(", "[", "{"}
-    #     for char in s:
-    #         if char in "()":
-    #             if char in opening_chars:
-    #                 braces_encountered["()"] += 1
-    #             else:
-    #                 braces_encountered["()"] -= 1
-    #         elif char in "{}":
-    #             if char in opening_chars:
-    #                 braces_encountered["{}"] += 1
-    #             else:
-    #                 braces_encountered["{}"] -= 1
-    #         elif char in "[]":
-    #             if char in opening_chars:
-    #                 braces_encountered["[]"] += 1
-    #             else:
-    #                 braces_encountered["[]"] -= 1
-    #
-    #     return all(v == 0 for v in braces_encountered.values())
+    def isValid(self, s: str) -> bool:
+        braces_encountered = {
+            "()": 0, "{}": 0, "[]": 0
+        }
+        opening_chars = {"(", "[", "{"}
+        for char in s:
+            if char in "()":
+                if char in opening_chars:
+                    braces_encountered["()"] += 1
+                else:
+                    braces_encountered["()"] -= 1
+            elif char in "{}":
+                if char in opening_chars:
+                    braces_encountered["{}"] += 1
+                else:
+                    braces_encountered["{}"] -= 1
+            elif char in "[]":
+                if char in opening_chars:
+                    braces_encountered["[]"] += 1
+                else:
+                    braces_encountered["[]"] -= 1
+
+        return all(v == 0 for v in braces_encountered.values())
 
     # My solution
     def isValid(self, s: str) -> bool:
@@ -58,7 +58,7 @@ class Solution:
                     return False
             else:
                 stack.append(char)
-        return True if not len(stack) else False
+        return len(stack) == 0
 
     # Solution from comments
     def isValid(self, s: str) -> bool:
