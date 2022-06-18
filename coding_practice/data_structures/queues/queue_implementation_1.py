@@ -3,7 +3,6 @@ import typing as t
 
 
 class Queue:
-
     def __init__(self) -> None:
         self._buffer = collections.deque()
 
@@ -37,5 +36,5 @@ def main() -> None:
     print(f"Getting item: {q.get()}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

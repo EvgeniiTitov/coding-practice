@@ -6,7 +6,6 @@ class EmptyStackError(Exception):
 
 
 class Stack:
-
     def __init__(self) -> None:
         self._data = []
 
@@ -44,7 +43,7 @@ def main() -> None:
     print(f"Is empty? {s.is_empty}")
     s.push(228)
     print(s)
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

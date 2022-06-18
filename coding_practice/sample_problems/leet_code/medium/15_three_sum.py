@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 3Sum - https://leetcode.com/problems/3sum/
 
 Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] 
@@ -34,7 +34,7 @@ number in it?
 
 a + b + c = 0
 c = 0 - a - b ==> c = 0 - (a + b)
-'''
+"""
 
 
 class Solution:
@@ -64,7 +64,6 @@ class Solution:
     #     ]
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-
         def _get_complement(left: int, right: int, complement: int):
             # TODO: Could do binary search here
             for index in range(left + 1, right):  # don't include pointers
@@ -72,7 +71,6 @@ class Solution:
                 if number == complement:
                     return index
             return None
-
 
         if not len(nums):
             return []
@@ -97,16 +95,15 @@ class Solution:
             else:
                 right -= 1
 
-
         return [list(e) for e in triplets]
 
 
 def main():
     # numbers = [-1, 0, 1, 2, -1, -4]
     numbers = [0, 0, 0, 0]
-    numbers = [-1, 0, 1, 2, -1,-4, -2, -3, 3, 0, 4]
+    numbers = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
     print(Solution().threeSum(numbers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

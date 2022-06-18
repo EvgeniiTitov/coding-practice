@@ -1,7 +1,7 @@
 import typing as t
 
 
-'''
+"""
 stdout:
  Electronics
     Laptop
@@ -15,7 +15,7 @@ stdout:
     TV
        Samsung
        LG
-'''
+"""
 
 
 class TreeNode:
@@ -29,14 +29,14 @@ class TreeNode:
         self.children.append(child)
 
     def print_tree(self, indentation: int = 0) -> None:
-        '''
+        """
         Could calculate Node's level by going up and using it for indentation
         p = self.parent
         level = 0
         while p:
             level += 1
             p.parent
-        '''
+        """
         print("   " * indentation, self.data)
         if len(self.children):
             for child in self.children:
@@ -47,8 +47,7 @@ class TreeNode:
 
 
 def add_items_as_children(
-    root: TreeNode,
-    children_values: t.Sequence[t.Any]
+    root: TreeNode, children_values: t.Sequence[t.Any]
 ) -> None:
     for children_value in children_values:
         root.add_child(TreeNode(children_value))
@@ -72,5 +71,5 @@ def main():
     root.print_tree()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

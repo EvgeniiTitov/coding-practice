@@ -15,7 +15,7 @@ class LinkedList:
     def __init__(
         self,
         elements: t.Optional[t.Sequence[t.Any]] = None,
-        key: t.Callable = lambda e: e
+        key: t.Callable = lambda e: e,
     ) -> None:
         # TODO: Could remember the length and then update it
         self._key = key
@@ -212,7 +212,7 @@ class LinkedList:
             return f"LinkedList: {' -> '.join(map(str, values))}"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     items = [4, 5, 1, 2, 7, 3]
     ll = LinkedList(items)
 

@@ -1,4 +1,3 @@
-
-'''
+"""
 TODO: Pointers based approach
-'''
+"""

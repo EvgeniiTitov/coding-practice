@@ -1,5 +1,4 @@
-
-'''
+"""
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
 determine if the input string is valid.
 
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     print(is_balanced("((a+g))"))
     print(is_balanced("))"))
     print(is_balanced("[a+b]*(x+2y)*{gg+kk}"))
-'''
+"""
 
 
 class Solution:
@@ -75,9 +74,7 @@ class Solution:
     # !NOTE: This one solves a slightly different problem - any order is allowed:
     # "([)]" returns True but Leetcode expects False
     def isValid(self, s: str) -> bool:
-        braces_encountered = {
-            "()": 0, "{}": 0, "[]": 0
-        }
+        braces_encountered = {"()": 0, "{}": 0, "[]": 0}
         opening_chars = {"(", "[", "{"}
         for char in s:
             if char in "()":
@@ -134,5 +131,5 @@ def main() -> None:
     print(Solution().isValid(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

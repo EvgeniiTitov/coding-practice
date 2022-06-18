@@ -1,7 +1,7 @@
 import typing as t
 
 
-'''
+"""
 Add two numbers - https://github.com/qiyuangong/leetcode/blob/master/python/002_Add_Two_Numbers.py
 
 You are given two non-empty linked lists representing two non-negative integers. 
@@ -16,11 +16,10 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 7 --> 0 --> 8
 
 This shit is confusing.
-'''
+"""
 
 
 class ListNode:
-
     def __init__(self, value: t.Any, next=None):
         self.value = value
         self.next = next
@@ -51,9 +50,7 @@ class Solution:
     #     return result.next
 
     def addTwoNumbers(
-            self,
-            l1: t.Optional[ListNode],
-            l2: t.Optional[ListNode]
+        self, l1: t.Optional[ListNode], l2: t.Optional[ListNode]
     ) -> t.Optional[ListNode]:
         number_1, number_2 = [], []
 

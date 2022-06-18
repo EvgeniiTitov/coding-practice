@@ -1,8 +1,7 @@
-
-'''
+"""
 Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
-'''
+"""
 
 
 class Solution:
@@ -27,7 +26,6 @@ class Solution:
                 )
         longest_substrings.sort(key=lambda e: e[0])
         return longest_substrings[-1][0]
-
 
     # Suggested brute force - super shit (O(n3)), exceeded time limit
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -95,5 +93,5 @@ def main():
     print(Solution().lengthOfLongestSubstring(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

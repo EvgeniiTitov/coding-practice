@@ -1,7 +1,6 @@
-
-'''
+"""
 TODO: TBC - Don't understand the proper way
-'''
+"""
 
 
 class Solution:
@@ -20,7 +19,7 @@ class Solution:
         longest_poli_substr = s[0]  # fair to assume that
         for i in range(s_length):
             for j in range(i + 1, s_length):
-                substring = s[i: j + 1]
+                substring = s[i : j + 1]
                 substring_length = len(substring)
 
                 if substring_length < len(longest_poli_substr):
@@ -30,7 +29,6 @@ class Solution:
                     longest_poli_substr = substring
 
         return longest_poli_substr
-
 
     def longestPalindrome(self, s: str) -> str:
 
@@ -57,7 +55,7 @@ class Solution:
             if length > end - start:
                 start = i - (length - 1) // 2
                 end = i + length // 2
-        return s[start: end + 1]
+        return s[start : end + 1]
 
 
 def main():
@@ -65,5 +63,5 @@ def main():
     print(Solution().longestPalindrome(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

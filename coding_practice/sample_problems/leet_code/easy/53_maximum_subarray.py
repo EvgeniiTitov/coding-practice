@@ -2,7 +2,7 @@ from typing import List
 import math
 
 
-'''
+"""
 Given an integer array nums, find the contiguous subarray (containing at 
 least one number) which has the largest sum and return its sum.
 
@@ -50,7 +50,7 @@ array is not worth keeping, so we'll reset it back to an empty array.
 However, we don't actually need to build the subarray, we can just keep an 
 integer variable current_subarray and add the values of each element there. 
 When it becomes negative, we reset it to 0 (an empty array).
-'''
+"""
 
 
 class Solution:
@@ -64,7 +64,7 @@ class Solution:
         largest_sum = -math.inf  # !
         for i in range(length):
             for j in range(i, length):  # Fine to start from the same i
-                subarray = nums[i: j + 1]
+                subarray = nums[i : j + 1]
                 subarray_sum = sum(subarray)  # ! That's linear time!
                 largest_sum = max(largest_sum, subarray_sum)
         return largest_sum
@@ -94,10 +94,10 @@ class Solution:
 
 
 def main():
-    numbers = [5,4,-1,7,8]
+    numbers = [5, 4, -1, 7, 8]
     # numbers = [-2, 1]
     print(Solution().maxSubArray(numbers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 You are given the heads of two sorted linked lists list1 and list2.
 
 Merge the two lists in a one sorted list. The list should be made by splicing 
@@ -25,7 +25,7 @@ LL out as it will only have larger values!
 On top of that, use the fake number as the first node in the LL out (so you
 have an instance of LL out before you started iterating), when returning 
 exclude this first number
-'''
+"""
 
 # Definition for singly-linked list.
 class ListNode:
@@ -37,7 +37,9 @@ class ListNode:
 class Solution:
 
     # My solution
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         if not list1:
             return list2
         if not list2:
@@ -68,7 +70,9 @@ class Solution:
         return ll_out
 
     # My solution with help from Leetcode
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         if not list1:
             return list2
         if not list2:

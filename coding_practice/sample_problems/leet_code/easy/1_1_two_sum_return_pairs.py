@@ -1,11 +1,11 @@
 import typing as t
 
-'''
+"""
 TODO: TBA - reimplement the interview question. I used dict instead of set?
 
 Given a list and a target. Return unique pairs of numbers that add up to the
 target
-'''
+"""
 
 
 def find_pairs(nums: list[int], target: int) -> list[tuple[int, int]]:
@@ -29,5 +29,5 @@ def main():
     print(find_pairs(numbers, target))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

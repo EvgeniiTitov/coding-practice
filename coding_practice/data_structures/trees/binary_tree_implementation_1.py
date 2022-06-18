@@ -1,7 +1,7 @@
 import typing as t
 import random
 
-'''
+"""
 Binary tree - every node has at most 2 child nodes.
 
 Binary Search Tree (BST) - special case of a binary tree where elements have
@@ -18,7 +18,7 @@ When searching a BST, there are 2 ways:
 
 Could be used to implement a set like data structure (duplicates are discarded)
 Could be used to sort an array of numbers
-'''
+"""
 
 random.seed(0)
 
@@ -179,5 +179,5 @@ def main():
     tree.print_tree()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

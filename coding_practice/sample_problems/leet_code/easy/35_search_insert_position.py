@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Given a sorted array of distinct integers and a target value, return the 
 index if the target is found. If not, return the index where it would be if 
 it were inserted in order.
@@ -25,7 +25,7 @@ Simple Binary Search since we need O(log n), check some edge cases straight
 away.
 If there is no the target number in the list, the left pointer will eventually
 show where we could need to insert the target (the fuck)
-'''
+"""
 
 
 class Solution:
@@ -51,12 +51,11 @@ class Solution:
         return left_i  # ! IMPORTANT
 
 
-
 def main():
-    numbers = [1,3,5,6]
+    numbers = [1, 3, 5, 6]
     target = 2
     print(Solution().searchInsert(numbers, target))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
