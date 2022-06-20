@@ -1,4 +1,34 @@
 
+
+# ----- Iteration 1 -----
+class MinStack:
+
+    def __init__(self):
+        self.stack: list[tuple[int, int]] = []  # (val, current_min)
+
+    def push(self, val: int) -> None:
+        if not self.stack:
+            self.stack.append((val, val))
+        else:
+            last_val, last_min = self.stack[-1]
+            if val < last_min:
+                self.stack.append((val, val))
+            else:
+                self.stack.append((val, last_min))
+
+    def pop(self) -> None:
+        self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1][0]
+
+    def getMin(self) -> int:
+        return self.stack[-1][1]
+
+
+# ----- Iteration 2 -----
+
+#  TODO: ! When popping items of the stack you don't update the min reference
 class EmptyStackError(Exception):
     pass
 
@@ -78,6 +108,14 @@ def main():
 
     print("\nPeeking:", stack.peek())
     print("Poping:", stack.pop())
+
+    print("\nPoping everything off the stack")
+    try:
+        while True:
+            print(f"Poped: {stack.pop()}. Min on the stack: {stack.get_min()}")
+    except Exception:
+        pass
+
 
 if __name__ == '__main__':
     main()

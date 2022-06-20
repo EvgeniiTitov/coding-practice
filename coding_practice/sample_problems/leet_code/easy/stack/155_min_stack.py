@@ -76,27 +76,26 @@ At most 3 * 104 calls will be made to push, pop, top, and getMin.
 class MinStack:
 
     def __init__(self):
-        self._stack = []  # List[Tuple[int, int]] aka (value, i of min num)
+        self.stack = []  # has val, and current_min
 
     def push(self, val: int) -> None:
-        if not len(self._stack):
-            self._stack.append((val, -1))
+        if not self.stack:
+            self.stack.append((val, val))
         else:
-            current_min_index = self._stack[-1][1]
-            current_min_value = self._stack[current_min_index][0]
-            if val < current_min_value:
-                self._stack.append((val, -1))
+            last_val, last_min = self.stack[-1]
+            if val < last_min:
+                self.stack.append((val, val))
             else:
-                self._stack.append((val, current_min_index - 1))
+                self.stack.append((val, last_min))
 
     def pop(self) -> None:
-        pass
+        self.stack.pop()
 
     def top(self) -> int:
-        pass
+        return self.stack[-1][0]
 
     def getMin(self) -> int:
-        pass
+        return self.stack[-1][1]
 
 
 # Your MinStack object will be instantiated and called as such:
