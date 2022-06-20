@@ -54,3 +54,7 @@ if an item exists in constant time --> dict or set.
 - When an array is sorted, it is already a good indication using pointers might
 be a good idea.
 - 
+- When working on trees, it appears there are usually 2 solutions: recursive and
+iterative one. Iterative often comes down to using a queue.
+- 
+

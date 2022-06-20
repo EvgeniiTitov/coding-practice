@@ -31,7 +31,7 @@ class TreeNode:
 
 
 class Solution:
-    # My solution
+    # My recursive solution
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
@@ -49,6 +49,29 @@ class Solution:
 
         return _traverse_tree_inorder(root)
 
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        '''
+        The logic is we go to the deepest, leftmost node in the nested loop.
+        Once reached (the kid is None), we stop iterating, pop off the stack
+        the deepest, leftmost node, write its value and attempt going to the
+        right. For child node its going to be None ==> skip nested while, pop
+        the nest node off the stack (the one above), write its value and then
+        go to the right! Jesus christ
+        '''
+        elements = []
+        stack = []
+        current = root
+        while current or len(stack):
+            # Reaching deepest leftmost node, when reached None - stop
+            while current:
+                stack.append(current)
+                current = current.left
+
+            current = stack.pop()
+            elements.append(current.val)
+            current = current.right
+        return elements
+
     # Solution from comments
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         tree_vals = []
@@ -61,3 +84,4 @@ class Solution:
 
         inorder(root)
         return tree_vals
+

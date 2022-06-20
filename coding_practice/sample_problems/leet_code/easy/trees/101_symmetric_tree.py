@@ -29,40 +29,6 @@ class TreeNode:
 
 class Solution:
 
-    # Mine - doesn't seem to work
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-
-        def _accumulate_left_subtree_values(root: TreeNode) -> list:
-            values = []
-            if root.left:
-                values.extend(_accumulate_left_subtree_values(root.left))
-            else:
-                values.append(None)
-            values.append(root.val)
-            if root.right:
-                values.extend(_accumulate_left_subtree_values(root.right))
-            else:
-                values.append(None)
-            return values
-
-        def _accumulate_right_subtree_values(root: TreeNode) -> list:
-            values = []
-            if root.right:
-                values.extend(_accumulate_right_subtree_values(root.right))
-            else:
-                values.append(None)
-            values.append(root.val)
-            if root.left:
-                values.extend(_accumulate_right_subtree_values(root.left))
-            else:
-                values.append(None)
-            return values
-
-        left_subtree_values = _accumulate_left_subtree_values(root.left)
-        right_subtree_values = _accumulate_right_subtree_values(root.right)
-
-        return left_subtree_values == right_subtree_values
-
     # From solution - recursive
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 
@@ -104,3 +70,37 @@ class Solution:
             queue.put(node_2.left)
 
         return True
+
+    # Mine - doesn't seem to work
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+
+        def _accumulate_left_subtree_values(root: TreeNode) -> list:
+            values = []
+            if root.left:
+                values.extend(_accumulate_left_subtree_values(root.left))
+            else:
+                values.append(None)
+            values.append(root.val)
+            if root.right:
+                values.extend(_accumulate_left_subtree_values(root.right))
+            else:
+                values.append(None)
+            return values
+
+        def _accumulate_right_subtree_values(root: TreeNode) -> list:
+            values = []
+            if root.right:
+                values.extend(_accumulate_right_subtree_values(root.right))
+            else:
+                values.append(None)
+            values.append(root.val)
+            if root.left:
+                values.extend(_accumulate_right_subtree_values(root.left))
+            else:
+                values.append(None)
+            return values
+
+        left_subtree_values = _accumulate_left_subtree_values(root.left)
+        right_subtree_values = _accumulate_right_subtree_values(root.right)
+
+        return left_subtree_values == right_subtree_values
