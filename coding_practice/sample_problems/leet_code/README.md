@@ -37,6 +37,7 @@ for i in range(len(l)):
 
 - Sliding window approach is very good. 2 points that you update within 
 a while loop - linear time.
+
 - When measuring *distance* between 2 pointers don't forget to +1 or -1 
 depending on what you want to get
 ```
@@ -53,8 +54,38 @@ if an item exists in constant time --> dict or set.
 
 - When an array is sorted, it is already a good indication using pointers might
 be a good idea.
-- 
+
 - When working on trees, it appears there are usually 2 solutions: recursive and
 iterative one. Iterative often comes down to using a queue.
-- 
 
+- When dealing with a palindrom str, if we verify 0 and len(str) - 1 are the same,
+then we only care to check 1 to len(str) - 2, i.e racecar is a palindrom, we 
+verify that first and last chars match, then we can forget about them and focus 
+only on the aceca string, pretend the matched ones no longer exist. Etc.
+
+- When dealing with pointers and going from left and right towards the middle,
+opting to left <= right instead of left < right will ensure the middle character
+is considered for odd sequences.
+```python
+def _check_if_palindrom(s: str, left: int, right: int) -> bool:
+    if not s or len(s) == 1:
+        return True
+    while left <= right:  # !
+        print("Checking:", s[left], s[right])
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+# Passing racecar string will result in:
+# Checking: r r
+# Checking: a a
+# Checking: c c
+# Checking: e e
+# FOR left <= right, OR in 
+# Checking: r r
+# Checking: a a
+# Checking: c c
+# FOR left < right
+
+```

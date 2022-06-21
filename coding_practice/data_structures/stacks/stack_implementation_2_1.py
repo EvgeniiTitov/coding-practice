@@ -1,6 +1,14 @@
 
 
 # ----- Iteration 1 -----
+'''
+Stack would look like this:
+(12,12) (30,12) (7,7) (6,6) (45, 6) (2,2) (2,2) ...
+When you pop, the min value available on the stack is automatically taken
+care of
+'''
+
+
 class MinStack:
 
     def __init__(self):
@@ -25,6 +33,30 @@ class MinStack:
     def getMin(self) -> int:
         return self.stack[-1][1]
 
+
+# ----- Iteration 2 -----
+
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+
+    def pop(self) -> None:
+        if self.min_stack[-1] == self.stack[-1]:
+            self.min_stack.pop()
+        self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
 
 # ----- Iteration 2 -----
 
