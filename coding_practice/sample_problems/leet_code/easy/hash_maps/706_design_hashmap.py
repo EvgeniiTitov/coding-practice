@@ -39,23 +39,4 @@ myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 '''
 
 
-class MyHashMap:
-
-    def __init__(self):
-        pass
-
-    def put(self, key: int, value: int) -> None:
-        pass
-
-    def get(self, key: int) -> int:
-        pass
-
-    def remove(self, key: int) -> None:
-        pass
-
-
-# Your MyHashMap object will be instantiated and called as such:
-# obj = MyHashMap()
-# obj.put(key,value)
-# param_2 = obj.get(key)
-# obj.remove(key)
+# REFER TO coding_practice/data_structures/hash_tables/improved_implementation 2 or 3
