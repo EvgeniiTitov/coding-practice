@@ -1,69 +1,82 @@
-import typing
-
+import typing as t
 
 '''
-Poor hash function could lead to collisions, i.e the same key could result in 
-the same memory location for storing values
+There are two main issues that we should tackle, in order to design an
+efficient hashmap data structure:
+    1). hash function design and
+    2). collision handling.
+
+1). hash function design: the purpose of hash function is to map a key value
+to an address in the storage space, similarly to the system that we assign
+a postcode to each mail address. As one can image, for a good hash function,
+it should map different keys evenly across the storage space, so that we don't
+end up with the case that the majority of the keys are concentrated in
+a few spaces.
+
+2). collision handling: essentially the hash function reduces the vast key
+space into a limited address space. As a result, there could be the case where
+two different keys are mapped to the same address, which is what we call
+'collision'. Since the collision is inevitable, it is important that we have
+a strategy to handle the collision.
+
+
+Approach 1: Modulo + Array
+
+Intuition
+As one of the most intuitive implementations, we could adopt the modulo
+operator as the hash function, since the key value is of integer type. In 
+addition, in order to minimize the potential collisions, it is advisable to 
+use a prime number as the base of modulo, e.g. 2069.
+
+We organize the storage space as an array where each element is indexed with 
+the output value of the hash function.
+
+In case of collision, where two different keys are mapped to the same address, 
+we use a bucket to hold all the values. The bucket is a container that hold 
+all the values that are assigned by the hash function. We could use either a 
+LinkedList or an Array to implement the bucket data structure.
 '''
 
 
-class HashTable:
-    def __init__(self, size: int) -> None:
-        self._size = size
-        self._arr = [[] for _ in range(self._size)]
+class Bucket:
+    def __init__(self) -> None:
+        self._bucket: t.List[t.Tuple[t.Any, t.Any]] = []
 
-    def _get_hash(self, key: str) -> int:
-        h = 0
-        for char in key:
-            h += ord(char)
-        return h % self._size
+    def get(self, key: t.Any) -> t.Any:
+        for k, v in self._bucket:
+            if k == key:
+                return v
+        return -1
 
-    def __setitem__(self, key, value):
-        h = self._get_hash(key)
-
-        # Check if such key already exists for this hash value, if yes update
-        # the pair (key, value) with the provided value
+    def update(self, key: t.Any, value: t.Any) -> None:
         found = False
-        for i, element in enumerate(self._arr[h]):
-            if len(element) == 2 and element[0] == key:
-                self._arr[h][i] = (key, value)
+        for i, pair in enumerate(self._bucket):
+            if pair[0] == key:
+                self._bucket[i] = (key, value)
                 found = True
                 break
-
         if not found:
-            self._arr[h].append((key, value))
+            self._bucket.append((key, value))
 
-    def __getitem__(self, item):
-        for element in self._arr[self._get_hash(item)]:
-            if element[0] == item:
-                return element[1]
-        # TODO: Optionally raise an exception or return None
-
-    def __delitem__(self, key):
-        h = self._get_hash(key)
-        for i, element in enumerate(self._arr[h]):
-            if element[0] == key:
-                del self._arr[h][i]
-
-    def __str__(self):
-        return f"HashTable: {self._arr}"
+    def remove(self, key: t.Any) -> None:
+        for i, pair in enumerate(self._bucket):
+            if pair[0] == key:
+                del self._bucket[i]
 
 
-def main():
-    hash_map = HashTable(5)
-    hash_map["one"] = 1
-    hash_map["two"] = 2
-    hash_map["three"] = 3
-    hash_map["four"] = 4
-    hash_map["five"] = 5
-    print(hash_map)
+class HashMap:
+    def __init__(self, key_space: int = 2069) -> None:
+        self._key_space = key_space
+        self._storage = [Bucket() for _ in range(self._key_space)]
 
-    del hash_map["three"]
-    print(hash_map)
+    def put(self, key: int, value: t.Any) -> None:
+        hash_key = key % self._key_space
+        self._storage[hash_key].update(key, value)
 
-    print("\nAccessing existing items:", hash_map["two"], hash_map["four"])
-    print("Accessing non-existing items:", hash_map["kek"])
+    def get(self, key: int) -> t.Any:
+        hash_key = key % self._key_space
+        return self._storage[hash_key].get(key)
 
-
-if __name__ == '__main__':
-    main()
+    def remove(self, key: int) -> None:
+        hash_key = key % self._key_space
+        self._storage[hash_key].remove(key)
