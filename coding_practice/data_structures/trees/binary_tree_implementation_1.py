@@ -122,13 +122,13 @@ class BinarySearchTreeNode:
             elif not self.right:
                 return self.left
 
-            # Min from the right
+            # Min from the right approach
             min_value_right = self.right.find_min()
             self.data = min_value_right
             self.right = self.right.delete(min_value_right)
 
-            # Max from the left
-            # TODO:
+            # Max from the left approach
+            # TODO: Implement for practice
 
         return self
 
