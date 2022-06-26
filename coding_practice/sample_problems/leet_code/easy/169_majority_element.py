@@ -2,11 +2,17 @@ from typing import List
 
 
 '''
+Summary: 
+    Brute force: iterate over numbers, counting how many times each appears
+    (defaultdict), then return the one that appears the most.
+    
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/majority-element/
 
 Given an array nums of size n, return the majority element.
 
-The majority element is the element that appears more than ⌊n / 2⌋ times. 
+The majority element is the element that appears more than [n / 2] times. 
 You may assume that the majority element always exists in the array.
 
 Example 1:
@@ -101,7 +107,6 @@ class Solution:
 
         most_seen_number, times = None, 0
         for number, times_seen in nums_seen.items():
-
             if times_seen > times:
                 most_seen_number = number
                 times = times_seen

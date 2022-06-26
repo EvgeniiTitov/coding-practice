@@ -2,7 +2,14 @@
 - 14 Longest Common Prefix
 - 53 Max subarray, dynamic solution
 - 88 merge sorted arrays, O(1) solution
+- 136 bits manipulation solution
+
+---
+
+#### To study:
+- Circular queue for 346 moving average from data stream
 - 
+
 
 ---
 
@@ -106,4 +113,21 @@ def _check_if_palindrom(s: str, left: int, right: int) -> bool:
 # Checking: c c
 # FOR left < right
 
+```
+- Boyer-Moore Voting Algorithm (169 majority element)
+
+If we had some way of counting instances of the majority element as +1+1 and 
+instances of any other element as -1−1, summing them would make it obvious 
+that the majority element is indeed the majority element.
+```python
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        candidate = None
+
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+
+        return candidate
 ```

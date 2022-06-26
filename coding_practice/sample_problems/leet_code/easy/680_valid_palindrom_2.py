@@ -1,5 +1,14 @@
-'''
-Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+import typing as t
+
+
+"""
+Summary: TBA
+------------------------------------------------------------------------------
+
+https://leetcode.com/problems/valid-palindrome-ii/
+
+Given a string s, return true if the s can be palindrome after deleting at 
+most one character from it.
 
 Example 1:
 Input: s = "aba"
@@ -13,7 +22,7 @@ Explanation: You could delete the character 'c'.
 Example 3:
 Input: s = "abc"
 Output: false
-'''
+"""
 
 
 class Solution:

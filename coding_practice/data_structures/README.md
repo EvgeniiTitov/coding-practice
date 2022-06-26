@@ -11,9 +11,8 @@ to be considered as such.
 ### TODO:
 
 - Doubly LL
-- Stacks (with pointers)
 - Queues (with pointers)
-- Trees (General, Binary)
+- Circular queue
 - Graphs
 - LRU Caches
 - etc

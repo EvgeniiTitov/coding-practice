@@ -2,6 +2,11 @@ from typing import List
 
 
 '''
+Summary: Add numbers to a set, if a number is already there, you found it. 
+Alternatively, a bit slower but S: O(1) is to sort the array and then compare
+2 adjacent numbers in a loop
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/contains-duplicate/
 
 Given an integer array nums, return true if any value appears at least 
@@ -23,12 +28,21 @@ Output: true
 
 class Solution:
 
+    # T: O(N); S: O(N)
     def containsDuplicate(self, nums: List[int]) -> bool:
         numbers_seen = set()
         for num in nums:
             if num in numbers_seen:
                 return True
             numbers_seen.add(num)
+
+    # T: O(N log N); S: O(1)
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()  # O(N log N)
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                return True
+        return False
 
     # T: O(N); S: O(N)
     def containsDuplicate(self, nums: List[int]) -> bool:
@@ -40,11 +54,3 @@ class Solution:
         for num, times_seen in numbers_seen.items():
             if times_seen > 1:
                 return True
-
-    # T: O(N log N); S: O(1)
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        nums.sort()  # O(N log N)
-        for i in range(len(nums) - 1):
-            if nums[i] == nums[i + 1]:
-                return True
-        return False

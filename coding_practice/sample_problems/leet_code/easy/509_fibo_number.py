@@ -1,6 +1,10 @@
+import typing as t
 
 
 '''
+Summary: Just remember the formula f(n) = f(n-1) + f(n-2); Caching helps heaps
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/fibonacci-number/
 
 

@@ -1,5 +1,15 @@
+import typing as t
+
 
 '''
+Summary: We care only about numbers within the window -> discard the ones that 
+outside of it. Queue works fine, add to the right, pop off the left if len(q) >
+window size. deque() works nice for this as its optimised for operations at its
+ends
+------------------------------------------------------------------------------
+
+https://leetcode.com/problems/moving-average-from-data-stream/
+
 Given a stream of integers and a window size, calculate the moving average
 of all integers in the sliding window.
 
@@ -53,6 +63,7 @@ class MovingAverage:
         self._queue = deque()
 
     def next(self, val: int) -> float:
+        # Drop unnecessary items
         if len(self._queue) >= self._size:
             self._queue.popleft()
 

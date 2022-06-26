@@ -2,7 +2,12 @@ from typing import List
 
 
 """
-Two Sum || - Input Array Is Sorted (https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+Summary: Array is sorted -> 2 pointers. Keep moving either left or right to 
+achieve the desired target.
+------------------------------------------------------------------------------
+
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+Two Sum || - Input Array Is Sorted
 
 Given a 1-indexed array of integers numbers that is already sorted in 
 non-decreasing order, find two numbers such that they add up to a specific 
@@ -16,27 +21,11 @@ The tests are generated such that there is exactly one solution. You may not
 use the same element twice.
 
 Your solution must use only constant extra space.
-
-Thoughts:
-2 pointers? Index 1 < index 2 ==> left pointer is at 0, the right one at 
-len(numbers) - 1. Then we attempt to get the target
-
-
--> |
-   |
-   |
-   |
-   |
--> |
-
-
-! The space complexity is constant as each iteration we store just 3 values:
-left, right, and the sum (+ some other variables). The point is there are no
-containers that grow or whatever
 """
 
 
 class Solution:
+    # T: O(N); S: O(1)
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         length = len(numbers)
 
@@ -44,7 +33,7 @@ class Solution:
             return [1, 2]
 
         left, right = 0, length - 1
-        while left < right:
+        while left < right:  # Condition: index1 < index2
             left_number = numbers[left]
             right_number = numbers[right]
             sum_ = left_number + right_number
