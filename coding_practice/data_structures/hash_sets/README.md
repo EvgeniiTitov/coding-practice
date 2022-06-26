@@ -67,3 +67,21 @@ So the question is can we have a data structure that have O(logN) time
 complexity, for the operations of search, insert and delete? -> BST, that will
 serve as a bucket.
 
+---
+##### Notes on Hash Functions
+In all the above approaches, the range of address is fixed, since the base of 
+modulo operator is fixed.
+
+Sometimes, it might be more desirable to have a dynamic space that goes with 
+the increase of elements in the HashSet. One could set up a threshold on the 
+load factor (i.e. ratio between the number of elements and the size of space) 
+of the HashSet, and double the range of address, once the load factor exceeds 
+the threshold.
+
+The increase of address space could potentially reduce the collisions, 
+therefore improve the overall performance of HashSet. However, one should also 
+take into account the cost of rehashing and redistributing the existing values.
+
+In another scenario, one could adopt the 2-choice hashing as we mentioned at 
+the beginning, which could help the values to be more evenly distributed in 
+the address space.
