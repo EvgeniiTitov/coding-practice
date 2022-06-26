@@ -4,6 +4,16 @@ from coding_practice.utils import timer
 
 
 '''
+Summary: 
+    Brute force: Comes down to knowing the formula of i'th stare
+    climb_stairs(i, n) = climb_stairs(i + 1, n) + climb_stairs(i + 2, n), 
+    where n is the number of stairs. Pay attention to the base cases.
+    
+    Dynamic: Create an array of length n + 1. 0 stairs, 0 ways to climb it; 1
+    stair - 1 way, 2 stairs - 2; For the rest use the formula to populate the
+    array. Return the last element
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/climbing-stairs/
 You are climbing a staircase. It takes n steps to reach the top.
 
@@ -31,7 +41,6 @@ Somewhat reminds the Fibo stuff.
 The formula at each step would be: 
 climb_stairs(i, n) = climb_stairs(i + 1, n) + climb_stairs(i + 2, n)
 
-
 ! Dynamic programming is a good way to solve this problem as well considering
 we know the formula:
 public class Solution {
@@ -53,12 +62,9 @@ public class Solution {
 
 class Solution:
 
-    # Brute force ( O(2^N) ) + optimisation
+    # Brute force. T: O(2^N); S: O(N)
+    # Optimised. T: O(N); S: O(N)
     def climbStairs(self, n: int) -> int:
-        '''
-        Step size is 1 or 2
-
-        '''
 
         def _cache(func):
             cache = {}
@@ -83,6 +89,16 @@ class Solution:
                 )
         return _climb_stairs(0, n)
 
+    # Dynamic
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        l = [0] * (n + 1)
+        l[1] = 1
+        l[2] = 2
+        for i in range(3, len(l)):
+            l[i] = l[i - 1] + l[i - 2]
+        return l[n]
 
 
 def cache(func: t.Callable) -> t.Callable:

@@ -3,6 +3,16 @@ import math
 
 
 """
+Summary: 
+    Brute force: all subarray combinations, don't calculate each subarray
+    sum() as its O(N), rather sum up subarray elements keeping track of the 
+    largest sum achieved. 
+    
+    Dynamic solution: TBA
+------------------------------------------------------------------------------
+
+https://leetcode.com/problems/maximum-subarray/
+
 Given an integer array nums, find the contiguous subarray (containing at 
 least one number) which has the largest sum and return its sum.
 
@@ -28,13 +38,15 @@ pointers that both start at the beginning.
 
 
 Dynamic programming solution:
-Let's focus on one important part: where the optimal subarray begins. We'll use the following example.
+Let's focus on one important part: where the optimal subarray begins. We'll use
+the following example.
 
 nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
 We can see that the optimal subarray couldn't possibly involve the first 3 
 values - the overall sum of those numbers would always subtract from the total. 
-Therefore, the subarray either starts at the first 4, or somewhere further to the right.
+Therefore, the subarray either starts at the first 4, or somewhere further to 
+the right.
 
 What if we had this example though?
 
@@ -55,7 +67,7 @@ When it becomes negative, we reset it to 0 (an empty array).
 
 class Solution:
 
-    # My dumb way O(N3)
+    # Dumb way. T: O(N3)
     def maxSubArray(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return nums[0]
@@ -65,12 +77,12 @@ class Solution:
         for i in range(length):
             for j in range(i, length):  # Fine to start from the same i
                 subarray = nums[i : j + 1]
-                subarray_sum = sum(subarray)  # ! That's linear time!
+                subarray_sum = sum(subarray)  # ! That's O(N)
                 largest_sum = max(largest_sum, subarray_sum)
         return largest_sum
 
-    # Dumb way optimized O(N2) - avoid calculating sum for a subarray, just add
-    # each value (nested loop) to the subarray sum
+    # Dumb way optimized O(N2) - avoid calculating sum for each subarray, just
+    # add each value (nested loop) to the subarray sum
     def maxSubArray(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return nums[0]

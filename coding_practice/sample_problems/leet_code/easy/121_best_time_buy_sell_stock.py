@@ -2,6 +2,14 @@ from typing import List
 
 
 '''
+Summary:
+    Single pass: Quite neat, focus on finding mins, else see if we could
+    higher profit
+    Pointers: 2 pointers, first and second days. If sell price > buy price, 
+    check profit, else left_pointer = right_pointer. Keep iterating until the
+    right pointer reaches the end.
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
 You are given an array prices where prices[i] is the price of a given stock 
@@ -17,8 +25,10 @@ achieve any profit, return 0.
 Example 1:
 Input: prices = [7,1,5,3,6,4]
 Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), 
+profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must 
+buy before you sell.
 
 Example 2:
 Input: prices = [7,6,4,3,1]
@@ -51,9 +61,9 @@ class Solution:
         selling price and minprice) obtained so far respectively.
         '''
         for i in range(len(prices)):
-            if prices[i] < min_price:
+            if prices[i] < min_price:  # Firstly focus on finding mins
                 min_price = prices[i]
-            elif prices[i] - min_price > max_profit:
+            elif prices[i] - min_price > max_profit:  # Them maxing profit
                 max_profit = prices[i] - min_price
         return max_profit
 

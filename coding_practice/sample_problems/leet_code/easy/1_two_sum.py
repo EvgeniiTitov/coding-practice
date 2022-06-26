@@ -1,30 +1,31 @@
 from typing import List
 
 """
-Two Sum - https://github.com/qiyuangong/leetcode/blob/master/python/001_Two_Sum.py
+Summary: Three ways: Brute Force, pointers based and single pass. For single
+pass - calculate complement, check if we've seen it before, returns the indices
+if yes, else remember the number
+------------------------------------------------------------------------------
+
+Two Sum - https://leetcode.com/problems/two-sum/
 
 Given an array of integers nums and an integer target, return indices of the 
 two numbers such that they add up to target.
-
 You may assume that each input would have exactly one solution, and you may not
 use the same element twice.
-
 You can return the answer in any order.
-
-
 """
 
 
 class Solution:
 
-    # -- Brute force solution
+    # Brute force solution. T: O(N2); S: O(1)
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums) - 1):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i, j]
 
-    # Interesting using pointers
+    # Pointers based. T: O(N log N); S: O(N)
     def twoSum(self, nums, target):
         # two point
         nums_index = [(v, index) for index, v in enumerate(nums)]
@@ -39,6 +40,7 @@ class Solution:
             else:
                 end -= 1
 
+    # Single pass. T: O(N); S: O(N)
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         """
         Just a single pass - iterate over all numbers on the list using their

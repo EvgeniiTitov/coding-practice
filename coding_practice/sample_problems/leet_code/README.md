@@ -1,4 +1,12 @@
-### General information:
+#### Poorly solved problems / Not understood solutions:
+- 14 Longest Common Prefix
+- 53 Max subarray, dynamic solution
+- 88 merge sorted arrays, O(1) solution
+- 
+
+---
+
+#### General information:
 
 "Most questions fall into some category of DP/memoization, DFS/BFS, two pointer,
 sort/binary search, or Hash table/counting occurrences in my experience"
@@ -15,11 +23,21 @@ shortest path between A and B in a graph of uniform weight.
 
 
 ---
-### Important points to remember:
+#### To remember:
 
 - Sequential loops still result in O(n), no nested looping.
 
-- 
+- When slicing, going beyond is fine: l = [1,2]; l[:1000] won't result in error
+
+- When reassigning a variable min, max are cleaner and more pythonic.
+```python
+largest_sum = -math.inf
+for _ in range(_):
+    largest_sum = max(largest_sum, subarray_sum)
+```
+- Modifying original array in place: nums1[:] = out
+
+- Some looping:
 ```python
 l = list(range(10))
 

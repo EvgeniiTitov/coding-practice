@@ -2,6 +2,15 @@ from typing import List
 
 
 '''
+Summary: 
+    Pointers: 2 pointers at the beginning of each array, get values, compare, 
+    move the pointer only of the array from which you got the smaller value, 
+    there could be more smaller ones. Iterate until one of them reaches the 
+    end. Don't forget to append the remaining values of the other one.
+------------------------------------------------------------------------------
+
+https://leetcode.com/problems/merge-sorted-array/
+
 You are given two integer arrays nums1 and nums2, sorted in non-decreasing 
 order, and two integers m and n, representing the number of elements in 
 nums1 and nums2 respectively.

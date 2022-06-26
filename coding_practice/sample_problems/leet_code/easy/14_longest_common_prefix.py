@@ -2,13 +2,15 @@ from typing import List
 
 
 '''
+Summary: -
+------------------------------------------------------------------------------
+
 https://leetcode.com/problems/longest-common-prefix/
 
 Write a function to find the longest common prefix string amongst an array of strings.
 
 If there is no common prefix, return an empty string "".
 
- 
 Example 1:
 Input: strs = ["flower","flow","flight"]
 Output: "fl"
@@ -24,6 +26,9 @@ class Solution:
 
     # T: O(n2), S: O(n)
     def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not len(strs):
+            return ""
+
         strs.sort(key=len)  # O(n log n)
         shortest_word = strs.pop(0)
         str_out = []
@@ -34,6 +39,17 @@ class Solution:
                     return "".join(str_out)
             str_out.append(char)
         return "".join(str_out)
+
+    # T: O(n2), S: O(1)
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not len(strs):
+            return ""
+        shortest = min(strs, key=len)
+        for i, char in enumerate(shortest):
+            for other in strs:
+                if other[i] != char:
+                    return shortest[:i]
+        return shortest
 
 
 def main():
