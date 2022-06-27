@@ -16,6 +16,11 @@ When dealing with data structures, its worth paying attention to:
 - etc
 
 
+### Poorly understood topics:
+
+-
+
+
 ### ADT vs Data Structure
 
 - ADT (Abstract Data Type) - a "model" or "blueprint" for a data structure. 
