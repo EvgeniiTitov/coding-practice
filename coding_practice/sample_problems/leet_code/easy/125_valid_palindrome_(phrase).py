@@ -2,7 +2,10 @@ import typing as t
 
 
 """
-Summary:
+Summary: str.isalnum() is crucial to cleanse the string for a head-on solution
+with str == str[::-1]
+To solve it in constant space use 2 pointers, when encounter a non-alphanumeric
+char, just skip it by incrementing left or decrementing right.
 _______________________________________________________________________________
 
 https://leetcode.com/problems/valid-palindrome/
