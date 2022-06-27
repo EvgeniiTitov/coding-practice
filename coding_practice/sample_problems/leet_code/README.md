@@ -37,12 +37,18 @@ shortest path between A and B in a graph of uniform weight.
 - When slicing, going beyond is fine: l = [1,2]; l[:1000] won't result in error
 
 - When reassigning a variable min, max are cleaner and more pythonic.
-```python
+```
 largest_sum = -math.inf
 for _ in range(_):
     largest_sum = max(largest_sum, subarray_sum)
 ```
 - Modifying original array in place: nums1[:] = out
+
+- In python strings could be sorted! No need to explicitly cast list(str) first
+```
+print(sorted("awhrubgwhgrc"))
+['a', 'b', 'c', 'g', 'g', 'h', 'h', 'r', 'r', 'u', 'w', 'w']
+```
 
 - Some looping:
 ```python
@@ -120,14 +126,14 @@ If we had some way of counting instances of the majority element as +1+1 and
 instances of any other element as -1−1, summing them would make it obvious 
 that the majority element is indeed the majority element.
 ```python
-    def majorityElement(self, nums: List[int]) -> int:
-        count = 0
-        candidate = None
+def majorityElement(self, nums: List[int]) -> int:
+    count = 0
+    candidate = None
 
-        for num in nums:
-            if count == 0:
-                candidate = num
-            count += (1 if num == candidate else -1)
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += (1 if num == candidate else -1)
 
-        return candidate
+    return candidate
 ```

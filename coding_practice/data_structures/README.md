@@ -7,12 +7,15 @@ When dealing with data structures, its worth paying attention to:
 
 ### TODO:
 
-- Doubly LL
 - Queues (with pointers)
-- Priority queue
+    - Priority queue
+- Doubly LL
+    - Leetcode (https://leetcode.com/tag/doubly-linked-list/)
+- Heap (heapq)
+
+
 - Graphs
 - LRU Caches
-- Heap
 - etc
 
 
