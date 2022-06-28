@@ -1,6 +1,10 @@
 import typing as t
 
 
+# TODO: Good idea to maintain a count (length of ll) that gets updated with
+#       each operation
+
+
 class IndexOutOfRangeError(Exception):
     pass
 
