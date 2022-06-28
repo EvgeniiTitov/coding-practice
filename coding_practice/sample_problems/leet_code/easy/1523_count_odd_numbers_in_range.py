@@ -1,9 +1,17 @@
+import typing as t
 
-'''
+
+"""
+Summary: Math focused problem. Given high and low number, we know that between
+them there is high - low numbers. At least half of them is going to be odd.
+If one of them is odd --> (high - low) // 2 + 1
+_______________________________________________________________________________
+
 https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/
 
 
-Given two non-negative integers low and high. Return the count of odd numbers between low and high (inclusive).
+Given two non-negative integers low and high. Return the count of odd numbers 
+between low and high (inclusive).
 
 Example 1:
 Input: low = 3, high = 7
@@ -14,7 +22,7 @@ Example 2:
 Input: low = 8, high = 10
 Output: 1
 Explanation: The odd numbers between 8 and 10 are [9].
-'''
+"""
 
 
 class Solution:
