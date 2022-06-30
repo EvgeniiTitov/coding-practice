@@ -2,7 +2,8 @@ from typing import List
 
 
 """
-Sumarry:
+Summary: No trick here, find out what chars and how many of them are available,
+then for each word check if can be constructed using whats available
 _______________________________________________________________________________
 
 https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
