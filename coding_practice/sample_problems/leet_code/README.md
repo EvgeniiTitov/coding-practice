@@ -32,6 +32,9 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- Careful with a != b != c because `0 != 1 != 0` passes the condition -> be explicit
+`a != b and a != c and b != c`
+
 - Sequential loops still result in O(n), no nested looping.
 
 - When slicing, going beyond is fine: l = [1,2]; l[:1000] won't result in error
