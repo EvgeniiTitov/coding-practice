@@ -3,6 +3,7 @@ import typing as t
 
 """
 Summary:
+
 _______________________________________________________________________________
 
 https://leetcode.com/problems/max-stack/
@@ -21,57 +22,65 @@ Implement the MaxStack class:
 
 You must come up with a solution that supports O(1) for each top call 
 and O(logn) for each other call? 
+
+
+Approach 2: DLL + TreeMap
+
+
 """
 
-
-# This won't work because when you pop max, all the item on top keep referring
-# to its value, so they would need to be updated!
+# Iteration 1 - list based. Doesn't satisfy time complexity, yet simple
 class MaxStack:
 
     def __init__(self):
         self._stack = []
 
-    def push(self, x):
-        if not len(self._stack):
-            self._stack.append((x, 0))
-        else:
-            current_max_idx = self._stack[-1][-1]
-            current_max_val = self._stack[current_max_idx][0]
-            i = len(self._stack) if x >= current_max_val else current_max_idx
-            self._stack.append((x, i))
+    def push(self, x: int) -> None:
+        self._stack.append(x)
 
-    def pop(self):
-        # When we just pop, the next item on the stack will hold reference to
-        # the next greatest item within the stack
-        return self._stack.pop()[-1]
+    def pop(self) -> int:
+        return self._stack.pop()
 
-    def top(self):
-        return self._stack[-1][0]
+    def top(self) -> int:
+        return self._stack[-1]
 
-    def peekMax(self):
-        return self._stack[self._stack[-1][-1]][0]
+    def peekMax(self) -> int:
+        return max(self._stack)  # O(N)
 
-    def popMax(self):
-        """
-        When we pop max value, which might be somewhere within the stack, all
-        items coming after it will be referencing it as the max value --> hence
-        when popping it off, we need to iterate over the items to the right
-        and fix the references to the new max
-        """
-        current_max_idx = self._stack[-1][-1]
-        current_max_value = self._stack[current_max_idx][0]
-        # TODO: Do the thing
+    # Reversing to pop the top most item if there're 1+ same items
+    def popMax(self) -> int:  # O(N)
+        self._stack.reverse()
+
+        # 1. Build in approach
+        max_index = self._stack.index(max(self._stack))
+
+        # 2. Finding max element manually
+        max_value = float("-inf")
+        max_index = -1
+        for i in range(len(self._stack)):
+            if self._stack[i] >= max_value:
+                max_value = self._stack[i]
+                max_index = i
+
+        item = self._stack.pop(max_index)
+        self._stack.reverse()
+        return item
 
     def __str__(self) -> str:
         return f"MaxStack: {self._stack}"
 
 
+# Iteration 2
+
 
 def main():
-    mstack = MaxStack()
-    for item in [1, 3, 2, 4, 2, -4]:
-        mstack.push(item)
-    print(mstack)
+    stack = MaxStack()
+    for item in (1, 3, 0, 5, 10, 1, 10, 3, 10, 2, 4, -6):
+        stack.push(item)
+    print(stack)
+    print("Peeking max:", stack.peekMax())
+    print("Popping max:", stack.popMax())
+    print(stack)
 
 
 if __name__ == '__main__':
