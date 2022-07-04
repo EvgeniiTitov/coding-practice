@@ -32,6 +32,11 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- Fine to pop off elements from an array in a loop as long as you: a) keep track
+of its length yourself OR b) recalculate its length len(arr) every iter to know
+when to break off the WHILE loop
+
+
 - Careful with a != b != c because `0 != 1 != 0` passes the condition -> be explicit
 `a != b and a != c and b != c`
 
