@@ -121,33 +121,33 @@ class DoublyLinkedList:
         if not self.head:
             raise EmptyLinkedListError("Cannot delete from an empty LL")
 
-        # TODO: Complete me
-        # # If just one item in the LL
-        # if not self.head.next:
-        #     if self.head.value == value:
-        #         self.head = self.tail = None
-        #         return True
-        #     return False
-        #
-        # # Check the ends
-        # if self.head.value == value:
-        #     self.pop_front()
-        #     return True
-        # elif self.tail.value == value:
-        #     self.pop_back()
-        #     return True
-        #
-        # current = self.head
-        # while current.next:
-        #     if current.value == value:
-        #         break
-        #     current = current.next
-        #
-        # if current.next:
-        #     current.prev.next = current.next
-        #     current.next.prev = current.prev
-        # else:
+        # Check the ends
+        if self.head.value == value:
+            self.head = self.head.next
+            if self.head:
+                self.head.prev = None
+            else:
+                self.tail = None
+            return True
+        elif self.tail.value == value:
+            self.tail = self.tail.prev
+            if self.tail:
+                self.tail.next = None
+            else:
+                self.head = None
+            return True
 
+        current = self.head
+        while current and current.value != value:
+            current = current.next
+        # No item to delete found
+        if not current:
+            return False
+
+        # Relink the nodes skipping the one we're standing one
+        current.prev.next = current.next
+        if current.next:
+            current.next.prev = current.prev
 
 
     def reverse(self) -> None:
@@ -184,7 +184,7 @@ class DoublyLinkedList:
 
 def main():
     ll = DoublyLinkedList()
-    for i in range(5):
+    for i in range(6):
         ll.append(i)
     print(ll)
     print("Length:", ll.length)
@@ -210,6 +210,15 @@ def main():
     ll.reverse()
     print(ll)
 
+    print("\nDeleting 228")
+    ll.delete_value(228)
+    print(ll)
+    print(("Deleting 2"))
+    ll.delete_value(2)
+    print(ll)
+
+    ll.reverse()
+    print("\nReversed back:", ll)
 
 if __name__ == '__main__':
     main()
