@@ -4,7 +4,8 @@ import math
 
 
 """
-Summary:
+Summary: Calculate distance to origin for each point. Convert points to the 
+heap, pop k closest points off the heap
 _______________________________________________________________________________
 
 https://leetcode.com/problems/k-closest-points-to-origin/
@@ -34,11 +35,16 @@ class Point:
         self.x, self.y = coordinates
         self.distance_to_origin = self._calculate_distance_to_origin()
 
+    @property
+    def coords(self) -> List[int]:
+        return [self.x, self.y]
+
     def _calculate_distance_to_origin(self) -> float:
         return math.sqrt(self.x ** 2 + self.y ** 2)
 
-    def __eq__(self, other: "Point") -> bool:
-        return self.distance_to_origin == other.distance_to_origin
+    # ! Crucial for heapifying custom Python objects
+    def __lt__(self, other: "Point") -> bool:
+        return self.distance_to_origin < other.distance_to_origin
 
     def __str__(self) -> str:
         return (
@@ -49,7 +55,36 @@ class Point:
 
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        pass
+        point_objects = [Point(coord) for coord in points]
+        heapq.heapify(point_objects)
+        k_closest = []
+        for _ in range(k):
+            k_closest.append(
+                heapq.heappop(point_objects).coords
+            )
+        return k_closest
+
+    # Boring alternatives:
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        dists = []
+        res = []
+        for p in points:
+            d = p[0] ** 2 + p[1] ** 2
+            dists.append([d, p])
+        heapq.heapify(dists)
+        while k > 0:
+            point = heapq.heappop(dists)
+            res.append(point[1])
+            k -= 1
+        return res
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        # Sort the list with a custom comparator function
+        points.sort(key=lambda coord: math.sqrt(coord[0] ** 2 + coord[1] ** 2))
+
+        # Return the first k elements of the sorted list
+        return points[:k]
 
 
 def main():
