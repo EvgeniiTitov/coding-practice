@@ -1,3 +1,21 @@
+#### Terms:
+
+- Anagram is a word or phrase formed by rearranging the letters of a different 
+word or phrase, typically using all the original letters exactly once.
+
+
+- In mathematics, the lexicographic or lexicographical order (also known as 
+lexical order, or dictionary order) is a generalization of the alphabetical 
+order of the dictionaries to sequences of ordered symbols or, more generally, 
+of elements of a totally ordered set. 
+For example, using the natural order of the integers, the lexicographical 
+ordering on the subsets of three elements of S = {1,2,3,4,5,6} is:
+```
+123 < 124 < 125 < 126 < 134 < 135 < 136 < 145 < 146 < 156 < 234 < 235 < 236 < 245 < 246 < 256 < 345 < 346 < 356 < 456
+```
+
+___
+
 #### Poorly solved problems / Not understood solutions:
 - 14 Longest Common Prefix
 - 53 Max subarray, dynamic solution
