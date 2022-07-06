@@ -50,6 +50,10 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- Whenever you want to sort something to get access to 1 or more smallest/largest
+items consider using heap. Heapify is O(N) in place while pushing/popping is O(log N),
+which is much better than sorting O(N log N)
+
 - Fine to pop off elements from an array in a loop as long as you: a) keep track
 of its length yourself OR b) recalculate its length len(arr) every iter to know
 when to break off the WHILE loop
