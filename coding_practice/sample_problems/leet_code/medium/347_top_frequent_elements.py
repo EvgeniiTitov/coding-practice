@@ -2,7 +2,8 @@ from typing import List
 
 
 """
-Summary:
+Summary: Calculate how many times each element appears. To pick N most frequent
+ones: a) sort the array (slow) or b) use a heap!
 _______________________________________________________________________________
 
 https://leetcode.com/problems/top-k-frequent-elements/

@@ -3,7 +3,10 @@ import heapq
 
 
 """
-Summary:
+Summary: Sort based on starting time. Single pass, for each meeting we need a 
+room - check if one is available (min heap based on end time). If heap empty,
+add a new room. If not, check if we could use this room. if yes, reuse the room,
+else add a new one. At the end check the len of the heap to get total N of rooms
 _______________________________________________________________________________
 
 https://leetcode.com/problems/meeting-rooms-ii/
