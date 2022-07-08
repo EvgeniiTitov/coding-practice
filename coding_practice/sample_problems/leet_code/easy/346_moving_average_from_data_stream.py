@@ -1,7 +1,7 @@
 import typing as t
 
 
-'''
+"""
 Summary: We care only about numbers within the window -> discard the ones that 
 outside of it. Queue works fine, add to the right, pop off the left if len(q) >
 window size. deque() works nice for this as its optimised for operations at its
@@ -32,20 +32,19 @@ movingAverage.next(1); // return 1.0 = 1 / 1
 movingAverage.next(10); // return 5.5 = (1 + 10) / 2
 movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
 movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
-'''
+"""
 
 
 # Accumulates all values, which is not required, we just need those ones that
 # are within the window
 class MovingAverage:
-
     def __init__(self, size: int):
         self._size = size
         self._stack = []
 
     def next(self, val: int) -> float:
         self._stack.append(val)
-        sum_ = sum(self._stack[-self._size:])
+        sum_ = sum(self._stack[-self._size :])
         if len(self._stack) < self._size:
             denominator = len(self._stack)
         else:
@@ -57,7 +56,6 @@ from collections import deque
 
 # S: O(1)
 class MovingAverage:
-
     def __init__(self, size: int):
         self._size = size
         self._queue = deque()

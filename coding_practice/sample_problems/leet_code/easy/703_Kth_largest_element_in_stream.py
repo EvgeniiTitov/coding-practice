@@ -22,7 +22,6 @@ representing the kth largest element in the stream.
 
 
 class KthLargest:
-
     def __init__(self, k: int, nums: List[int]):
         self.k = k
         self.heap = nums
@@ -30,7 +29,6 @@ class KthLargest:
         # Pop any extra items, we care only about K ones
         while len(self.heap) > k:
             heapq.heappop(self.heap)
-
 
     def add(self, val: int) -> int:
         heapq.heappush(self.heap, val)
@@ -41,7 +39,6 @@ class KthLargest:
 
 # Alternative
 class KthLargest:
-
     def __init__(self, k: int, nums: List[int]):
         self.heap = []
         self.k = k
@@ -63,5 +60,5 @@ def main():
     print(KthLargest(k=3, nums=[4, 5, 8, 2]).add(3))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

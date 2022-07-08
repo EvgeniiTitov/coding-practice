@@ -34,6 +34,7 @@ class Solution:
     # T: O(N2); S: O(N)
     def countCharacters(self, words: List[str], chars: str) -> int:
         from collections import defaultdict
+
         available_char = defaultdict(int)
         for char in chars:
             available_char[char] += 1
@@ -62,6 +63,7 @@ class Solution:
     # Slight optimisation
     def countCharacters(self, words: List[str], chars: str) -> int:
         from collections import defaultdict
+
         available_char = defaultdict(int)
         for char in chars:
             available_char[char] += 1
@@ -103,5 +105,6 @@ class Solution:
                 else:
                     included = False
                     break
-            if included: counter = counter + len(w)
+            if included:
+                counter = counter + len(w)
         return counter

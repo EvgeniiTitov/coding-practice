@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary: Add numbers to a set, if a number is already there, you found it. 
 Alternatively, a bit slower but S: O(1) is to sort the array and then compare
 2 adjacent numbers in a loop
@@ -23,7 +23,7 @@ Output: false
 Example 3:
 Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
-'''
+"""
 
 
 class Solution:
@@ -35,6 +35,7 @@ class Solution:
             if num in numbers_seen:
                 return True
             numbers_seen.add(num)
+        return False
 
     # T: O(N log N); S: O(1)
     def containsDuplicate(self, nums: List[int]) -> bool:
@@ -54,3 +55,4 @@ class Solution:
         for num, times_seen in numbers_seen.items():
             if times_seen > 1:
                 return True
+        return False

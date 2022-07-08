@@ -1,7 +1,7 @@
 import typing as t
 
 
-'''
+"""
 Summary: Just remember the formula f(n) = f(n-1) + f(n-2); Caching helps heaps
 ------------------------------------------------------------------------------
 
@@ -10,12 +10,11 @@ https://leetcode.com/problems/fibonacci-number/
 
 06/23/2022 14:05	Accepted	1333 ms	13.8 MB	python3  - without cache
 06/23/2022 14:05	Accepted	42 ms	14 MB	python3
-'''
+"""
 
 
 class Solution:
     def fib(self, n: int) -> int:
-
         def _cache(func):
             cache = {}
 

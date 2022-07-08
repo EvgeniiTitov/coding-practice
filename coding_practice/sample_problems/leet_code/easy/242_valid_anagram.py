@@ -36,14 +36,16 @@ class Solution:
 
     # A bit quicker. T: O(N log N); S: O(N)
     def isAnagram(self, s: str, t: str) -> bool:
-
         def _get_numerical_representation(s: str) -> int:
             numbers = []
             for char in s:
                 numbers.append(ord(char))
             numbers.sort()
             return int("".join(map(str, numbers)))
-        return _get_numerical_representation(s) == _get_numerical_representation(t)
+
+        return _get_numerical_representation(
+            s
+        ) == _get_numerical_representation(t)
 
     # Substantially quicker. T: O(N log N); S: O(N), maybe O(1)?
     def isAnagram(self, s: str, t: str) -> bool:

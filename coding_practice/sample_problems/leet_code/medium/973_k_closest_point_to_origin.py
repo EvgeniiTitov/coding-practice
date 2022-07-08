@@ -59,9 +59,7 @@ class Solution:
         heapq.heapify(point_objects)
         k_closest = []
         for _ in range(k):
-            k_closest.append(
-                heapq.heappop(point_objects).coords
-            )
+            k_closest.append(heapq.heappop(point_objects).coords)
         return k_closest
 
     # Boring alternatives:
@@ -96,5 +94,5 @@ def main():
     print("Distance equal?", p1 == p2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

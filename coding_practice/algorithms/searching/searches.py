@@ -8,6 +8,7 @@ def linear_search(array: list[int], target: int) -> bool:
             return True
     return False
 
+
 # O(log n) if array is sorted
 def binary_search(array: list[int], target: int) -> bool:
     left, right = 0, len(array) - 1
@@ -33,5 +34,5 @@ def main():
     time_searching_algorithms(l, l[-1])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

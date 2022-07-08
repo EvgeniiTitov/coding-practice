@@ -25,7 +25,6 @@ Output: [[],[0]]
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-
         def _generate_subsets(index: int, current: List[int]) -> None:
             subsets.append(current[:])
             # Taking and not taking each number at the index position
@@ -65,5 +64,5 @@ def main():
     print(Solution().subsets(nums=[1, 2, 3]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

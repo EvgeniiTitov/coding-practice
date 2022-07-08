@@ -30,6 +30,7 @@ class Solution:
             return nums
 
         from collections import defaultdict
+
         elements_count = defaultdict(int)
         for num in nums:
             elements_count[num] += 1
@@ -40,9 +41,7 @@ class Solution:
 
         popularity_pairs.sort(key=lambda e: e[1], reverse=True)  # Slow N log N
 
-        return [
-            pair[0] for pair in popularity_pairs[:k]
-        ]
+        return [pair[0] for pair in popularity_pairs[:k]]
 
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         length = len(nums)
@@ -50,6 +49,7 @@ class Solution:
             return nums
 
         from collections import defaultdict
+
         elements_count = defaultdict(int)
         for num in nums:
             elements_count[num] += 1
@@ -59,6 +59,7 @@ class Solution:
             popularity_pairs.append((-count, num))
 
         import heapq
+
         heapq.heapify(popularity_pairs)  # in-place heapify -> cost O(N) time
         out = []
         for _ in range(k):

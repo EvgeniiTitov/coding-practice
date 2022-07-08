@@ -54,7 +54,6 @@ class Solution:
     # Example how to avoid global like variable, just pass and return the D
     # to every recursive call
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-
         def _measure_diameter(root: Optional[TreeNode], max_diameter: int):
             if not root:
                 return [0, max_diameter]

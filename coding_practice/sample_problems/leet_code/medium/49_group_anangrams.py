@@ -40,7 +40,6 @@ class Solution:
         def _get_key_from_string(s: str) -> str:
             return "".join(sorted(s))
 
-
         from collections import defaultdict
 
         seen_anangrams = defaultdict(list)

@@ -70,5 +70,5 @@ def main():
         print(f"Caught error: {e}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

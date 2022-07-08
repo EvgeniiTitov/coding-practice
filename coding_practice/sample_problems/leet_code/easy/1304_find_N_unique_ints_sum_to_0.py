@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
 
 Given an integer n, return any array containing n unique integers such that 
@@ -33,7 +33,7 @@ So, we should return an array where the values are symmetric.
 If n%2 is not equal to zero (n is odd), we append 0 to the answer list.
 The maximum value is equal to n//2; and the minimum value is equal to -n//2.
 So, we use a for loop; and each time we add -i and i to the answer list.
-'''
+"""
 
 
 class Solution:

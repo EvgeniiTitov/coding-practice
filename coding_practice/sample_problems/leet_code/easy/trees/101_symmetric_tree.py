@@ -4,7 +4,7 @@ from typing import Optional
 # TODO: Can't wrap my head around this
 
 
-'''
+"""
 Given the root of a binary tree, check whether it is a mirror of itself 
 (i.e., symmetric around its center).
 https://leetcode.com/problems/symmetric-tree/
@@ -16,7 +16,7 @@ the total run time is O(n), where n is the total number of nodes in the tree.
 Space complexity : The number of recursive calls is bound by the height of the tree. 
 In the worst case, the tree is linear and the height is in O(n). Therefore, 
 space complexity due to recursive calls on the stack is O(n) in the worst case.
-'''
+"""
 
 
 # Definition for a binary tree node.
@@ -31,16 +31,15 @@ class Solution:
 
     # From solution - recursive
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-
         def _compare_trees(left: TreeNode, right: TreeNode) -> bool:
             if not left and not right:
                 return True
             if not left or not right:  # One of them is null
                 return False
             return (
-                    left.val == right.val
-                    and _compare_trees(left.right, right.left)
-                    and _compare_trees(left.left, right.right)
+                left.val == right.val
+                and _compare_trees(left.right, right.left)
+                and _compare_trees(left.left, right.right)
             )
 
         return _compare_trees(root, root)
@@ -73,7 +72,6 @@ class Solution:
 
     # Mine - doesn't seem to work
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-
         def _accumulate_left_subtree_values(root: TreeNode) -> list:
             values = []
             if root.left:

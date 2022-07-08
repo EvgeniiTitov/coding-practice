@@ -56,6 +56,7 @@ class Solution:
                     found_pair = False
 
             return "".join(s)
+
         return _dedup(s)
 
     # Time Limit Exceeded
@@ -91,5 +92,5 @@ def main():
     print(Solution().removeDuplicates(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

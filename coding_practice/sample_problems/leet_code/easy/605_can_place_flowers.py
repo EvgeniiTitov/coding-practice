@@ -53,7 +53,8 @@ class Solution:
                 # Check if the left and right plots are empty.
                 empty_left_plot = (i == 0) or (flowerbed[i - 1] == 0)
                 empty_right_lot = (i == len(flowerbed) - 1) or (
-                            flowerbed[i + 1] == 0)
+                    flowerbed[i + 1] == 0
+                )
 
                 # If both plots are empty, we can plant a flower here.
                 if empty_left_plot and empty_right_lot:
@@ -66,9 +67,9 @@ class Solution:
 
 
 def main():
-    l = [1,0,0,0,1]
+    l = [1, 0, 0, 0, 1]
     print(Solution().canPlaceFlowers(l, 1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

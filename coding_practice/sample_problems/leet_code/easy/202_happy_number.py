@@ -64,7 +64,6 @@ class Solution:
 
     # Alternative: Floyd's Cycle-Finding Algorithm
     def isHappy(self, n: int) -> bool:
-
         def _get_next(n: int) -> int:
             if n == 0 or n == 1:
                 return n
@@ -81,10 +80,9 @@ class Solution:
             fast_runner = _get_next(_get_next(fast_runner))
 
 
-
 def main():
     print(Solution().isHappy(19))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

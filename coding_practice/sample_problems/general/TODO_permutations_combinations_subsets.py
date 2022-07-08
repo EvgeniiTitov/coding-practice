@@ -75,17 +75,14 @@ def main():
     # String permutations. Itertool's perm is a generator and returns (b, a, c)
     perms = get_string_permutations("123")
     perms_builtin = ["".join(item) for item in itertools.permutations("abc")]
-    '''
+    """
     Number of chars = N of chars in the original string - permutations
     ['abc', 'acb', 'bac', 'bca', 'cba', 'cab']
     ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
-    '''
+    """
     print(perms)
     print(perms_builtin)
 
 
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

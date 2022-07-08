@@ -18,7 +18,6 @@ class VertexDoesntExistError(Exception):
 
 
 class UnweightedUndirectedGraph:
-
     def __init__(self, graph_dict: t.Optional[t.Mapping] = None) -> None:
         self._graph_dict = graph_dict or {}
 
@@ -105,9 +104,9 @@ def test_2():
         "D": ["A", "F"],
         "E": ["C"],
         "F": ["D", "G"],
-        "G": ["F"]
+        "G": ["F"],
     }
-    '''
+    """
                        E
      B            C
            A
@@ -117,7 +116,7 @@ def test_2():
            F
                 H
            G     
-    '''
+    """
     # graph_repr = {
     #     "A": ["B", "C"],
     #     "B": ["A", "D", "E"],
@@ -140,12 +139,12 @@ def test_2():
     for vertex in graph.perform_dfs("A"):
         print(vertex, end=" ")
 
-    '''
+    """
     Performing BFS
     A B C D E F G H 
     Performing DFS
     A D F H G C E B 
-    '''
+    """
 
 
 def test_1():
@@ -183,5 +182,5 @@ def test_1():
     print(graph)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_2()

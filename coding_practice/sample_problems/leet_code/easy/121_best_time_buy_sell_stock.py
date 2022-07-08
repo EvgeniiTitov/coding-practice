@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary:
     Single pass: Quite neat, focus on finding mins, else see if we could
     higher profit
@@ -34,7 +34,7 @@ Example 2:
 Input: prices = [7,6,4,3,1]
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
-'''
+"""
 
 
 class Solution:
@@ -53,13 +53,13 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         min_price = float("inf")
         max_profit = 0
-        '''
+        """
         The points of interest are the peaks and valleys in the given graph. 
         We need to find the largest peak following the smallest valley. 
         We can maintain two variables - minprice and maxprofit corresponding 
         to the smallest valley and maximum profit (maximum difference between 
         selling price and minprice) obtained so far respectively.
-        '''
+        """
         for i in range(len(prices)):
             if prices[i] < min_price:  # Firstly focus on finding mins
                 min_price = prices[i]

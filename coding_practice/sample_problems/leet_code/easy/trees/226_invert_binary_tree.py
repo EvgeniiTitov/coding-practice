@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/invert-binary-tree/
 Given the root of a binary tree, invert the tree (exchange left and right
 branches), and return its root.
@@ -14,7 +14,7 @@ Output: [4,7,2,9,6,3,1]
 Thoughts:
 When thinking about recursing it seems to help to thinking bottom --> up. You 
 keep digging down your tree until you hit the base case - no kids.
-'''
+"""
 
 
 # Definition for a binary tree node.
@@ -45,6 +45,7 @@ class Solution:
             return root
 
         from queue import Queue
+
         queue = Queue()
         queue.put(root)
         while queue.qsize():

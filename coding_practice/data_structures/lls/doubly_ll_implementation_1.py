@@ -149,7 +149,6 @@ class DoublyLinkedList:
         if current.next:
             current.next.prev = current.prev
 
-
     def reverse(self) -> None:
         if not self.head:
             raise EmptyLinkedListError("Cannot reverse an empty LL")
@@ -220,5 +219,6 @@ def main():
     ll.reverse()
     print("\nReversed back:", ll)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -30,5 +30,5 @@ def main():
     print(find_primes(start, end))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

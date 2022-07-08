@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/palindrome-linked-list/
 
 Given the head of a singly linked list, return true if it is a palindrome.
@@ -11,7 +11,7 @@ Space complexity is O(n), we add N values to the array
 
 To remember:
 ! Checking whether an array is polindrom is as simple as arr == arr[::-1]
-'''
+"""
 
 
 # Definition for singly-linked list.
@@ -25,7 +25,6 @@ class Solution:
 
     # Mine head on solution ( T complexity: O(n), S complexity: O(n) )
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-
         def _collect_ll_values(head: ListNode) -> list:
             # Takes a lot of space, could use a gen?
             values = []
@@ -41,12 +40,12 @@ class Solution:
             return True
         elif length % 2:
             middle_i = length // 2
-            left_subarray = values[:middle_i + 1]
+            left_subarray = values[: middle_i + 1]
             right_subarray = values[middle_i:]
 
         else:
             left_subarray = values[: length // 2]
-            right_subarray = values[length // 2:]
+            right_subarray = values[length // 2 :]
         right_subarray.reverse()
 
         return left_subarray == right_subarray
@@ -54,7 +53,6 @@ class Solution:
     # TODO: Wtf - just do: values == values[::-1] !
     # Head on improved ( T complexity: O(n), S complexity: O(n) )
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-
         def _collect_ll_values(head: ListNode) -> list:
             # Takes a lot of space, could use a gen?
             values = []

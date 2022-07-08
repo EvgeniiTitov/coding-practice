@@ -31,7 +31,6 @@ Approach 2: DLL + TreeMap
 
 # Iteration 1 - list based. Doesn't satisfy time complexity, yet simple
 class MaxStack:
-
     def __init__(self):
         self._stack = []
 
@@ -83,5 +82,5 @@ def main():
     print(stack)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

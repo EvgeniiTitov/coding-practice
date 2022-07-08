@@ -1,5 +1,3 @@
-
-
 """
 LL based collision handling
 """
@@ -80,5 +78,5 @@ def main():
     print(hash_map.get(2))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

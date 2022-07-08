@@ -30,8 +30,7 @@ Stdout:
 
 
 def email(
-    frequency: datetime.timedelta,
-    details: str
+    frequency: datetime.timedelta, details: str
 ) -> t.Iterator[t.Tuple[datetime.datetime, str]]:
     current = datetime.datetime.now()
     while True:
@@ -51,5 +50,5 @@ def main():
             break
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

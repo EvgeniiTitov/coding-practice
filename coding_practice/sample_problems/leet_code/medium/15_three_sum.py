@@ -51,14 +51,11 @@ class Solution:
                     num2 = nums[j]
                     num3 = nums[k]
                     if num1 + num2 + num3 == 0 and i != j != k:
-                        triples.add(
-                            tuple(sorted([num1, num2, num3]))
-                        )
+                        triples.add(tuple(sorted([num1, num2, num3])))
         return [list(e) for e in triples]
 
     # T: O(N2); S: O(N)
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-
         def _solve_two_sum_problem(i: int, out: List[List[int]]):
             left, right = i + 1, len(nums) - 1
             while left < right:
@@ -88,7 +85,6 @@ class Solution:
     # Similar to ^ but hashset solution instead of pointers
     # Skipped avoiding duplicates, as I wouldnt have noticed that
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-
         def _solve_two_sum_problem(start_i: int):
             numbers_seen = {}
             for j in range(start_i + 1, len(nums)):
@@ -114,7 +110,7 @@ class Solution:
 def main():
     # numbers = [-1, 0, 1, 2, -1, -4]
     # numbers = [0, 0, 0, 0]
-    numbers = [-1,0,1,2,-1,-4]
+    numbers = [-1, 0, 1, 2, -1, -4]
     print(Solution().threeSum(numbers))
 
 

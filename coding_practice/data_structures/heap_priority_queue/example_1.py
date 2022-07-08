@@ -40,5 +40,5 @@ def main():
     print("Heap after:", items)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

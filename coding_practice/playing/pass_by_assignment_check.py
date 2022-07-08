@@ -1,7 +1,7 @@
 import typing as t
 
 
-'''
+"""
 Clarifying how assignment works in python
 
 When passing lists, dicts and custom objects to functions, they could be
@@ -14,7 +14,7 @@ You built your LL, return the pointer to the first node. Then, we measure its
 length by traversing the entire LL by passing reference to the first node to
 the measure_ll_length function. What's important despite operating on the ref
 directly (ll = ll.next) it doesn't seem to change the reference in main(). Why?
-'''
+"""
 
 
 class ListNode:
@@ -50,5 +50,5 @@ def main():
     print(measure_ll_length(ll), measure_ll_length(ll))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

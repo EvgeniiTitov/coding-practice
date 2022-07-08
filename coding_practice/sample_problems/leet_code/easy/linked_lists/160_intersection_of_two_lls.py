@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/intersection-of-two-linked-lists/
 
 
@@ -23,7 +23,7 @@ entire linked structure.
 Note that the linked lists must retain their original structure after the 
 function returns.
 
-'''
+"""
 
 
 # Definition for singly-linked list.
@@ -38,9 +38,7 @@ class Solution:
     # Brute force.
     # The trick is we look for the same reference to a Node instead of a value
     def getIntersectionNode(
-        self,
-        headA: ListNode,
-        headB: ListNode
+        self, headA: ListNode, headB: ListNode
     ) -> Optional[ListNode]:
         head_a, head_b = headA, headB
         while head_a:
@@ -54,9 +52,7 @@ class Solution:
 
     # Mine optimized, linear time and space complexities.
     def getIntersectionNode(
-        self,
-        headA: ListNode,
-        headB: ListNode
+        self, headA: ListNode, headB: ListNode
     ) -> Optional[ListNode]:
         head_a, head_b = headA, headB
         seen_nodes = set()
@@ -73,11 +69,8 @@ class Solution:
 
     # Mine further space complexity optimization
     def getIntersectionNode(
-        self,
-        headA: ListNode,
-        headB: ListNode
+        self, headA: ListNode, headB: ListNode
     ) -> Optional[ListNode]:
-
         def _calculate_ll_length(head: ListNode) -> int:
             length = 0
             while head:

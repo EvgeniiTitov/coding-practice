@@ -1,4 +1,3 @@
-
 # !/bin/python3
 
 import math
@@ -33,6 +32,7 @@ import sys
 #  2. INTEGER threshold
 #
 
+
 def processLogs(logs, threshold):
     # Write your code here
     # logs: List[str],
@@ -42,6 +42,7 @@ def processLogs(logs, threshold):
         return []
 
     from collections import defaultdict
+
     transactions_per_user = defaultdict(int)
 
     for transaction in logs:
@@ -57,11 +58,11 @@ def processLogs(logs, threshold):
         if transactions >= threshold:
             out.append(user)
 
-    return sorted(out, key=lambda e :int(e))
+    return sorted(out, key=lambda e: int(e))
 
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     logs_count = int(input().strip())
 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
 
     result = processLogs(logs, threshold)
 
-    fptr.write('\n'.join(result))
-    fptr.write('\n')
+    fptr.write("\n".join(result))
+    fptr.write("\n")
 
     fptr.close()

@@ -29,12 +29,11 @@ class Solution:
 
     # Seems to be right but exceeds time limit as its
     def validPalindrome(self, s: str) -> bool:
-
         def _check_if_str_palindrom(s: str) -> bool:
             return s == s[::-1]
 
         for i in range(len(s)):
-            s_minus_one_char = s[: i] + s[i + 1:]
+            s_minus_one_char = s[:i] + s[i + 1 :]
             if _check_if_str_palindrom(s_minus_one_char):
                 return True
         return False
@@ -65,7 +64,6 @@ class Solution:
         return True
 
     def validPalindrome(self, s: str) -> bool:
-
         def _check_if_palindrom(s: str, left: int, right: int) -> bool:
             if not s or len(s) == 1:
                 return True
@@ -76,7 +74,7 @@ class Solution:
                 right -= 1
             return True
 
-        '''
+        """
         Let's assume we have some string s = 'abbxa'. On its own, s is not a 
         palindrome. However, if we delete the 'x', then s becomes 'abba', which
         is a palindrome. If we use the same algorithm in checkPalindrome, we 
@@ -103,21 +101,18 @@ class Solution:
         
         ! In short, we attempt to skip the mismatched chars from left and right
         and see whether it results in a valid palindrom
-        '''
+        """
         left, right = 0, len(s) - 1
         while left < right:
             # If the chars mismatch, we need to check whether deletion of
             # either of them results in a palindrom anyway
             if s[left] != s[right]:
-                return (
-                        _check_if_palindrom(s, left + 1, right)
-                        or _check_if_palindrom(s, left, right - 1)
-                )
+                return _check_if_palindrom(
+                    s, left + 1, right
+                ) or _check_if_palindrom(s, left, right - 1)
             left += 1
             right -= 1
         return True
-
-
 
 
 def main():
@@ -126,5 +121,5 @@ def main():
     print(Solution().validPalindrome(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,16 +1,13 @@
-
-
 # ----- Iteration 1 -----
-'''
+"""
 Stack would look like this:
 (12,12) (30,12) (7,7) (6,6) (45, 6) (2,2) (2,2) ...
 When you pop, the min value available on the stack is automatically taken
 care of
-'''
+"""
 
 
 class MinStack:
-
     def __init__(self):
         self.stack: list[tuple[int, int]] = []  # (val, current_min)
 
@@ -36,8 +33,8 @@ class MinStack:
 
 # ----- Iteration 2 -----
 
-class MinStack:
 
+class MinStack:
     def __init__(self):
         self.stack = []
         self.min_stack = []
@@ -57,6 +54,7 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.min_stack[-1]
+
 
 # ----- Iteration 2 -----
 
@@ -149,5 +147,5 @@ def main():
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

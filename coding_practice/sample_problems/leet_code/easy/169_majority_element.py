@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary: 
     Brute force: iterate over numbers, counting how many times each appears
     (defaultdict), then return the one that appears the most.
@@ -66,7 +66,7 @@ attempting to recursively solve the majority element problem for the suffix.
 Eventually, a suffix will be found for which count does not hit 0, and the 
 majority element of that suffix will necessarily be the same as the majority 
 element of the overall array.
-'''
+"""
 
 
 class Solution:
@@ -79,10 +79,10 @@ class Solution:
         for num in nums:
             if count == 0:
                 candidate = num
-            count += (1 if num == candidate else -1)
+            count += 1 if num == candidate else -1
 
         return candidate
-    
+
     # T: O(n2)
     def majorityElement(self, nums: List[int]) -> int:
         unique_nums = set(nums)
@@ -123,18 +123,116 @@ class Solution:
     # O(n) for space and time, not quite fair as well
     def majorityElement(self, nums: List[int]) -> int:
         import collections
+
         counts = collections.Counter(nums)
         return max(counts.keys(), key=counts.get)
 
 
 def main():
-    numbers = [47,47,72,47,72,47,79,47,12,92,13,47,47,83,33,15,18,47,47,47,47,
-               64,47,65,47,47,47,47,70,47,47,55,47,15,60,47,47,47,47,47,46,30,
-               58,59,47,47,47,47,47,90,64,37,20,47,100,84,47,47,47,47,47,89,47,
-               36,47,60,47,18,47,34,47,47,47,47,47,22,47,54,30,11,47,47,86,47,
-               55,40,49,34,19,67,16,47,36,47,41,19,80,47,47,27]
+    numbers = [
+        47,
+        47,
+        72,
+        47,
+        72,
+        47,
+        79,
+        47,
+        12,
+        92,
+        13,
+        47,
+        47,
+        83,
+        33,
+        15,
+        18,
+        47,
+        47,
+        47,
+        47,
+        64,
+        47,
+        65,
+        47,
+        47,
+        47,
+        47,
+        70,
+        47,
+        47,
+        55,
+        47,
+        15,
+        60,
+        47,
+        47,
+        47,
+        47,
+        47,
+        46,
+        30,
+        58,
+        59,
+        47,
+        47,
+        47,
+        47,
+        47,
+        90,
+        64,
+        37,
+        20,
+        47,
+        100,
+        84,
+        47,
+        47,
+        47,
+        47,
+        47,
+        89,
+        47,
+        36,
+        47,
+        60,
+        47,
+        18,
+        47,
+        34,
+        47,
+        47,
+        47,
+        47,
+        47,
+        22,
+        47,
+        54,
+        30,
+        11,
+        47,
+        47,
+        86,
+        47,
+        55,
+        40,
+        49,
+        34,
+        19,
+        67,
+        16,
+        47,
+        36,
+        47,
+        41,
+        19,
+        80,
+        47,
+        47,
+        27,
+    ]
     print(Solution().majorityElement(numbers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -52,5 +52,3 @@ class Solution:
             if char in unique_chars:
                 return i
         return -1
-
-

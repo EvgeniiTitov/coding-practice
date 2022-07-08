@@ -122,7 +122,7 @@ def main():
     queue = CircularQueue(5)
     print(queue)
 
-    '''
+    """
     CircularQueue: [None, None, None, None, None]
 
     Adding elements
@@ -146,7 +146,7 @@ def main():
     Enqueued: 12
     CircularQueue: [10, 11, 12, 3, 4]
     Head index: 3
-    '''
+    """
 
     print("\nAdding elements")
     for i in range(10):
@@ -178,5 +178,5 @@ def main():
     print(f"Head index: {queue._head_index}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -58,7 +58,6 @@ class Solution:
 
     # T: O(N), S: O(1)
     def maxArea(self, height: List[int]) -> int:
-
         def _calculate_area(left: int, right: int) -> int:
             width = right - left
             min_height = min(height[left], height[right])
@@ -91,9 +90,9 @@ class Solution:
 
 
 def main():
-    height = [1,3,2,5,25,24,5]
+    height = [1, 3, 2, 5, 25, 24, 5]
     print(Solution().maxArea(height))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

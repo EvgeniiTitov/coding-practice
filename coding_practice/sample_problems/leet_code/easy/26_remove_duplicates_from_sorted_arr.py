@@ -73,8 +73,8 @@ class Solution:
 
 
 def main():
-    print(Solution().removeDuplicates([1,1,1,2,2,3,4,5]))
+    print(Solution().removeDuplicates([1, 1, 1, 2, 2, 3, 4, 5]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

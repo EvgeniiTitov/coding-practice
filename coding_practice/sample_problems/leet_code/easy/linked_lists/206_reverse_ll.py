@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/reverse-linked-list/
 Given the head of a singly linked list, reverse the list, and return the reversed list.
 
@@ -12,7 +12,7 @@ Once the end has been reached (last node), next_node is null, previous becomes
 the new start of the LL, current becomes null so the loop ends. 
 Return the reference to the start of the LL
 
-'''
+"""
 
 # Definition for singly-linked list.
 class ListNode:

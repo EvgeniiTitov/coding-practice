@@ -1,6 +1,4 @@
-
-
-'''
+"""
 Design a stack that supports push, pop, top, and retrieving the minimum
 element in constant time.
 
@@ -36,7 +34,7 @@ Constraints:
 -231 <= val <= 231 - 1
 Methods pop, top and getMin operations will always be called on non-empty stacks.
 At most 3 * 104 calls will be made to push, pop, top, and getMin.
-'''
+"""
 
 
 # ---- Iteration 1 ------
@@ -74,7 +72,6 @@ At most 3 * 104 calls will be made to push, pop, top, and getMin.
 
 # ----- Iteration 2 -----
 class MinStack:
-
     def __init__(self):
         self.stack = []  # has val, and current_min
 
@@ -105,12 +102,13 @@ class MinStack:
 # param_3 = obj.top()
 # param_4 = obj.getMin()
 
+
 def main():
     stack = MinStack()
     stack.push(3)
     stack.push(1)
     stack.push(2)
-    #stack.push(-3)
+    # stack.push(-3)
     print(stack._stack)
     # print(stack.top())
     # print(stack.getMin())
@@ -119,5 +117,5 @@ def main():
     # print(stack.top())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

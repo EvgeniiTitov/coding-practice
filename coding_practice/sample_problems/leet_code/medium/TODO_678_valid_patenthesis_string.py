@@ -39,9 +39,9 @@ Output: true
 
 
 class Solution:
-
     def checkValidString(self, s: str) -> bool:
         from collections import defaultdict
+
         chars_frequency = defaultdict(int)
         for char in s:
             chars_frequency[char] += 1
@@ -53,7 +53,6 @@ class Solution:
         greater = max(opening_brace, closing_brace)
         smaller = min(opening_brace, closing_brace)
         return astrix >= greater - smaller
-
 
     # def checkValidString(self, s: str) -> bool:
     #     stack = []
@@ -76,8 +75,6 @@ class Solution:
     #             stack.append(char)
     #
     #     return "(" not in stack and ")" not in stack
-
-
 
     # This is just wrong. Based on wrong assumptions. ((...() could be valid
     # def checkValidString(self, s: str) -> bool:
@@ -104,5 +101,5 @@ def main():
     print(Solution().checkValidString(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

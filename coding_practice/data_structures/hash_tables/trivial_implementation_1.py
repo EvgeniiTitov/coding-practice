@@ -1,9 +1,9 @@
 import typing as t
 
 
-'''
+"""
 The most basic hash map, doesn't solve any issues such as collision etc.
-'''
+"""
 
 
 class TrivialHashTable:
@@ -40,5 +40,5 @@ def main():
     print(hash_map)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

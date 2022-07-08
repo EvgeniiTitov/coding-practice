@@ -1,6 +1,6 @@
 import typing as t
 
-'''
+"""
 There are two main issues that we should tackle, in order to design an
 efficient hashmap data structure:
     1). hash function design and
@@ -35,7 +35,7 @@ In case of collision, where two different keys are mapped to the same address,
 we use a bucket to hold all the values. The bucket is a container that hold 
 all the values that are assigned by the hash function. We could use either a 
 LinkedList or an Array to implement the bucket data structure.
-'''
+"""
 
 
 class Bucket:

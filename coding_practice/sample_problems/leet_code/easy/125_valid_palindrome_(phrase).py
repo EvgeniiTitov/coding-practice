@@ -80,5 +80,5 @@ def main():
     print(Solution().isPalindrome(s))
 
 
-if __name__ == '__main__':
-     main()
+if __name__ == "__main__":
+    main()

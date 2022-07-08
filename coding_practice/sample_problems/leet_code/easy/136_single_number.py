@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary: 
     Single pass approach: iterate over items, add items to a set and remove if 
     its there. At the end, there will be only 1 item in the set - the one
@@ -28,7 +28,7 @@ Output: 4
 Example 3:
 Input: nums = [1]
 Output: 1
-'''
+"""
 
 
 class Solution:
@@ -68,6 +68,7 @@ class Solution:
             return nums[0]
 
         from collections import defaultdict
+
         nums_seen = defaultdict(int)
         for num in nums:
             nums_seen[num] += 1
@@ -89,5 +90,5 @@ def main():
     print(Solution().singleNumber(numbers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

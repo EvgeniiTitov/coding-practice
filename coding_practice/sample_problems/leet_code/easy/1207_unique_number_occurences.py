@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 https://leetcode.com/problems/unique-number-of-occurrences/
 
 Given an array of integers arr, return true if the number of occurrences of 
@@ -21,7 +21,7 @@ Output: false
 Example 3:
 Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
 Output: true
-'''
+"""
 
 
 class Solution:

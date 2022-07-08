@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/linked-list-cycle/
 
 Given head, the head of a linked list, determine if the linked list has a 
@@ -17,7 +17,7 @@ Return true if there is a cycle in the linked list. Otherwise, return false.
 
 Floyd's Cycle Finding Algorithm:
 
-'''
+"""
 
 
 # Definition for singly-linked list.
@@ -58,7 +58,7 @@ class Solution:
         if head and not head.next:
             return False
 
-        '''
+        """
         slow = fast = head
         while fast and fast.next:
             slow = slow.next
@@ -66,7 +66,7 @@ class Solution:
             if slow == fast:
                 return True
         return False
-        '''
+        """
 
         slow, fast = head, head.next
         while slow != fast:

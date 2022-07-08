@@ -48,8 +48,8 @@ class Solution:
 
 
 def main():
-    print(Solution().findKthLargest(nums=[3,1,2,5,6,4], k=2))
+    print(Solution().findKthLargest(nums=[3, 1, 2, 5, 6, 4], k=2))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

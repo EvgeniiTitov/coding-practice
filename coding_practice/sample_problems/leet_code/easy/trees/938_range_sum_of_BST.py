@@ -35,10 +35,7 @@ class TreeNode:
 
 class Solution:
     def rangeSumBST(
-        self,
-        root: Optional[TreeNode],
-        low: int,
-        high: int
+        self, root: Optional[TreeNode], low: int, high: int
     ) -> int:
         if not root:
             return 0
@@ -63,10 +60,7 @@ class Solution:
         return sum_
 
     def rangeSumBST(
-        self,
-        root: Optional[TreeNode],
-        low: int,
-        high: int
+        self, root: Optional[TreeNode], low: int, high: int
     ) -> int:
 
         sum_ = 0

@@ -3,7 +3,7 @@ import typing as t
 from coding_practice.utils import timer
 
 
-'''
+"""
 Summary: 
     Brute force: Comes down to knowing the formula of i'th stare
     climb_stairs(i, n) = climb_stairs(i + 1, n) + climb_stairs(i + 2, n), 
@@ -57,7 +57,7 @@ public class Solution {
         return dp[n];
     }
 }
-'''
+"""
 
 
 class Solution:
@@ -65,15 +65,16 @@ class Solution:
     # Brute force. T: O(2^N); S: O(N)
     # Optimised. T: O(N); S: O(N)
     def climbStairs(self, n: int) -> int:
-
         def _cache(func):
             cache = {}
+
             def wrapper(n: int, stairs: int) -> int:
                 if n in cache:
                     return cache[n]
                 result = func(n, stairs)
                 cache[n] = result
                 return result
+
             return wrapper
 
         @_cache
@@ -83,10 +84,10 @@ class Solution:
             elif current_step == stairs:
                 return 1
             else:
-                return (
-                        _climb_stairs(current_step + 1, stairs)
-                        + _climb_stairs(current_step + 2, stairs)
+                return _climb_stairs(current_step + 1, stairs) + _climb_stairs(
+                    current_step + 2, stairs
                 )
+
         return _climb_stairs(0, n)
 
     # Dynamic
@@ -103,12 +104,14 @@ class Solution:
 
 def cache(func: t.Callable) -> t.Callable:
     cache = {}
+
     def wrapper(n: int) -> int:
         if n in cache:
             return cache[n]
         result = func(n)
         cache[n] = result
         return result
+
     return wrapper
 
 
@@ -126,5 +129,5 @@ def main():
     print(calculate_fibo(35))  # 3 sec for n = 35 no cache
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

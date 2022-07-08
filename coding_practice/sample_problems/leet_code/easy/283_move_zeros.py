@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary: Iterate over the array in a while loop for len(arr) times. Pointer
 starts at 0. If element is not zero, move pointer -> one step. Else, pop the
 item and append to the end, don't move the pointer, the list shifts left.
@@ -13,7 +13,7 @@ Given an integer array nums, move all 0's to the end of it while maintaining
 the relative order of the non-zero elements.
 
 Note that you must do this in-place without making a copy of the array.
-'''
+"""
 
 
 class Solution:
@@ -63,10 +63,10 @@ class Solution:
 
 
 def main():
-    nums = [0,1,0,3,12]
+    nums = [0, 1, 0, 3, 12]
     Solution().moveZeroes(nums)
     print(nums)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

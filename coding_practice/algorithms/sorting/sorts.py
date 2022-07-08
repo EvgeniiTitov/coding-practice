@@ -5,7 +5,7 @@ from coding_practice.utils import timer
 
 
 def selection_sort(arr: list[int]) -> None:
-    '''
+    """
     Could be slightly optimized to avoid unnecessary swaps
     for i in range(len(my_list)):
         min_index = i
@@ -13,7 +13,7 @@ def selection_sort(arr: list[int]) -> None:
             if my_list[j] < my_list[min_index]:
                 min_index = j
         my_list[i], my_list[min_index] = my_list[min_index], my_list[i]
-    '''
+    """
     for i in range(len(arr)):
         for j in range(i + 1, len(arr)):
             if arr[i] > arr[j]:
@@ -32,8 +32,7 @@ ALGORITHMS = {
 
 @timer
 def time_sorting_algorithm(
-    algorithm: t.Literal["brute_force"],
-    array: list[int]
+    algorithm: t.Literal["brute_force"], array: list[int]
 ) -> None:
     ALGORITHMS[algorithm](array)
 
@@ -43,5 +42,5 @@ def main():
     time_sorting_algorithm("selection_sort", array)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

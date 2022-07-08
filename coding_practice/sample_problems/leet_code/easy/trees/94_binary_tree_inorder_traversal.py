@@ -1,7 +1,7 @@
 from typing import Optional, List
 
 
-'''
+"""
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
  
@@ -19,7 +19,7 @@ Output: [1]
 
 Time complexity is O(n)
 Space complaxity is O(n)
-'''
+"""
 
 
 # Definition for a binary tree node.
@@ -50,14 +50,14 @@ class Solution:
         return _traverse_tree_inorder(root)
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        '''
+        """
         The logic is we go to the deepest, leftmost node in the nested loop.
         Once reached (the kid is None), we stop iterating, pop off the stack
         the deepest, leftmost node, write its value and attempt going to the
         right. For child node its going to be None ==> skip nested while, pop
         the nest node off the stack (the one above), write its value and then
         go to the right! Jesus christ
-        '''
+        """
         elements = []
         stack = []
         current = root
@@ -84,4 +84,3 @@ class Solution:
 
         inorder(root)
         return tree_vals
-

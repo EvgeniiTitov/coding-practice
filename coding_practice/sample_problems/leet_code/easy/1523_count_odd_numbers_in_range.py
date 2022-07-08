@@ -32,7 +32,6 @@ class Solution:
 
     # Exceeded the time limit
     def countOdds(self, low: int, high: int) -> int:
-
         def _generate_odd_numbers(low: int, high: int):
             for number in range(low, high + 1):
                 if number % 2:

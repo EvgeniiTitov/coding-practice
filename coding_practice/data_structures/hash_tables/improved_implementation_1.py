@@ -1,10 +1,10 @@
 import typing
 
 
-'''
+"""
 Poor hash function could lead to collisions, i.e the same key could result in 
 the same memory location for storing values
-'''
+"""
 
 
 class HashTable:
@@ -65,5 +65,5 @@ def main():
     print("Accessing non-existing items:", hash_map["kek"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

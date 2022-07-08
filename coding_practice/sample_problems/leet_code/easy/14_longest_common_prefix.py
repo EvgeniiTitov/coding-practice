@@ -1,7 +1,7 @@
 from typing import List
 
 
-'''
+"""
 Summary: -
 ------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ Example 2:
 Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
-'''
+"""
 
 
 class Solution:
@@ -56,5 +56,5 @@ def main():
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

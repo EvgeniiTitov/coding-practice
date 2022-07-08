@@ -98,7 +98,6 @@ class Solution:
                     heapq.heappush(rooms, end_time)
         return len(rooms)
 
-
     # DOESN'T WORK - Brute force approach
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         """
@@ -123,9 +122,7 @@ class Solution:
         return max_intersections or 1
 
     def _check_if_intersect(
-        self,
-        interval1: List[int],
-        interval2: List[int]
+        self, interval1: List[int], interval2: List[int]
     ) -> bool:
         return (
             interval1[0] < interval2[1] < interval1[1]
@@ -155,7 +152,9 @@ class Solution:
             while right < len(intervals) - 1:
                 right += 1
                 right_p_interval = intervals[right]
-                another_intersection = intersection.intersection(right_p_interval)
+                another_intersection = intersection.intersection(
+                    right_p_interval
+                )
                 if another_intersection and len(another_intersection) > 1:
                     temp_intersections += 1
                 else:
@@ -173,9 +172,9 @@ def main():
     # intervals = [[0, 30], [5, 10], [15, 20]]
     # intervals = [[1,8],[6,20],[9,16],[13,17]]
     # intervals = [[0, 10], [3, 13], [7, 20], [21, 26], [24, 30]]
-    intervals = [[13,15],[1,13]]
+    intervals = [[13, 15], [1, 13]]
     print(Solution().minMeetingRooms(intervals))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

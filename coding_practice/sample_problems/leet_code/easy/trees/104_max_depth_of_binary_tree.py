@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-'''
+"""
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
 Given the root of a binary tree, return its maximum depth.
 
@@ -20,7 +20,7 @@ each node has only left child node, the recursion call would occur N times
 be O(N). But in the best case (the tree is completely balanced), the height of
 the tree would be log(N). Therefore, the space complexity in this case would 
 be O(log(N)
-'''
+"""
 
 
 # Definition for a binary tree node.
@@ -47,6 +47,7 @@ class Solution:
             deepest_subtree = max(depth_left, depth_right)
             depth += deepest_subtree
             return depth
+
         return _measure_tree_depth(root)
 
     # Recursive from the solutions

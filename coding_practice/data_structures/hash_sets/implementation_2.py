@@ -32,9 +32,7 @@ class BSTree:
         return root
 
     def search_bst(
-        self,
-        root: t.Optional[TreeNode],
-        val: t.Any
+        self, root: t.Optional[TreeNode], val: t.Any
     ) -> t.Optional[TreeNode]:
         if not root or root.val == val:
             return root
@@ -44,9 +42,7 @@ class BSTree:
             return self.search_bst(root.right, val)
 
     def insert_into_bst(
-        self,
-        root: t.Optional[TreeNode],
-        val: t.Any
+        self, root: t.Optional[TreeNode], val: t.Any
     ) -> TreeNode:
         if not root:
             return TreeNode(val)
@@ -59,9 +55,7 @@ class BSTree:
         return root
 
     def delete_node_in_bst(
-        self,
-        root: t.Optional[TreeNode],
-        val: t.Any
+        self, root: t.Optional[TreeNode], val: t.Any
     ) -> TreeNode:
         if not root:
             return root
@@ -81,8 +75,7 @@ class BSTree:
         return root
 
     def collect_stored_values(
-        self,
-        root: t.Optional[TreeNode]
+        self, root: t.Optional[TreeNode]
     ) -> t.List[t.Any]:
         if not root:
             return []
@@ -153,5 +146,5 @@ def main():
     print(s.contains(2), 2 in s)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

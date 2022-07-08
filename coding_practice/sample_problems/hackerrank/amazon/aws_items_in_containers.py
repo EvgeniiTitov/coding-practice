@@ -70,28 +70,30 @@ def _count_items(s):
 
 
 # From folks on the internet - how is this better?
-def cntitems2(items: str, startIndices: List[int], endIndices: List[int]) -> List[int]:
+def cntitems2(
+    items: str, startIndices: List[int], endIndices: List[int]
+) -> List[int]:
     ln = len(items)
     # pre-calc left-most pipe location and sum of stars arrays
-    stars = [0] * (ln+1)
-    lftpipeidx = [-1] * (ln+1)
-    for i, ch in enumerate(items,1):
+    stars = [0] * (ln + 1)
+    lftpipeidx = [-1] * (ln + 1)
+    for i, ch in enumerate(items, 1):
         if ch == "|":
-            stars[i] = stars[i-1]
+            stars[i] = stars[i - 1]
             lftpipeidx[i] = i
         else:  # ch == *
-            stars[i] = stars[i-1] + 1
-            lftpipeidx[i] = lftpipeidx[i-1]
+            stars[i] = stars[i - 1] + 1
+            lftpipeidx[i] = lftpipeidx[i - 1]
     if lftpipeidx[-1] == -1:
-        return [0]*len(startIndices)
+        return [0] * len(startIndices)
 
     # pre-calc right-most pipe location
-    rgtpipeidx = [ln+1] * (ln+1)
-    for i in range(ln-1,-1,-1):
-        if items[i] == '|':
-            rgtpipeidx[i+1] = i+1
+    rgtpipeidx = [ln + 1] * (ln + 1)
+    for i in range(ln - 1, -1, -1):
+        if items[i] == "|":
+            rgtpipeidx[i + 1] = i + 1
         else:
-            rgtpipeidx[i+1] = rgtpipeidx[i+2] if i < ln-1 else ln+1
+            rgtpipeidx[i + 1] = rgtpipeidx[i + 2] if i < ln - 1 else ln + 1
 
     # calc answer as difference between num. of stars b/w right and left pipes.
     # right pipe is the left-most pipe from the end index, left pipe is the right-most one from the start index
@@ -109,5 +111,5 @@ def main():
     print(_count_items(s))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

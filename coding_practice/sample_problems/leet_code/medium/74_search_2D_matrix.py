@@ -1,7 +1,6 @@
 from typing import List
 
 
-
 """
 Summary: 2D matrix is sorted, so you could think of it as a flat array. The 
 only difficulty is translating index in a 1D array to an i, j in the 2D matrix
@@ -45,10 +44,7 @@ class Solution:
         return False
 
     def _get_item_at_index(
-        self,
-        matrix: List[List[int]],
-        items_per_row: int,
-        index: int
+        self, matrix: List[List[int]], items_per_row: int, index: int
     ) -> int:
         return matrix[index // items_per_row][index % items_per_row]
 
@@ -59,5 +55,5 @@ def main():
     print(Solution().searchMatrix(matrix, target))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
