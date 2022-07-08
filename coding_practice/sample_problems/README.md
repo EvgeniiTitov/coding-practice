@@ -50,6 +50,46 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- When recursively working with trees, an action / modification could be done
+either before or after the recursive call(s). Be careful:
+```python
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return None
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+        root.left = right
+        root.right = left
+        return root
+```
+
+- When working with trees iteratively we usually place a node in a stack or a queue,
+however reassinging the root variable itself within the loop is a viable approach 
+as well (inserting into BST)
+```python
+    def insertIntoBST(
+        self, root: Optional[TreeNode], val: int
+    ) -> Optional[TreeNode]:
+        if not root:
+            return TreeNode(val)
+        head = root
+        while True:
+            if root.val == val:
+                return
+            elif val < root.val:
+                if root.left:
+                    root = root.left
+                else:
+                    root.left = TreeNode(val)
+                    return head
+            else:
+                if root.right:
+                    root = root.right
+                else:
+                    root.right = TreeNode(val)
+                    return head
+```
+
 - Whenever you want to sort something to get access to 1 or more smallest/largest
 items consider using heap. Heapify is O(N) in place while pushing/popping is O(log N),
 which is much better than sorting O(N log N)
