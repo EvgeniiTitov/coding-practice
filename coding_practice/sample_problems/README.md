@@ -50,6 +50,22 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- Floyd's algorithm for finding cycles and entrance into them in LL:
+```
+Slow and fast runners. slow = slow.next; fast = fast.next.next; If there is a 
+cycle they will meet, i.e. reference the same node -> slow == fast (intersection node),
+which could then be used to find the entrance to the cycle.
+Then pointer 1 starts at the beginning of the LL, pointer 2 at the intersection
+and they both move with the same speed until they intersect - entrance.
+```
+
+- While iterating through a LL with a fast pointer jumping over 2 nodes instead of one,
+its enough to check:
+```python
+while fast and fast.next:  # fast already checks if its None or not
+    pass
+```
+
 - When given an array of N + 1 ints where each int is in the range [1, N] you
 can straight away see the list could be turned into a LL to detect a cycle/duplicate
 or whatever. Say:
