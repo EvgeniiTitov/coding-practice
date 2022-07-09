@@ -50,6 +50,17 @@ shortest path between A and B in a graph of uniform weight.
 ---
 #### To remember:
 
+- When given an array of N + 1 ints where each int is in the range [1, N] you
+can straight away see the list could be turned into a LL to detect a cycle/duplicate
+or whatever. Say:
+```
+[2, 6, 4, 1, 3, 1, 5]
+New element is the index of the current element:
+LL: 2 -> 4 -> 3 -> 1 -> 6 -> 5 -> 1 -> 6 -> 5 -> 1 -> CYCLE!
+
+Could use the Floyd's algorithm now to detect the cycle
+```
+
 - When recursively working with trees, an action / modification could be done
 either before or after the recursive call(s). Be careful:
 ```python
