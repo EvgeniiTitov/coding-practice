@@ -73,7 +73,7 @@ def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
     _traverse_tree(root)
     return elements
 
-OR iterative:
+OR iteratively:
 
 def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
     elements = []
@@ -106,7 +106,7 @@ def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
 
     return _find_value_in_tree(root, val)
 
-OR iterative:
+OR iteratively:
 
 def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
     while root and root.val != val:
@@ -134,7 +134,7 @@ def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
         root.left = self.insertIntoBST(root.left, val)
     return root
 
-OR iterative:
+OR iteratively:
 
 def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
     if not root:
@@ -210,7 +210,7 @@ def deleteNode(self, root: Optional[TreeNode], value: int) -> Optional[TreeNode]
 
 ---
 
-- #### Check if tree is symmetric
+- #### Symmetric tree
 
 ![alt text](../../../images/symtree1.jpg?raw=true)
 
@@ -232,7 +232,7 @@ def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 
     return _compare_trees(root, root)
 
-OR iterative:
+OR iteratively:
 
 def isSymmetric(self, root: Optional[TreeNode]) -> bool:
     from queue import Queue
@@ -259,7 +259,7 @@ def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 
 ---
 
-- #### Binary tree depth
+- #### Tree depth
 
 ```python
 def maxDepth(self, root: Optional[TreeNode]) -> int:
@@ -285,7 +285,7 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
         right_height = self.maxDepth(root.right)
         return max(left_height, right_height) + 1
 
-OR iterative:
+OR iteratively:
 
 def maxDepth(self, root: Optional[TreeNode]) -> int:
     stack = []
@@ -305,7 +305,7 @@ def maxDepth(self, root: Optional[TreeNode]) -> int:
 
 ---
 
-- #### Inverting a tree
+- #### Invert a tree
 
 An inverted form of a Binary Tree is another Binary Tree with left and right 
 children of all non-leaf nodes interchanged. You may also call it the mirror 
@@ -324,7 +324,7 @@ def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
     root.right = left
     return root
 
-OR iterative:
+OR iteratively:
 
 def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
     if not root:
@@ -373,7 +373,7 @@ def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
 
 ---
 
-- #### Calculating tree sum / sum within range
+- #### Tree sum / sum within range
 
 Calculate the sum of values of all nodes with a value in the inclusive range
 ```python
@@ -395,7 +395,7 @@ def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
     _traverse_the_tree(root)
     return sum_
 
-OR iterative:
+OR iteratively:
 
 def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
     sum_ = 0
@@ -415,3 +415,36 @@ def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
 ```
 
 ---
+
+- Height balanced tree
+
+A binary tree in which the left and right subtrees of every node differ in height by no more than 1.
+
+Balanced tree             |  Imbalanced tree
+:-------------------------:|:-------------------------:
+![](../../../images/balanced_tree.jpg?raw=true)  |  ![](../../../images/inbalanced_tree.jpg?raw=true)
+
+```python
+def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    return self._is_balanced(root)[0]
+
+def _is_balanced(self, root: Optional[TreeNode]) -> tuple:
+    if not root:
+        return True, 0
+
+    is_left_balanced, left_depth = self._is_balanced(root.left)
+    is_right_balanced, right_depth = self._is_balanced(root.right)
+
+    current_height = 1 + max(left_depth, right_depth)
+
+    # If left or right is imbalanced -> whole tree is imbalanced
+    if not is_left_balanced or not is_right_balanced:
+        return False, current_height
+
+    # Left and right could be balanced, but of different heights
+    if abs(left_depth - right_depth) > 1:
+        return False, current_height
+    
+    # Subtrees are balanced and their height diff <= 1
+    return True, current_height
+```

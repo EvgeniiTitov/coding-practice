@@ -7,18 +7,9 @@ When dealing with data structures, its worth paying attention to:
 
 ### TODO:
 
-- Queues (with pointers)
-    - Priority queue
-- Doubly LL
-    - Leetcode (https://leetcode.com/tag/doubly-linked-list/)
-- By hand implementation of Max/Min heap (https://favtutor.com/blogs/heap-in-python)
+- Top-down and bottom-up recursion
+- Queue with pointers
 
-
-- Graphs
-- LRU Caches
-- etc
-
-
-### Poorly understood topics:
-
--
+- Summary for LL
+- Summary for Graphs
+- 
