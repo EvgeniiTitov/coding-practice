@@ -48,7 +48,26 @@ shortest path between A and B in a graph of uniform weight.
 
 
 ---
-#### To remember:
+### To remember:
+
+- When inserting/deleting nodes in a BST it is important to a) reassign a subtree 
+when modifying it and b) return root from recursive calls otherwise subtrees would be Nones
+```python
+def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    if not root:
+        return TreeNode(val)
+    
+    if root.val == val:
+        return root
+    
+    if val > root.val:
+        # insert into the right subtree
+        root.right = self.insertIntoBST(root.right, val)  # !
+    else:
+        # insert into the left subtree
+        root.left = self.insertIntoBST(root.left, val)  # !
+    return root  # !
+```
 
 - Floyd's algorithm for finding cycles and entrance into them in LL:
 ```

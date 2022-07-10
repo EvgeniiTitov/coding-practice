@@ -3,6 +3,7 @@ from typing import Optional
 
 """
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+
 Given the root of a binary tree, return its maximum depth.
 
 A binary tree's maximum depth is the number of nodes along the longest path 
@@ -68,12 +69,12 @@ class Solution:
         if root:
             stack.append((1, root))
 
-        depth = 0
+        max_depth = 0
         while len(stack):
-            current_depth, node = stack.pop()
-            if node:
-                depth = max(current_depth, depth)
+            current_depth, root = stack.pop()
+            if root:
+                max_depth = max(max_depth, current_depth)
                 stack.append((current_depth + 1, root.left))
                 stack.append((current_depth + 1, root.right))
 
-        return depth
+        return max_depth

@@ -67,7 +67,7 @@ class Solution:
         stack = [root]
 
         while len(stack):
-            root = stack.pop(-1)
+            root = stack.pop()
             if not root:
                 continue  # Break instead of continue results in error.
 

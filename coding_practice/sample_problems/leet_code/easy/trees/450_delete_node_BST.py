@@ -2,6 +2,9 @@ from typing import Optional
 
 
 """
+
+https://leetcode.com/problems/delete-node-in-a-bst/
+
 Given a root node reference of a BST and a key, delete the node with the 
 given key in the BST. Return the root node reference (possibly updated) 
 of the BST.
@@ -56,17 +59,17 @@ class Solution:
         return root.val
 
     def deleteNode(
-        self, root: Optional[TreeNode], key: int
+        self, root: Optional[TreeNode], value: int
     ) -> Optional[TreeNode]:
         # Base case
         if not root:
             return None
 
         # 1) First identify the node if any that must be deleted
-        if key > root.val:
-            root.right = self.deleteNode(root.right, key)
-        elif key < root.val:
-            root.left = self.deleteNode(root.left, key)
+        if value > root.val:
+            root.right = self.deleteNode(root.right, value)
+        elif value < root.val:
+            root.left = self.deleteNode(root.left, value)
         # 2) Found the node, delete the current one
         else:
             # The node is a leaf
