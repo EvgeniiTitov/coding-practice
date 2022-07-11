@@ -1,5 +1,8 @@
 ### TODO:
 
-- Quicksort
-  
-  - Quickselect (https://leetcode.com/problems/kth-largest-element-in-an-array/solution/ Approach 2)
+- A couple of sorting algorithms (Quicksort, mergesort)
+- Greedy algorithms
+- Divide and Conquer algorithms
+- Dynamic programming
+- Backtracking
+- Bit operations
