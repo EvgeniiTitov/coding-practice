@@ -16,3 +16,12 @@ objects with the highest or the lowest priority.
 
 
 Max/Min Heap implementation - https://favtutor.com/blogs/heap-in-python
+
+---
+
+### Time complexity:
+
+Python's heapq is a binary heap with time complexity:
+
+- O(log N) for pushing and poping (needs to be rearranged)
+- O(N) for heapifying inplace operation

@@ -23,7 +23,7 @@ odd number of nodes, the middle node must be attached to the first half.
 
 ----
 
-### Reversing Linked List
+- ### Reversing Linked List
 The idea is we need to keep 3 references: previous, current, and next_node.
 Current gets relinked to previous, previous gets moved to the right, current
 becomes the next node. 
@@ -33,12 +33,6 @@ Return the reference to the start of the LL
 
 
 ```python
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
 class Solution:
 
     # T Complexity O(n), S complexity O(1) - we don't accumulate anything
@@ -70,4 +64,40 @@ def reverse(self) -> None:
         node = next_node
 
 # TODO: Study how to do it recursively
+```
+---
+
+- ### Iterating over a list
+
+When imitating a fast runner who jumps over a node every iteration be careful
+with while loop's condition as None has no attribute .next
+
+```python
+def build_ll(elements: list[t.Any]) -> Node:
+    first = elements.pop(0)
+    head = current = Node(first)
+    for element in elements:
+        current.next = Node(element)
+        current = current.next
+    return head
+
+
+def iterate_every_element(head: Node) -> None:
+    while head:
+        print(head.value, end=" ")
+        head = head.next
+
+
+def iterate_every_second_element(head: Node) -> None:
+    while head and head.next:  # ! IMPORTANT to check head is not None
+        print(head.value, end=" ")
+        head = head.next.next
+
+
+def main():
+    elements = list(range(1, 11))
+    head = build_ll(elements)
+    iterate_every_element(head)  # 1 2 3 4 5 6 7 8 9 10
+    print()
+    iterate_every_second_element(head)  # 1 3 5 7 9
 ```

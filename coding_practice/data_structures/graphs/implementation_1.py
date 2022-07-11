@@ -23,7 +23,7 @@ class UnweightedUndirectedGraph:
 
     def perform_dfs(self, vertex) -> t.Iterator[str]:
         self._check_vertexes_exist(vertex)
-        visited_nodes = {vertex: ""}
+        visited_nodes = {vertex}
         stack = Stack()
         stack.push(vertex)
         while not stack.is_empty():
@@ -31,12 +31,12 @@ class UnweightedUndirectedGraph:
             yield vertex
             for adjacent_vertex in self._graph_dict[vertex]:
                 if adjacent_vertex not in visited_nodes:
-                    visited_nodes[adjacent_vertex] = ""
+                    visited_nodes.add(adjacent_vertex)
                     stack.push(adjacent_vertex)
 
     def perform_bfs(self, vertex) -> t.Iterator[str]:
         self._check_vertexes_exist(vertex)
-        visited_nodes = {vertex: ""}
+        visited_nodes = {vertex}
         queue = Queue()
         queue.put(vertex)
         while queue.qsize():
@@ -45,7 +45,7 @@ class UnweightedUndirectedGraph:
             for adjacent_vertex in self._graph_dict[vertex]:
                 if adjacent_vertex not in visited_nodes:
                     queue.put(adjacent_vertex)
-                    visited_nodes[adjacent_vertex] = ""
+                    visited_nodes.add(adjacent_vertex)
 
     def add_vertex(self, vertex) -> None:
         if vertex in self._graph_dict:
