@@ -1,4 +1,4 @@
-### Heap
+#### Heap
 
 Heap is a data structure that follows a complete binary tree's property and 
 satisfies the heap property. Therefore, it is also known as a binary heap. As 
@@ -19,9 +19,18 @@ Max/Min Heap implementation - https://favtutor.com/blogs/heap-in-python
 
 ---
 
-### Time complexity:
+#### Time complexity:
 
 Python's heapq is a binary heap with time complexity:
 
 - O(log N) for pushing and poping (needs to be rearranged)
 - O(N) for heapifying inplace operation
+
+---
+
+#### To remember:
+
+- If values in your heap get updates, say distance to graph vertices, the heap
+wont rebuild itself, you need to do it manually!
+
+- 

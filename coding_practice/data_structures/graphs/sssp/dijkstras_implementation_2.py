@@ -4,9 +4,8 @@ import heapq
 
 
 """
-https://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
-
-Neat idea how to represent the graph but the implementation sucks
+Neat idea how to represent the graph but the implementation sucked and I only
+overcomplicated it
 
 The algorithm iterates over vertices processing them. However, this iteration
 must be done in a certain order. In implementation 1 you manually iterate over
@@ -35,7 +34,7 @@ class Vertex:
     """
     def __init__(self, node: Node) -> None:
         self.node = node
-        self.adjacent: dict[Vertex, Weight] = {}
+        self.adjacent: t.MutableMapping[Vertex, Weight] = {}
         self.distance = float("inf")
         self.visited = False
         self.previous = None
@@ -43,10 +42,10 @@ class Vertex:
     def add_edge(self, neighbour: Vertex, weight: Weight) -> None:
         self.adjacent[neighbour] = weight
 
-    def get_connections(self) -> list[Vertex]:
+    def get_connections(self) -> t.List[Vertex]:
         return list(self.adjacent.keys())
 
-    def get_neighbour_weight(self, neighbour: Vertex) -> Weight:
+    def get_dist_to_neighbour(self, neighbour: Vertex) -> Weight:
         if neighbour not in self.adjacent:
             raise ConnectionDoesntExistError(
                 f"Vertex {self} is not connected to {neighbour}"
@@ -68,7 +67,7 @@ class Vertex:
 
 class Graph:
     def __init__(self) -> None:
-        self._vertices: dict[Node, Vertex] = {}
+        self._vertices: t.MutableMapping[Node, Vertex] = {}
         self._num_vertices = 0
 
     def add_vertex(self, node: Node) -> Vertex:
@@ -77,7 +76,7 @@ class Graph:
         self._vertices[node] = new_vertex
         return new_vertex
 
-    def add_vertices(self, *nodes: Node) -> list[Vertex]:
+    def add_vertices(self, *nodes: Node) -> t.List[Vertex]:
         vertices = []
         for node in nodes:
             vertices.append(self.add_vertex(node))
@@ -107,7 +106,7 @@ class Graph:
                 neighbour=self._vertices[node1], weight=weight
             )
 
-    def get_vertices(self) -> list[Node]:
+    def get_vertices(self) -> t.List[Node]:
         return list(self._vertices.keys())
 
     def __iter__(self) -> t.Iterator[Vertex]:
@@ -117,19 +116,52 @@ class Graph:
         return f"Graph. Vertices: {self._vertices}"
 
 
-def find_shortest_path(graph: Graph, start: Node, destination: Node):
+def calculate_paths(graph: Graph, start: Node):
     start = graph.get_vertex(start)
 
     # Set distance of the start vertex to 0
     start.distance = 0
 
-    # Create a min heap storing distances to the nodes to process
+    # Create a min heap storing distances from start to the nodes to process
     nodes = [(vertex.distance, vertex) for vertex in graph]
     heapq.heapify(nodes)
 
     while len(nodes):
+        # Pop the closest vertex to the start (start at the very beginning)
         current = heapq.heappop(nodes)[1]
         current.visited = True
+
+        for adjacent_neighbour, weight in current.adjacent.items():
+            # Same vertex could be reached and processed from different
+            # directions, skip processed ones - for them distance to their
+            # neighbours was already calculated
+            if adjacent_neighbour.visited:
+                continue
+
+            # From start to the neighbouring vertex
+            new_dist = (
+                    current.distance
+                    + current.get_dist_to_neighbour(adjacent_neighbour)
+            )
+            # Adjacent neighbours distance is either inf or another value
+            # that could have already been calculated from a different vertex
+            if new_dist < adjacent_neighbour.distance:
+                adjacent_neighbour.distance = new_dist
+                adjacent_neighbour.previous = current
+
+        # Since values on the heap got modified (the distance attribute),
+        # rebuild the heap
+        del nodes
+        nodes = [
+            (vertex.distance, vertex) for vertex in graph if not vertex.visited
+        ]
+        heapq.heapify(nodes)
+
+
+def get_the_shortest_path(dest_vertex: Vertex, path: t.List[Node]) -> None:
+    if dest_vertex.previous:
+        path.append(dest_vertex.previous.node)
+        get_the_shortest_path(dest_vertex.previous, path)
 
 
 def main():
@@ -145,7 +177,11 @@ def main():
     graph.add_edge('d', 'e', 6)
     graph.add_edge('e', 'f', 9)
 
-    find_shortest_path(graph, start="a", destination="e")
+    calculate_paths(graph, start="a")
+    dest = graph.get_vertex("d")
+    path = [dest.node]
+    get_the_shortest_path(dest, path)
+    print("Path to e:", path[::-1])
 
 
 if __name__ == '__main__':
