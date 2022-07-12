@@ -1,5 +1,3 @@
----
-
 - ### Fast slow runner (Tortoise and Hare)
 
 Analogy: Say we have 2 runners that run along an infinitely 
@@ -28,6 +26,7 @@ speed until the one ahead reaches None --> The one behind reached the Nth
 element from the end
 
 3. Floyds cycle detection algorithm:
+
 ```
 Phase 1:
 Here, we initialize two pointers - the fast hare and the slow tortoise. 
