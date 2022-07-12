@@ -4,6 +4,9 @@ from queue import Queue
 
 """
 Unweighted Directed G; SSSP using BFS
+
+! NOTE here we do not keep track of nodes/paths seen/visited, which has to do 
+with the graph in question being directed. Will break for undirected graph
 """
 
 
