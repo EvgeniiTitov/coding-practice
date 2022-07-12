@@ -2,6 +2,12 @@ from typing import Optional
 
 
 """
+Summary: The proper one is to use 2 pointers, a dummy value to initialize the new
+ll out, which will be skipped when returning and then using the pointers get
+a pair of values from each LL. Move pointer which game smaller value, there could
+be more smaller values.
+_______________________________________________________________________________
+
 You are given the heads of two sorted linked lists list1 and list2.
 
 Merge the two lists in a one sorted list. The list should be made by splicing 

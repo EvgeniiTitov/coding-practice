@@ -3,7 +3,7 @@ from typing import List
 
 """
 Summary: Sorting is a simple O(N log N) solution. The Floyd's algorithm on
-steroids is quicker but god damn its confusing
+steroids is quicker. 
 _______________________________________________________________________________
 
 https://leetcode.com/problems/find-the-duplicate-number/

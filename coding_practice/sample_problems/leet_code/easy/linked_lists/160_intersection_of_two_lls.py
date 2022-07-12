@@ -79,7 +79,7 @@ class Solution:
             return length
 
         def _set_ll_pointer_to_position(head: ListNode, pos: int) -> ListNode:
-            for i in range(pos):
+            for _ in range(pos):
                 head = head.next
             return head
 

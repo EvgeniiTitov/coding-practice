@@ -2,6 +2,10 @@ from typing import Optional
 
 
 """
+Summary: The slow fast runner approach. If fast reached the end, no intersection.
+If the slow and the fast point to the same node (obj in memory) -> True
+_______________________________________________________________________________
+
 https://leetcode.com/problems/linked-list-cycle/
 
 Given head, the head of a linked list, determine if the linked list has a 
