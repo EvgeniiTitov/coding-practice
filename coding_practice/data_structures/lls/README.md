@@ -1,5 +1,6 @@
+---
 
-### The Two Runner Pointer Technique
+- ### Fast slow runner (Tortoise and Hare)
 
 Analogy: Say we have 2 runners that run along an infinitely 
 long rope. One runner runs at 1 m/s, the other at 2 m/s --> hence
@@ -9,19 +10,41 @@ ahead of the slow runner.
 ```
 F = 2 m/s
 S = 1 m/s
-At any point in time, F = 2S
+At any point in time, F = 2 S
 
 Slow at 2, the fast at 4
 Slow at 8, the fast at 16, etc
 ```
---> To find the end of the first half of a LL, the same 
-approach could be used: first pointer moves 1 node per iteration 
-and the other 2 nodes per iteration. When the fast pointer 
-reaches the end of the LL, the slow one is in the middle. If there's an
+
+1. Slow runner moves one step at a time, the fast on N steps (usually 2). Say, to 
+find the middle element of a LL initialize 2 runners and itirate until the fast
+one reaches the end --> the slow one is in the middle. If there's an
 odd number of nodes, the middle node must be attached to the first half. 
 
+2. They don't need to run at different speeds all the time. Say, you need to 
+find the Nth element from the end in a sinple pass. To do so, set 1 pointer at
+the start of the LL, the other N elements ahead. Start moving them at the same
+speed until the one ahead reaches None --> The one behind reached the Nth
+element from the end
 
-----
+3. Floyds cycle detection algorithm:
+```
+Phase 1:
+Here, we initialize two pointers - the fast hare and the slow tortoise. 
+Then, until hare can no longer advance, we increment tortoise once and hare 
+twice. If, after advancing them, hare and tortoise point to the same node, 
+we return it. Otherwise, we continue. If the while loop terminates without 
+returning a node, then the list is acyclic, and we return null to indicate as much.
+
+Phase 2:
+Given that phase 1 finds an intersection, phase 2 proceeds to find the node 
+that is the entrance to the cycle. To do so, we initialize two more pointers: 
+ptr1, which points to the head of the list, and ptr2, which points to the 
+intersection. Then, we advance each of them by 1 until they meet; the node 
+where they meet is the entrance to the cycle, so we return it.
+```
+
+---
 
 - ### Reversing Linked List
 The idea is we need to keep 3 references: previous, current, and next_node.
