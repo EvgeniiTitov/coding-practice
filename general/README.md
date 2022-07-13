@@ -11,8 +11,12 @@
     - AB testing
     - Feature drift
 
+
 - Why gRPC?
+
 
 - ML for time series 
 
-- 
+
+- General approach to writing good software (separation of concerns, interfaces, etc)
+
