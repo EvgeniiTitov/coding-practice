@@ -10,6 +10,8 @@ Summary:
     - ! Left and right sub products. For each num in nums, we could calculate
       the product to the left and to the right of this number and then just
       multiple them
+      
+      TODO: There is constant space solution as well
 _______________________________________________________________________________
 
 https://leetcode.com/problems/product-of-array-except-self/

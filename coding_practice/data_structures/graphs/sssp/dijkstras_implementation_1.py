@@ -3,7 +3,9 @@ from collections import defaultdict
 
 
 """
-Weighted directed G; Dijkstras
+Weighted directed G; Dijkstras;
+
+This one is O(N2)
 """
 
 
@@ -70,6 +72,8 @@ def find_paths_using_dijkstra(graph: Graph, initial: Vertex) -> tuple:
     paths = defaultdict(list)
     nodes = graph.nodes.copy()
     while nodes:
+
+        # TODO: Below could be replaced with a heap, watch implementation_3
         min_node = None
         # Every iter we find a node to start from, must be closest to the start,
         # i.e. has smallest distance/weight. This node is the one we've visited
