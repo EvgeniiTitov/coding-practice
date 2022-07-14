@@ -98,7 +98,7 @@ def numIslands(self, grid: List[List[str]]) -> int:
 
     return total_islands
 
-OR
+--- OR ---
 
 #Here I check after (BFS)
 def numIslands(self, grid: List[List[str]]) -> int:
@@ -128,6 +128,48 @@ def numIslands(self, grid: List[List[str]]) -> int:
                 continue
             _perform_dfs(i, j)
             total_islands += 1
+    return total_islands
+
+--- OR even like this ---
+
+@staticmethod
+def are_valid_coords(i: int, j: int, grid_i: int, grid_j: int) -> bool:
+    if i < 0 or j < 0 or i >= grid_i or j >= grid_j:
+        return False
+    return True
+
+# In this approach we keep track of visited nodes by changing it from 1to0
+def numIslands(self, grid: List[List[str]]) -> int:
+    from queue import Queue
+
+    next_moves = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+    total_islands = 0
+    rows = len(grid)
+    columns = len(grid[0])
+    for i_index in range(rows):
+        for j_index in range(columns):
+            if grid[i_index][j_index] == "0":
+                continue
+
+            total_islands += 1
+
+            # Mark as visited and process all adjacent land (reminds ^
+            # but not recursive
+            queue = Queue()
+            queue.put((i_index, j_index))
+            grid[i_index][j_index] = "0"
+            while queue.qsize():
+                i, j = queue.get()
+                for next_move in next_moves:
+                    new_i, new_j = i + next_move[0], j + next_move[1]
+                    if (
+                            Solution.are_valid_coords(new_i, new_j, rows,
+                                                      columns)
+                            and grid[new_i][new_j] == "1"
+                    ):
+                        queue.put((new_i, new_j))
+                        grid[new_i][new_j] = "0"
+
     return total_islands
 ```
 

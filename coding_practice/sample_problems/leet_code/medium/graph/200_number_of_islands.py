@@ -120,45 +120,67 @@ class Solution:
                 total_islands += 1
         return total_islands
 
-    # # TODO: Complete me BFS
+    @staticmethod
+    def are_valid_coords(i: int, j: int, grid_i: int, grid_j: int) -> bool:
+        if i < 0 or j < 0 or i >= grid_i or j >= grid_j:
+            return False
+        return True
+
+    # In this approach we keep track of visited nodes by changing it from 1to0
+    # TODO: Wasn't passing all tests if I didn't 0-ed land right after adding
+    #       it to the queue. Was doing them after getting the coord from Q. ?!
     def numIslands(self, grid: List[List[str]]) -> int:
         from queue import Queue
 
+        next_moves = [(-1, 0), (0, -1), (1, 0), (0, 1)]
         total_islands = 0
         rows = len(grid)
         columns = len(grid[0])
-        for i in range(rows):
-            for j in range(columns):
-                if grid[i][j] == "0":
+        for i_index in range(rows):
+            for j_index in range(columns):
+                if grid[i_index][j_index] == "0":
                     continue
 
-                # Mark as visited and process all adjacent land
                 total_islands += 1
+
+                # Mark as visited and process all adjacent land (reminds ^
+                # but not recursive
                 queue = Queue()
-                queue.put((i, j))
+                queue.put((i_index, j_index))
+                grid[i_index][j_index] = "0"
                 while queue.qsize():
                     i, j = queue.get()
-                    grid[i][j] = "0"
+                    for next_move in next_moves:
+                        new_i, new_j = i + next_move[0], j + next_move[1]
+                        if (
+                                Solution.are_valid_coords(new_i, new_j, rows,
+                                                          columns)
+                                and grid[new_i][new_j] == "1"
+                        ):
+                            queue.put((new_i, new_j))
+                            grid[new_i][new_j] = "0"
 
-                    if i > 0 and grid[i - 1][j] != "0":
-                        queue.put((i - 1, j))
-                    if j > 0 and grid[i][j - 1] != "0":
-                        queue.put((i, j - 1))
-                    if i < rows - 1 and grid[i + 1][j] != "0":
-                        queue.put((i + 1, j))
-                    if j < columns - 1 and grid[i][j + 1] != "0":
-                        queue.put((i, j + 1))
-
+        return total_islands
 
 
 def main():
     print(Solution().numIslands(
+        # grid=[
+        #   ["1","1","0","0","0"],
+        #   ["1","1","0","0","0"],
+        #   ["0","0","1","0","0"],
+        #   ["0","0","0","1","1"]
+        # ]
         grid=[
-          ["1","1","0","0","0"],
-          ["1","1","0","0","0"],
-          ["0","0","1","0","0"],
-          ["0","0","0","1","1"]
-        ]
+            ["1", "1", "0", "0", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["0", "0", "1", "0", "0"],
+            ["0", "0", "0", "1", "1"],
+            ["0", "0", "0", "1", "1"],
+            ["0", "0", "1", "0", "0"],
+            ["0", "1", "0", "1", "1"],
+            ["1", "0", "1", "0", "0"]
+        ]  # 8 islands
     ))
 
 
