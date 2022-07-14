@@ -51,6 +51,88 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- Recursively processing 2D grid (DFS, BFS)
+
+Remember you can check for out of bounds before or after the recursive call:
+
+```python
+# Here I check before
+def numIslands(self, grid: List[List[str]]) -> int:
+
+    def _search_islands(i: int, j: int) -> bool:
+        if grid[i][j] == "0" or (i, j) in visited_coordinates:
+            return False
+
+        visited_coordinates.add((i, j))
+        possible_directions = []
+        if i > 0:
+            possible_directions.append([i - 1, j])
+        if j > 0:
+            possible_directions.append([i, j - 1])
+        if i < rows - 1:
+            possible_directions.append([i + 1, j])
+        if j < columns - 1:
+            possible_directions.append([i, j + 1])
+
+        for next_move in possible_directions:
+            # If next move is the sea or was already visited (attempt to go
+            # back from where we just came), skip
+            if (
+                    grid[next_move[0]][next_move[1]] == "0"
+                    or tuple(next_move) in visited_coordinates
+            ):
+                continue
+            _search_islands(*next_move)
+
+        return True
+
+    total_islands = 0
+    visited_coordinates = set()
+    rows = len(grid)
+    columns = len(grid[0])
+    for i in range(rows):
+        for j in range(columns):
+            found  = _search_islands(i, j)
+            if found:
+                total_islands += 1
+
+    return total_islands
+
+OR
+
+#Here I check after (BFS)
+def numIslands(self, grid: List[List[str]]) -> int:
+
+    # Here we call first, then check if we're out of bounds. ^ you check
+    # first
+    def _perform_dfs(i: int, j: int):
+        """
+        Sets all visited island points from 1 to 0
+        """
+        # Check for out of bounds
+        if i < 0 or i >= rows or j < 0 or j >= columns or grid[i][j] == "0":
+            return
+
+        grid[i][j] = "0"
+        _perform_dfs(i - 1, j)
+        _perform_dfs(i + 1, j)
+        _perform_dfs(i, j - 1)
+        _perform_dfs(i, j + 1)
+
+    total_islands = 0
+    rows = len(grid)
+    columns = len(grid[0])
+    for i in range(rows):
+        for j in range(columns):
+            if grid[i][j] == "0":
+                continue
+            _perform_dfs(i, j)
+            total_islands += 1
+    return total_islands
+```
+
+---
+
 - collections.Counter() 
 Uses heap under the hood, so it could give you N most common items
 
