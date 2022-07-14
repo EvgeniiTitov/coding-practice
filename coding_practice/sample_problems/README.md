@@ -51,6 +51,101 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- collections.Counter() 
+Uses heap under the hood, so it could give you N most common items
+
+```python
+counter = Counter("cbbaaazzzz")
+print(counter)
+print(list(counter.elements()))  # All values (flat structure)
+
+print(counter.most_common(2))  # Uses heap under the hood
+counter.pop("z")
+print(counter.most_common(2))
+
+counter_list = Counter([1, 2, 3, 3, 3, 3])  # Works with tuples as well
+print(counter_list.most_common(1))
+
+d = {"one": 1, "two": 2, "three": 3}
+print(Counter(d))
+
+---
+Counter({'z': 4, 'a': 3, 'b': 2, 'c': 1})
+['c', 'b', 'b', 'a', 'a', 'a', 'z', 'z', 'z', 'z']
+
+[('z', 4), ('a', 3)]
+[('a', 3), ('b', 2)]
+
+[(3, 4)]
+
+Counter({'three': 3, 'two': 2, 'one': 1})
+```
+
+---
+
+- Get key of the largest value in a dict
+
+```python
+d = {"A": 10, "B": 0, "C": 100}
+largest_key = max(d, key=d.get)
+OR
+largest_key = max(d, key=lambda k: d.get(k))
+```
+
+---
+
+- Two pointers approach to find longest, max, etc for a string/array
+
+```
+- Seems to be the best approach as it requries a single pass only
+
+- You need a way to store state between the pointers
+    - An array of size 128 for keeping track of ascii chars
+    - A dict
+    - Just a value
+    
+- You need to come up with logic to move the pointers based on the current state
+    - Say when dealing with ascii chars, we keep moving left till there are no more repetitive chars
+    - Or the number of random chars within the window cannot be covered by K 
+      (allows to change N chars to anything else)
+    
+    - IMPORTANT: depending on the task every iter you could move just right, just
+      left OR both! You could have inner WHILE trying to fix the state (ascii example)
+```
+
+---
+
+- Iterating over string indices while slicing it. You iterate 0 to length (or whatever)
+but when you slice you need to +1 to include the last character!
+
+```python
+s = "ABCDE"
+
+length = len(s)
+
+for i in range(length):
+    print(i, s[i])
+
+for i in range(length):
+    print(s[0: i + 1])  # ! Up to but not included
+
+
+0 A
+1 B
+2 C
+3 D
+4 E
+
+A
+AB
+ABC
+ABCD
+ABCDE
+
+```
+
+---
+
 - Backwards looping options
 
 ```python
