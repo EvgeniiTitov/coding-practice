@@ -51,7 +51,6 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 
 class Solution:
 
-    # My solution: 19/20 tests passed
     def evalRPN(self, tokens: List[str]) -> int:
         operators = {
             "+": lambda a, b: a + b,
