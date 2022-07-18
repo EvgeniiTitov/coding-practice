@@ -4,6 +4,24 @@ import typing as t
 """
 When inserting a string into a trie we first check if the root node has the
 first letter of the string we want to insert.
+
+--> When inserting a new word into the Trie:
+We start from the root of the tree. Then we iterate over all chars in the str
+to insert. For each char (iteration), I check the current's children dict to see
+if it stores the current char.
+    If it does - all g, move the current there and continue char iteration
+    If it doesn't - create a new node for the current char, and add to the 
+    current's children
+Once we're done inserting the string, mark current as end, so we know there is 
+a str in the trie spanning from the root down to the current node.
+
+--> When searching for a string in the Trie:
+Start from the root. Iterate through the chars in the string comparing curr 
+char to curr node you're standing on. If at some point the char doesnt exist
+in the curr nodes children --> return False
+
+--> When deleting a string from the Trie:
+
 """
 
 
