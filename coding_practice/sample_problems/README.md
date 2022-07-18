@@ -51,6 +51,10 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- Power set - all possible combinations of all possible lengths, from 0 to N.
+
+---
+
 - Recursively processing 2D grid (DFS, BFS)
 
 Remember you can check for out of bounds before or after the recursive call:
