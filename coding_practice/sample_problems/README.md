@@ -51,6 +51,7 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+<<<<<<< HEAD
 - Checking if intervals overlap and meting them
 
 ```python
@@ -71,6 +72,9 @@ def _merge(*intervals: Interval) -> Interval:
     ends = [interval[1] for interval in intervals]
     return [min(starts), max(ends)]
 ```
+=======
+- Power set - all possible combinations of all possible lengths, from 0 to N.
+>>>>>>> 9f6e3eaad221baaf7732f98e776fdf372e2c23bf
 
 ---
 

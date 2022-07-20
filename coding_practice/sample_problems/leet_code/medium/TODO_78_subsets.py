@@ -25,39 +25,18 @@ Output: [[],[0]]
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def _generate_subsets(index: int, current: List[int]) -> None:
-            subsets.append(current[:])
-            # Taking and not taking each number at the index position
-            for i in range(index, length):
-                current.append(nums[i])
-                _generate_subsets(i + 1, current)
-                current.pop()
+        def _backtrack(start, cur_list):
+            ans.append(cur_list[:])
 
-        length = len(nums)
-        subsets = []
-        _generate_subsets(0, [])
-        return subsets
+            for j in range(start, n):
+                cur_list.append(nums[j])
+                _backtrack(j + 1, cur_list)
+                cur_list.pop()
 
-    # OR without using closure
-    # def subsets(self, nums: List[int]) -> List[List[int]]:
-    #     subsets = []
-    #     self.generate_subsets(
-    #         index=0, nums=nums, current=[], subset=subsets
-    #     )
-    #     return subsets
-    #
-    # def generate_subsets(
-    #     self,
-    #     index: int,
-    #     nums: List[int],
-    #     current: List[int],
-    #     subset: List[List[int]]
-    # ) -> None:
-    #     subset.append(current[:])
-    #     for i in range(index, len(nums)):
-    #         current.append(nums[i])
-    #         self.generate_subsets(i + 1, nums, current, subset)
-    #         current.pop()
+        n = len(nums)
+        ans = []
+        _backtrack(0, [])
+        return ans
 
 
 def main():
