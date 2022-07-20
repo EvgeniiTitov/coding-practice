@@ -51,6 +51,29 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- Checking if intervals overlap and meting them
+
+```python
+Interval = List[int]
+
+def _check_if_overlap(
+    interval_1: Interval, interval_2: Interval
+) -> bool:
+    start_1, end_1 = interval_1
+    start_2, end_2 = interval_2
+    if start_1 <= start_2:
+        return end_1 >= start_2
+    else:
+        return end_2 >= start_1
+
+def _merge(*intervals: Interval) -> Interval:
+    starts = [interval[0] for interval in intervals]
+    ends = [interval[1] for interval in intervals]
+    return [min(starts), max(ends)]
+```
+
+---
+
 - Recursively processing 2D grid (DFS, BFS)
 
 Remember you can check for out of bounds before or after the recursive call:
