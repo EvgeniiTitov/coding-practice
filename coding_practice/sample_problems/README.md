@@ -22,6 +22,8 @@ ordering on the subsets of three elements of S = {1,2,3,4,5,6} is:
 123 < 124 < 125 < 126 < 134 < 135 < 136 < 145 < 146 < 156 < 234 < 235 < 236 < 245 < 246 < 256 < 345 < 346 < 356 < 456
 ```
 
+- Power set - all possible combinations of all possible lengths, from 0 to N.
+
 ___
 
 ### Poorly solved problems / Not understood solutions:
@@ -51,7 +53,6 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
-<<<<<<< HEAD
 - Checking if intervals overlap and meting them
 
 ```python
@@ -72,9 +73,6 @@ def _merge(*intervals: Interval) -> Interval:
     ends = [interval[1] for interval in intervals]
     return [min(starts), max(ends)]
 ```
-=======
-- Power set - all possible combinations of all possible lengths, from 0 to N.
->>>>>>> 9f6e3eaad221baaf7732f98e776fdf372e2c23bf
 
 ---
 
