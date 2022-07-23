@@ -316,3 +316,42 @@ def reverse_list(self, head):
         current = next_node
     return previous
 ```
+
+--- 
+
+- ### Removing nth node
+
+The idea is to use 2 pointers. Move one of them N steps. Then, start moving both 
+of them until the one moved reaches the end of the list - that results in the
+first one being on the node that needs deletion. The one we move could straight
+away land on null, meaning the current already points to the node to delete. Say,
+in a ll like [1, 2],  n = 2
+
+```python
+    def removeNthFromEnd(
+        self,
+        head: Optional[ListNode],
+        n: int
+    ) -> Optional[ListNode]:
+        if not head or not head.next:
+            return
+
+        def _reach_nth_node(head: ListNode, n: int) -> ListNode:
+            for _ in range(n):
+                head = head.next
+            return head
+
+        nth_node = _reach_nth_node(head, n)
+        if not nth_node:
+            return head.next
+
+        current = head
+        prev = None
+        while nth_node:
+            nth_node = nth_node.next
+            prev = current
+            current = current.next
+
+        prev.next = current.next
+        return head
+```
