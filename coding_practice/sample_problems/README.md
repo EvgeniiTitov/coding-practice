@@ -53,6 +53,47 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- Binary Search
+When it comes to BS, we do not always want to do it in its standard way:
+```python
+def binary_search(array: list[int], target: int) -> bool:
+    left, right = 0, len(array) - 1
+    while left <= right:
+        middle = (left + right) // 2
+        if array[middle] == target:
+            return True
+        elif array[middle] < target:
+            left = middle + 1
+        else:
+            right = middle - 1
+    return False
+```
+Sometimes, we could use one of the pointers as the *result*, i.e. we will return
+it. Koko eating bananas:
+```python
+def minEatingSpeed(piles: List[int], h: int) -> int:
+    import math
+
+    left, right = 1, max(piles)
+    while left < right:
+        mid_speed = (left + right) // 2
+        time_spent = 0
+        for pile in piles:
+            time_spent += math.ceil(pile / mid_speed)
+
+        if time_spent <= h:
+            right = mid_speed
+        else:
+            left = mid_speed + 1
+
+    return right
+```
+If speed is fast enough, lets move the right pointer to the middle one (not middle - 1), and
+keep iterating in case we find a slightly better speed. It is also CRUCIAL that left < right and not
+<=
+
+---
+
 - Checking if intervals overlap and meting them
 
 ```python
