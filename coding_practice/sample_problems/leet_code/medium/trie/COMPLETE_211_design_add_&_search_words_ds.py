@@ -1,9 +1,6 @@
 import typing as t
 
 
-# TODO: Fix your proper solution
-
-
 """
 Summary: 
 _______________________________________________________________________________
@@ -69,11 +66,12 @@ class WordDictionary:
                 return False
         return True
 
-# ---------------------------- proper solution --------------------------------
+
+# -------------------------- proper solution 1 (bugged)------------------------
 
 class Node:
     def __init__(self) -> None:
-        self.children: t.MutableMapping[str, None] = {}
+        self.children: t.MutableMapping[str, Node] = {}
         self.is_end_of_word = False
 
 
@@ -96,7 +94,6 @@ class WordDictionary:
     def search(self, word: str) -> bool:
         if not word:
             return True
-
         return self._search(word, self.root)
 
     def _search(self, word: str, root: Node) -> bool:
@@ -121,6 +118,50 @@ class WordDictionary:
         return current.is_end_of_word
 
 
+# ------------------------ proper solution 2 (works) --------------------------
+
+TrieNode = t.MutableMapping[str, t.MutableMapping]
+WordEnd = "$"
+
+
+class WordDictionary:
+
+    def __init__(self):
+        self._trie = {}
+
+    def addWord(self, word: str) -> None:
+        if not word:
+            return
+        current = self._trie
+        for char in word:
+            if char not in current:
+                current[char] = {}
+            current = current[char]
+        current[WordEnd] = True
+
+    def search(self, word: str) -> bool:
+
+        def _search(word: str, node: TrieNode) -> bool:
+            for i, char in enumerate(word):
+                if char not in node:
+                    if char == ".":
+                        for node_char in node:
+                            if (
+                                node_char != WordEnd and
+                                _search(word[i + 1:], node[node_char])
+                            ):
+                                return True
+                    return False
+                else:
+                    node = node[char]
+
+            return WordEnd in node
+
+        if not word:
+            return False
+        return _search(word, self._trie)
+
+
 def main():
     trie = WordDictionary()
     # trie.addWord("bad")
@@ -130,7 +171,7 @@ def main():
     # print(trie.search("pad"))  # False
     # print(trie.search("bad"))  # True
     # print(trie.search(".ad"))  # True
-    # print(trie.search("b.."))
+    # print(trie.search("b.."))  # True
 
     trie.addWord("a")
     trie.addWord("a")
