@@ -2,7 +2,9 @@ import typing as t
 
 
 """
-Summary: 
+Summary: Whenever you encounter a ".", you know you could consider all chars
+at the current level/node and see if any option would result in the word we're
+searching. 
 _______________________________________________________________________________
 
 https://leetcode.com/problems/design-add-and-search-words-data-structure/
