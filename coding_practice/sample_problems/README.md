@@ -53,7 +53,39 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- Finding array rotation (wrapping)
+
+Say we have an array `[3,4,5,6,7,8,9,0,1,2]`, we need to know the pivot index:
+
+```python
+def search(self, nums: List[int], target: int) -> int:
+
+    def _find_pivot_index() -> int:
+        left, right = 0, length - 1
+
+        # No rotation, proper ascending array
+        if nums[left] < nums[right]:
+            return 0
+
+        while left <= right:
+            middle = (left + right) // 2
+            middle_val = nums[middle]
+            next_val = nums[middle + 1]
+            if middle_val > next_val:
+                return middle + 1
+            else:
+                # We could be left or right of the *drop*, identify where
+                if middle_val < nums[left]:
+                    right = middle - 1
+                else:
+                    left = middle + 1
+    ...
+```
+
+---
+
 - Binary Search
+
 When it comes to BS, we do not always want to do it in its standard way:
 ```python
 def binary_search(array: list[int], target: int) -> bool:
