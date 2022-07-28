@@ -20,11 +20,6 @@ def selection_sort(arr: list[int]) -> None:
                 arr[i], arr[j] = arr[j], arr[i]
 
 
-def merge_sort(arr: list[int]) -> None:
-    # TODO: Complete me
-    pass
-
-
 ALGORITHMS = {
     "selection_sort": selection_sort,
 }
