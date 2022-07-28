@@ -448,3 +448,74 @@ def _is_balanced(self, root: Optional[TreeNode]) -> tuple:
     # Subtrees are balanced and their height diff <= 1
     return True, current_height
 ```
+
+--- 
+
+- Lowest Common Ancestor (LCA) in BST
+
+LCA - The lowest common ancestor is defined between two nodes p and q as the 
+lowest node in T that has both p and q as descendants (where we allow a node 
+to be a descendant of itself).
+
+There are a dumb and a smart way to do it:
+
+1. Find kids of all nodes, and if there is a node for which p and q are the kids,
+we found the LCA.
+
+2. Smart say is to find a node for which p and q are to the left and right!
+
+```python
+# Recursive
+def lowestCommonAncestor(
+    self,
+    root: 'TreeNode',
+    p: 'TreeNode',
+    q: 'TreeNode'
+) -> 'TreeNode':
+    root_val = root.val
+    p_val = p.val
+    q_val = q.val
+
+    if p_val > root_val and q_val > root_val:
+        return self.lowestCommonAncestor(root.right, p, q)
+    elif p_val < root_val and q_val < root_val:
+        return self.lowestCommonAncestor(root.left, p, q)
+    return root
+
+# Iterative
+def lowestCommonAncestor(
+    self,
+    root: 'TreeNode',
+    p: 'TreeNode',
+    q: 'TreeNode'
+) -> 'TreeNode':
+    from queue import Queue
+
+    p_val = p.val
+    q_val = q.val
+    queue = Queue()
+    queue.put(root)
+    while queue.qsize():
+        node = queue.get()
+        node_val = node.val
+        if node_val > p_val and node_val > q_val:
+            queue.put(node.left)
+        elif node_val < p_val and node_val < q_val:
+            queue.put(node.right)
+        else:
+            return node
+
+    # --- OR ---
+
+    p_val = p.val
+    q_val = q.val
+    node = root
+    while node:
+        node_val = node.val
+        if node_val > p_val and node_val > q_val:
+            node = node.left
+        elif node_val < p_val and node_val < q_val:
+            node = node.right
+        else:
+            return node
+```

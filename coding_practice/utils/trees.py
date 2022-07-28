@@ -9,7 +9,12 @@ __all__ = [
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: t.Any = 0,
+        left: t.Optional["TreeNode"] = None,
+        right: t.Optional["TreeNode"] = None
+    ):
         self.val = val
         self.left = left
         self.right = right
@@ -28,20 +33,19 @@ def build_tree_from_list(elements: t.List[t.Any]) -> t.Optional[TreeNode]:
     while queue.qsize():
         node = queue.get()
 
-        # No more elements, the tree is complete
-        if not len(elements):
-            break
-
-        left_child_element = elements.pop(0)
-        if left_child_element:
+        try:
+            left_child_element = elements.pop(0)
+        except IndexError:
+            left_child_element = None
+        if left_child_element is not None:
             node.left = TreeNode(left_child_element)
             queue.put(node.left)
 
-        if not len(elements):
-            break
-
-        right_child_element = elements.pop(0)
-        if right_child_element:
+        try:
+            right_child_element = elements.pop(0)
+        except IndexError:
+            right_child_element = None
+        if right_child_element is not None:
             node.right = TreeNode(right_child_element)
             queue.put(node.right)
 
@@ -61,3 +65,11 @@ def _traverse_tree_inorder(tree: TreeNode) -> t.List[t.Any]:
     if tree.right:
         elements.extend(_traverse_tree_inorder(tree.right))
     return elements
+
+
+if __name__ == '__main__':
+    tree = build_tree_from_list(
+        elements=[6, 2, 8, 0, 4, 7, 9, None, None, 3, 5]
+    )
+    print(tree.left.right.right)
+    print_tree_inorder(tree)
