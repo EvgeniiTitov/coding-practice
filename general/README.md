@@ -36,3 +36,17 @@ Development related:
 - General approach to writing good software (separation of concerns, interfaces, etc)
 
 - Actor model
+
+
+--- 
+
+Leetcode / Data Structures:
+
+- Backtracking
+
+- Dynamic
+
+  - top-down vs bottom-up
+
+- Greedy
+
