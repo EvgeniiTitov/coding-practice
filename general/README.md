@@ -50,3 +50,6 @@ Leetcode / Data Structures:
 
 - Greedy
 
+- Bits
+
+  - Least Significant Bit (LSB) / Most Significant Bit (MSB)
