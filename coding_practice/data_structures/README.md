@@ -7,13 +7,11 @@ When dealing with data structures, its worth paying attention to:
 
 ### TODO:
 
-- Rewatch about BigO notation (section 5)
 - Top-down and bottom-up recursion, tail recursion simulation in python
 
 
 - Queue with pointers
 - AVL trees and why self balancing is important for trees
-- Tries
 - Graphs (stopped at 355)
 
 

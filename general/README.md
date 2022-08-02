@@ -31,7 +31,7 @@ ML related:
 
 Development related:
 
-- Why gRPC?
+- Why gRPC? gRPC vs HTTP (speed, ease of use, public facing API, trade offs)
 
 - General approach to writing good software (separation of concerns, interfaces, etc)
 
@@ -42,13 +42,13 @@ Development related:
 
 Leetcode / Data Structures:
 
-- Backtracking
+- Divide and conquer
 
 - Dynamic
 
   - top-down vs bottom-up
-
-- Greedy
+  
+- Backtracking
 
 - Bits
 
