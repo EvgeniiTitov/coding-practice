@@ -48,6 +48,7 @@ Output: 3
 
 
 class Solution:
+
     # My head of brute force: Recursion
     def numIslands(self, grid: List[List[str]]) -> int:
 
@@ -70,8 +71,8 @@ class Solution:
                 # If next move is the sea or was already visited (attempt to go
                 # back from where we just came), skip
                 if (
-                        grid[next_move[0]][next_move[1]] == "0"
-                        or tuple(next_move) in visited_coordinates
+                    grid[next_move[0]][next_move[1]] == "0"
+                    or tuple(next_move) in visited_coordinates
                 ):
                     continue
                 _search_islands(*next_move)

@@ -53,6 +53,41 @@ shortest path between A and B in a graph of uniform weight.
 ---
 ### To remember:
 
+- 2D grid traversals
+
+1. When it comes to solving 2D cell traversal graph problems quite often it is
+a good idea to reverse/flip the problem, which makes it easier to solve:
+
+   - Instead of flowing from the mountains into the ocean (edges), lets start from
+   the edges and see where it could get us
+
+   - Instead of finding all surrounded regions by picking a 0 on the grid and checking
+   if you could get to a border from there, let's pick all 0s on the edges and then
+   traverse from them into the grid. By doing so you process only a subset of 
+   coordinates (edges that are 0) instead of all coordinates (all 0s on the grid)
+
+    This ^ allows to process only a subset of coordinates rather then all of them
+  and is often quicker.
+
+
+2. To keep track of visited/processed cells you could:
+
+   - Have a set to drop visited/processed coords there and then check before/after
+   recursively/iteratively going to the next coord if its been already processed - 
+   O(N) space complexity
+
+   - Change grid values in place to another char. Then, you could change them back to
+   to the original value if you don't need to return anything and working with the
+   passed grid - O(1) space complexity
+
+
+3. Check if the next coordinate you want to go to satisfies your condition before
+making the call rather than straight away in the recursive call (out of bounds, 
+cell value is what we want etc) - reduces overhead associated with unnecessary 
+function calls.
+
+---
+
 - Finding array rotation (wrapping)
 
 Say we have an array `[3,4,5,6,7,8,9,0,1,2]`, we need to know the pivot index:
