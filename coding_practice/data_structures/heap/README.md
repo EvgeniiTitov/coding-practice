@@ -31,6 +31,4 @@ Python's heapq is a binary heap with time complexity:
 #### To remember:
 
 - If values in your heap get updates, say distance to graph vertices, the heap
-wont rebuild itself, you need to do it manually!
-
-- 
+won't rebuild itself, you need to do it manually!
