@@ -36,7 +36,6 @@ memory chunk as it grows etc
     - Search - O(N)
     - Insert - O(N)
     - Delete - O(N)
-    
     - len() - O(1)
     - min(), max() - O(N)
     - contains - O(N)
