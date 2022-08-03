@@ -112,7 +112,6 @@ memory chunk as it grows etc
   - Push() - O(log N)
   - Pop() - O(log N)
   - Size - O(1)
-
   - Creating a heap by pushing N elements to an empty (initially heap) is - O(N log N), 
   don't do it, heapify an array instead
 
