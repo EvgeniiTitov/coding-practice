@@ -122,7 +122,7 @@ def reverse(self) -> None:
 
 - ### Iterating over a list
 
-When imitating a fast runner who jumps over a node every iteration be careful
+1. When imitating a fast runner who jumps over a node every iteration be careful
 with while loop's condition as None has no attribute .next
 
 ```python
@@ -154,6 +154,16 @@ def main():
     print()
     iterate_every_second_element(head)  # 1 3 5 7 9
 ```
+
+2. Or when you need to reach the end (the last node without going into Nulls)
+
+```python
+current = self.head
+while current.next:
+    current = current.next
+```
+^ Now current is the last node, not None, we could, say, extend it with another
+LL
 
 ---
 
@@ -354,4 +364,53 @@ in a ll like [1, 2],  n = 2
 
         prev.next = current.next
         return head
+```
+
+---
+
+- ### Dummy head and inserting at the beginning
+
+Say, we have a Bucket class that we use to implement a Hash Set. It is a nice trick to:
+
+- Use a dummy head to avoid some edge cases
+- Insert at the beginning of the LL instead of the end because the order doesn't matter
+
+```python
+class Node:
+    def __init__(
+        self, value: t.Any, next_node: t.Optional["Node"] = None
+    ) -> None:
+        self.value = value
+        self.next = next_node
+
+
+class Bucket:
+    # Acts as a Facade hiding the underlying details
+
+    def __init__(self) -> None:
+        self.head = Node(0)  # Pseudo head
+
+    def insert(self, value: t.Any) -> None:
+        if self.exists(value):
+            return
+        # Append new item to the beginning
+        new_node = Node(value, next_node=self.head.next)
+        self.head.next = new_node
+
+    def delete(self, value: t.Any) -> None:
+        previous = self.head
+        current = self.head.next
+        while current:
+            if current.value == value:
+                previous.next = current.next
+            previous = current
+            current = current.next
+
+    def exists(self, value: t.Any) -> bool:
+        current = self.head.next
+        while current:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
 ```
