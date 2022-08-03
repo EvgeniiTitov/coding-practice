@@ -90,6 +90,7 @@ memory chunk as it grows etc
   - Insertion - O(1): at the beginning, O(N): at the end
   - Deletion - O(1): current node
 
+
 - ### Doubly Linked List
 
   - Access - O(N)
@@ -97,12 +98,14 @@ memory chunk as it grows etc
   - Insertion - O(1)
   - Deletion - O(1)
 
+
 - ### Binary Search Tree
   
   - Access - O(log N)
   - Search - O(log N)
   - Insertion - O(log N)
   - Deletion - O(log N)
+
 
 - ### Heap (Priority Queue)
 
@@ -113,3 +116,12 @@ memory chunk as it grows etc
 
   - Creating a heap by pushing N elements to an empty (initially heap) is - O(N log N), 
   don't do it, heapify an array instead
+
+
+- ### Tries (TBA)
+
+
+- ### Graph (TBA)
+
+
+- ### AVL Tree (TBA)
