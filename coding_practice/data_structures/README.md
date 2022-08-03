@@ -7,10 +7,9 @@ When dealing with data structures, its worth paying attention to:
 
 ### TODO:
 
-- Top-down and bottom-up recursion, tail recursion simulation in python
-
-
 - Queue with pointers
+
+
 - AVL trees and why self balancing is important for trees
 - Graphs (stopped at 355)
 

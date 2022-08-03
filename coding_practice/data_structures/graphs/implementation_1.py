@@ -47,32 +47,32 @@ class UnweightedUndirectedGraph:
                     queue.put(adjacent_vertex)
                     visited_nodes.add(adjacent_vertex)
 
-    def add_vertex(self, vertex) -> None:
+    def add_vertex(self, vertex: str) -> None:
         if vertex in self._graph_dict:
             raise VertexAlreadyExistsError(f"Vertex {vertex} already exists")
         self._graph_dict[vertex] = []
 
-    def remove_vertex(self, vertex) -> None:
+    def remove_vertex(self, vertex: str) -> None:
         self._check_vertexes_exist(vertex)
         self._remove_vertex(vertex)
 
-    def add_edge(self, vertex1, vertex2) -> None:
+    def add_edge(self, vertex1: str, vertex2: str) -> None:
         self._check_vertexes_exist(vertex1, vertex2)
         self._graph_dict[vertex1].append(vertex2)
         self._graph_dict[vertex2].append(vertex1)
 
-    def remove_edge(self, vertex1, vertex2) -> None:
+    def remove_edge(self, vertex1: str, vertex2: str) -> None:
         self._check_vertexes_exist(vertex1, vertex2)
         self._remove_edge(vertex1, vertex2)
         self._remove_edge(vertex2, vertex1)
 
-    def _remove_vertex(self, vertex) -> None:
+    def _remove_vertex(self, vertex: str) -> None:
         affected_vertexes = self._graph_dict[vertex]
         for affected_vertex in affected_vertexes:
             self._remove_edge(affected_vertex, vertex)
         del self._graph_dict[vertex]
 
-    def _remove_edge(self, vertex1, vertex2) -> None:
+    def _remove_edge(self, vertex1: str, vertex2: str) -> None:
         # TODO: Multiple ways how it could be done. Ask for forgiveness not P
         try:
             self._graph_dict[vertex1].remove(vertex2)

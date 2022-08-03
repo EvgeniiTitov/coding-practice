@@ -1,12 +1,4 @@
-### How to approach solving problems:
-
-- Carefully read the problem definition, there could be hints there
-- Okay to start with brute force, then think how to optimise 
-- Draw!
-
----
-
-### Terms:
+## Terms:
 
 - Anagram is a word or phrase formed by rearranging the letters of a different 
 word or phrase, typically using all the original letters exactly once.
@@ -24,20 +16,12 @@ ordering on the subsets of three elements of S = {1,2,3,4,5,6} is:
 
 - Power set - all possible combinations of all possible lengths, from 0 to N.
 
-___
-
-### Poorly solved problems / Not understood solutions:
-- 14 Longest Common Prefix
-- 53 Max subarray, dynamic solution
-- 88 merge sorted arrays, O(1) solution
-- 136 bits manipulation solution
-
 ---
 
-### General information:
+## General information:
 
 "Most questions fall into some category of DP/memoization, DFS/BFS, two pointer,
-sort/binary search, or Hash table/counting occurrences in my experience"
+sort/binary search, or Hash table/counting occurrences etc."
 
 - DFS: Finding out if a path exists? Most kinds of backtracking type problems, 
 also just as a general search in graphs/trees
@@ -51,9 +35,9 @@ shortest path between A and B in a graph of uniform weight.
 
 
 ---
-### To remember:
+## To remember:
 
-- 2D grid traversals
+- ### 2D grid traversals
 
 1. When it comes to solving 2D cell traversal graph problems quite often it is
 a good idea to reverse/flip the problem, which makes it easier to solve:
@@ -88,7 +72,7 @@ function calls.
 
 ---
 
-- Finding array rotation (wrapping)
+- ### Finding array rotation (wrapping)
 
 Say we have an array `[3,4,5,6,7,8,9,0,1,2]`, we need to know the pivot index:
 
@@ -119,7 +103,7 @@ def search(self, nums: List[int], target: int) -> int:
 
 ---
 
-- Binary Search
+- ### Binary Search
 
 When it comes to BS, we do not always want to do it in its standard way:
 ```python
@@ -161,7 +145,7 @@ keep iterating in case we find a slightly better speed. It is also CRUCIAL that 
 
 ---
 
-- Checking if intervals overlap and meting them
+- ### Checking if intervals overlap and meting them
 
 ```python
 Interval = List[int]
@@ -184,7 +168,7 @@ def _merge(*intervals: Interval) -> Interval:
 
 ---
 
-- Recursively processing 2D grid (DFS, BFS)
+- ### Recursively processing 2D grid (DFS, BFS)
 
 Remember you can check for out of bounds before or after the recursive call:
 
@@ -308,7 +292,7 @@ def numIslands(self, grid: List[List[str]]) -> int:
 
 ---
 
-- collections.Counter() 
+- ### collections.Counter() 
 Uses heap under the hood, so it could give you N most common items
 
 ```python
@@ -340,7 +324,7 @@ Counter({'three': 3, 'two': 2, 'one': 1})
 
 ---
 
-- Get key of the largest value in a dict
+- ### Get key of the largest value in a dict
 
 ```python
 d = {"A": 10, "B": 0, "C": 100}
@@ -351,7 +335,7 @@ largest_key = max(d, key=lambda k: d.get(k))
 
 ---
 
-- Two pointers approach to find longest, max, etc for a string/array
+- ### Two pointers approach to find longest, max, etc for a string/array
 
 ```
 - Seems to be the best approach as it requries a single pass only
@@ -372,8 +356,9 @@ largest_key = max(d, key=lambda k: d.get(k))
 
 ---
 
-- Iterating over string indices while slicing it. You iterate 0 to length (or whatever)
-but when you slice you need to +1 to include the last character!
+- ### Iterating over string indices while slicing it. 
+
+You iterate 0 to length (or whatever) but when you slice you need to +1 to include the last character!
 
 ```python
 s = "ABCDE"
@@ -403,7 +388,7 @@ ABCDE
 
 ---
 
-- Backwards looping options
+- ### Backwards looping options
 
 ```python
 l = [1, 2, 3, 4, 5, 6]
@@ -426,8 +411,9 @@ Index 0; Value 1
 
 ---
 
-- When inserting/deleting nodes in a BST it is important to a) reassign a subtree 
-when modifying it and b) return root from recursive calls otherwise subtrees would be Nones
+- ### When inserting/deleting nodes in a BST 
+
+it is important to a) reassign a subtree when modifying it and b) return root from recursive calls otherwise subtrees would be Nones
 ```python
 def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
     if not root:
@@ -447,7 +433,7 @@ def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
 
 ---
 
-- Floyd's algorithm for finding cycles and entrance into them in LL:
+- ### Floyd's algorithm for finding cycles and entrance into them in LL:
 ```
 Slow and fast runners. slow = slow.next; fast = fast.next.next; If there is a 
 cycle they will meet, i.e. reference the same node -> slow == fast (intersection node),

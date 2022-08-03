@@ -1,3 +1,6 @@
+Notes - DataStructures.docx
+
+---
 ### Graph types
 
 - Undirected Unweighted
@@ -35,7 +38,17 @@ graph_repr = {
     }
 ```
 
-2. Adjacency matrix - TBA
+2. Adjacency matrix - graph is represented in the form of a 2D array. The size
+of the array is V x V, where V - set of vertices. 
+```
+   0 1 2 3 4
+ 0 0 1 0 0 1
+ 1 1 0 1 0 0
+ 2 0 1 0 1 0
+ 3 0 0 1 0 1
+ 4 1 0 0 1 0,
+where 0-4 axis are vertices and 0-1 represents an edge
+```
 
 ---
 
@@ -180,21 +193,26 @@ Algorithm:
 ```
 1. Mark all nodes unvisited (set of invisited nodes)
 
-2. Initial node’s value is 0. Infinity for all other nodes. Set the initial node as current. 
+2. Initial node’s value/distance is 0. Infinity for all other nodes. Set the 
+initial node as current. 
 
 3. During the run, the tentative distance between the source and a current node 
-is the shortest distance discovered so far. For the current node, consider all 
-of its unvisited neighbours and calculate their tentative distance through the 
-current node. Compare the newly calculated distance to the one currently 
-assigned to the neighbour and assign the smaller one. For example, if the current 
-node A is marked with a distance of 6, and the edge connecting it with a neighbor 
-B has length 2, then the distance to B through A will be 6 + 2 = 8. If B was 
-previously marked with a distance greater than 8 then change it to 8. Otherwise, 
-the current value will be kept.
+is the shortest distance discovered so far (heap).
+For the current node, consider all of its unvisited neighbours and calculate 
+their tentative distance through the current node. 
+Compare the newly calculated distance to the one currently assigned to the 
+neighbour and assign the smaller one. 
+For example, if the current node A is marked with a distance of 6, and the 
+edge connecting it with a neighbor B has length 2, then the distance to B 
+through A will be 6 + 2 = 8. 
+If B was previously marked with a distance greater than 8 then change it to 8. 
+Otherwise, the current value will be kept.
 
 4. When done considering all of the unvisited neighbours of the current node, 
 mark the current node as visited and remove it from the unvisited set. A visited 
-node will never be checked again.
+node will never be checked again - SO, a node is processed if we considered its
+neighbours (calculated distances to them from source through the current node)
+and added them to the heap.
 
 5. If the destination node has been marked visited (when dealing with 2 specific 
 nodes) or if the smallest tentative distance among the nodes in the unvisited 
@@ -237,6 +255,8 @@ def find_paths_using_dijkstra(graph: Graph, initial: Vertex) -> tuple:
     paths = defaultdict(list)
     nodes = graph.nodes.copy()
     while nodes:
+        
+        # FIND THE CLOSEST TO SOURCE NODE - JUST USE HEAP LOL
         min_node = None
         # Every iter we find a node to start from, must be closest to the start,
         # i.e. has smallest distance/weight. This node is the one we've visited
@@ -251,7 +271,6 @@ def find_paths_using_dijkstra(graph: Graph, initial: Vertex) -> tuple:
                 # candidate (smaller weights/distance value)
                 elif visited_nodes[node] < visited_nodes[min_node]:
                     min_node = node
-
         # All nodes processed
         if not min_node:
             break
@@ -271,6 +290,90 @@ def find_paths_using_dijkstra(graph: Graph, initial: Vertex) -> tuple:
                 paths[edge].append(min_node)
 
     return visited_nodes, paths
+```
+
+2. Approach 2
+
+```python
+'''
+You are given a network of n nodes, labeled from 1 to n. You are also given 
+times, a list of travel times as directed edges times[i] = (ui, vi, wi), where 
+- ui is the source node, 
+- vi is the target node, and 
+- wi is the time it takes for a signal to travel from source to target.
+
+We will send a signal from a given node k. Return the minimum time it takes 
+for all the n nodes to receive the signal. If it is impossible for all the n 
+nodes to receive the signal, return -1.
+'''
+
+def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+    from collections import defaultdict
+    import heapq
+
+    '''
+    [[1,2,1],[2,3,7],[1,3,4],[2,1,2]] 
+    results in
+    defaultdict(<class 'dict'>, {1: {2: 1, 3: 4}, 2: {3: 7, 1: 2}})
+    '''
+    graph = defaultdict(dict)
+    for source, dest, delay in times:
+        graph[source][dest] = delay
+
+    heap = [(0, k)]
+    distances = {}
+    while len(heap):
+        curr_vertex_delay, curr_vertex = heapq.heappop(heap)
+
+        if curr_vertex not in distances:
+            distances[curr_vertex] = curr_vertex_delay
+            for neighbour in graph[curr_vertex]:
+                neighbour_delay = (
+                        curr_vertex_delay + graph[curr_vertex][neighbour]
+                )
+                heapq.heappush(heap, (neighbour_delay, neighbour))
+    return max(distances.values()) if len(distances) == n else -1
+
+OR MY CLEARER WAY:
+
+def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+    graph = {}
+    for source, dest, delay in times:
+        if source in graph:
+            graph[source].append((dest, delay))
+        else:
+            graph[source] = [(dest, delay)]
+        if dest not in graph:
+            graph[dest] = []
+
+    distances = self.calculate_distances(graph, k)
+    min_time = max(distances.values())
+    return -1 if min_time == float("inf") else min_time
+
+def calculate_distances(self, graph: dict, source: int) -> dict:
+    import heapq
+
+    distances = {vertex: float("inf") for vertex in graph}
+    distances[source] = 0
+    visited_vertices = set()
+    closest_vertices = [(0, source)]
+
+    while len(closest_vertices):
+        curr_dist_from_src, curr_vertex = heapq.heappop(closest_vertices)
+
+        visited_vertices.add(curr_vertex)
+
+        for neighbour, curr_to_neighbour_dist in graph[curr_vertex]:
+            new_dist_to_neighbour = (
+                    curr_dist_from_src + curr_to_neighbour_dist
+            )
+            if new_dist_to_neighbour < distances[neighbour]:
+                distances[neighbour] = new_dist_to_neighbour
+                if neighbour not in visited_vertices:
+                    heapq.heappush(
+                        closest_vertices, (new_dist_to_neighbour, neighbour)
+                    )
+    return distances
 ```
 
 - ### Bellman Ford
