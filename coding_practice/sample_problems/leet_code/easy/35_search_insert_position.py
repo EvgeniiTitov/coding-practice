@@ -4,7 +4,7 @@ from typing import List
 """
 Summary: Array is sorted, got a target: good clue we could do it in O(log N) 
 -> BS. Start looking for the target, if not found, the left pointer shows the
-index
+index. 
 ------------------------------------------------------------------------------
 
 https://leetcode.com/problems/search-insert-position/

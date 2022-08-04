@@ -15,6 +15,7 @@ Summary:
 ------------------------------------------------------------------------------
 
 https://leetcode.com/problems/climbing-stairs/
+
 You are climbing a staircase. It takes n steps to reach the top.
 
 Each time you can either climb 1 or 2 steps. In how many distinct ways can
@@ -62,7 +63,7 @@ public class Solution {
 
 class Solution:
 
-    # Brute force. T: O(2^N); S: O(N)
+    # D&C brute force. T: O(2^N); S: O(N)
     # Optimised. T: O(N); S: O(N)
     def climbStairs(self, n: int) -> int:
         def _cache(func):

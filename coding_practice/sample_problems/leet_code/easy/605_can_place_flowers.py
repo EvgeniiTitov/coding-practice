@@ -2,9 +2,10 @@ from typing import List
 
 
 """
-Summary: Sliding window approach. If current == left == right ==  0, counter +1,
-l[current] = 1 and move on. Smart to add 0s to both sides of the list to avoid
-complicated edge cases
+Summary: Sliding window approach - we look at 3 elements at once: i - 1, i and 
+i + 1. If current == left == right ==  0, counter +1, we can plant a flower,
+l[current] = 1 and move on. 
+Smart to add 0s to both sides of the list to avoid complicated edge cases
 _______________________________________________________________________________
 
 https://leetcode.com/problems/can-place-flowers/
@@ -16,13 +17,11 @@ Given an integer array flowerbed containing 0's and 1's, where 0 means empty
 and 1 means not empty, and an integer n, return if n new flowers can be 
 planted in the flowerbed without violating the no-adjacent-flowers rule.
 
- 
 Example 1:
-
 Input: flowerbed = [1,0,0,0,1], n = 1
 Output: true
-Example 2:
 
+Example 2:
 Input: flowerbed = [1,0,0,0,1], n = 2
 Output: false
 """

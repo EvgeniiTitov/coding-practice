@@ -1,13 +1,19 @@
 from typing import List
 
 
+# TODO: Proper solution: BS, D&C etc
+
+
 """
-Summary: -
+Summary: Dummy solution O(N2) - find the shortest str, then for each char in
+the shortest string, check whether chars in other strings at the same index 
+match
 ------------------------------------------------------------------------------
 
 https://leetcode.com/problems/longest-common-prefix/
 
-Write a function to find the longest common prefix string amongst an array of strings.
+Write a function to find the longest common prefix string amongst an array of 
+strings.
 
 If there is no common prefix, return an empty string "".
 

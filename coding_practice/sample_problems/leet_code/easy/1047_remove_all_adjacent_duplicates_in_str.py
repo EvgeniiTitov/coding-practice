@@ -19,8 +19,6 @@ We repeatedly make duplicate removals on s until we no longer can.
 Return the final string after all such duplicate removals have been made. 
 It can be proven that the answer is unique.
 
- 
-
 Example 1:
 Input: s = "abbaca"
 Output: "ca"
@@ -76,6 +74,7 @@ class Solution:
                 found_pair = False
         return "".join(s)
 
+    # T: O(N); S: O(N)
     def removeDuplicates(self, s: str) -> str:
         out = []
         for char in s:

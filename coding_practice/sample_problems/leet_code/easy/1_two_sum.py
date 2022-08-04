@@ -1,9 +1,9 @@
 from typing import List
 
 """
-Summary: Three ways: Brute Force, pointers based and single pass. For single
-pass - calculate complement, check if we've seen it before, returns the indices
-if yes, else remember the number
+Summary: Three ways: Brute Force, pointers based and single pass. 
+For single pass - calculate complement, check if we've seen it before (dict), 
+returns the indices if yes, else remember the number: dict[number] = index
 ------------------------------------------------------------------------------
 
 Two Sum - https://leetcode.com/problems/two-sum/
@@ -20,7 +20,7 @@ class Solution:
 
     # Brute force solution. T: O(N2); S: O(1)
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(len(nums) - 1):
+        for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i, j]

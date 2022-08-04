@@ -5,11 +5,7 @@ from typing import List
 Summary:
 ! Its fine iterating over an array while popping items off it as long as you
 recalculate its length every WHILE iteration to know when to stop.
-
-The pointers solution is self explanatory. But you need to keep track if arr's
-length to know when to stop.
 _______________________________________________________________________________
-
 
 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
@@ -39,27 +35,24 @@ class Solution:
     # I tried appending Nones when popping and breaking the loop when I've
     # reached None - stupid solution as for 1,2,3 there will be no None ->
     # out of range index error
+    # T: O(N2)
     def removeDuplicates(self, nums: List[int]) -> int:
-        length = len(nums)
-        p = 0
+        pointer = 0
         k = 1
         last_seen_number = None
-        while True:  # ! OR while p < len(nums)
-            if p >= length:
-                break
-
+        while pointer < len(nums):
             if last_seen_number == None:
-                last_seen_number = nums[p]
-                p += 1
+                last_seen_number = nums[pointer]
+                pointer += 1
                 continue
 
-            if nums[p] == last_seen_number:
-                nums.pop(p)  # O(N) as we need to shift (O(1) for end)
-                length -= 1
+            if nums[pointer] == last_seen_number:
+                nums.pop(pointer)  # O(N) as we need to shift (O(1) for end)
             else:
-                last_seen_number = nums[p]
-                p += 1
+                last_seen_number = nums[pointer]
+                pointer += 1
                 k += 1
+
         return k
 
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -70,6 +63,19 @@ class Solution:
             else:
                 i += 1
         return len(nums)
+
+    # T: O(N); S: O(1)
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if not len(nums):
+            return 0
+
+        tail = 0
+        for i in range(1, len(nums)):
+            if nums[i] != nums[tail]:  # Duplicate
+                tail += 1
+                nums[tail] = nums[i]
+
+        return tail + 1
 
 
 def main():
