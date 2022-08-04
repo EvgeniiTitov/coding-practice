@@ -1,6 +1,6 @@
-### Tips / Tricks / To Remember:
+### Solved problem summaries:
 
-#### The below does not include the brute force solutions (for the most part)
+#### For the most part, the below does not include brute force solutions
 
 ---
 
@@ -143,6 +143,74 @@ stack.append((val, val)) else stack.append((val, last_min)). Popping is safe. Th
 is accessible at O(1) by self.stack[-1][1]
 
 
+- (15) Three sum: Sort numbers, start iterating over the numbers, fix one number - the
+one you are standing on, and solve the two sum problem. When solving the 2 sum problem,
+you consider only those numbers to the right from the one you fixed. As soon as the number
+you iterate over is > 0, break, anything to the right > 0, so cant reach sum = 0.
+
+
+- (33) Search rotated sorted array: [4,5,6,7,0,1,2], and a target to find in O(log N) time,
+need to use BS. First, find the rotation index: left, right = 0, len(arr) - 1. Using BS,
+check middle value and middle + 1 value. If middle > middle + 1, found the drop, rotation
+index is middle + 1. Else, we need to find if we are on the left or right of the drop, 
+check middle value against the left. Move either right or left pointer, repeat. Once found
+the pivot index, you know whether the target to the left or right of the drop, using BS
+find it within the subarray. 
+
+- (49) Group anangrams: Iterate over strs, each could be sorted and used as a key in 
+the defaultdict. Then, return the values (lists of anangrams)
+
+
+- (50) Pow X n: The trick is to avoid multiplying the number N times. Could be done in
+O(log N) using some math properties
+
+
+- (53) Max subarray: contiguous subarray with max sum. max(subarray) is O(N), so avoid
+doing that. Brute force would be to fix an i, then iterate over j in range (i, len(arr)) and
+keep track of a temp subarray sum (for each i), adding every new j and checking the max
+subarray by = max(max_subarray, temp_subarray) for each j. There is a better solution i dont understand
+
+
+- (56) Merge intervals: sort, keep them on the stack. For each new interval, does it overlap
+the prev on the stack? Yes - pop, merge, append. Else, just append. 
+
+
+- (57) Insert interval: already sorted in ascending order, insert a new one merging with
+any overlapping ones. Single pass is possible: for each interval, if its end < new_interval
+start, just append to a list out. If interval start > new_interval end, no overlap, just
+add to list out. If there is an overlap, increase the new_interval: new_interval_start = 
+min(interval_start, new_interval[0]), new_interval_end = max(...); Pay close attention to when
+insert the new_interval, must be done before the intervals that are greater than it.
+
+
+- (74) Search 2D matrix: its sorted, so BS is possible. left = 0, right = n_rows * items_per_row + 1,
+then just have a helped function to translate a value in 1D to 2D: 
+`matrix[index // items_per_row][index % items_per_row]`
+
+
+- (150) Eval reverse polish notation: ["10","6","9","3","+","-11","*","/","*","17","+","5","+"], 
+use a stack. If not an operator, add to the stack, if an operator - pop 2 items, using lambda 
+function perform the action (`{"+": lambda a,b: a + b}`), push to the stack. 
+
+
+
+- (238) Product of an array except self: Optimised brute force is possible. 2 loops for i
+and j, for i == j we skip the number (except self), else we calculate the produdt for the 
+number i, and save it. Also, have a cache where you keep products for numbers as duplicated
+are possible. OR a single pass approach: for each num in nums, we could calculate its 
+products to the left and to the right (sequently FOR loops). Then, we iterate one last time
+adding product_left * product_right
+
+
+- (875) Koko eating bananas: Linear probing is fine but slow, better pick slowest speed = 1 
+and fastest = max(piles), and then using BS find the optimal speed. Important to do BS 
+right, if time spent eating bananas < h (allowed hours), move the right pointer to
+the middle index (not middle - 1) and keep iterating, there could be better options still
+
+
+- 
+
+
 ---
 
 
@@ -190,7 +258,89 @@ middle checking if the values match
 
 #### Trees
 
--
+- (94) Binary T inorder traversal: For each node pick values in order: left, current, right. 
+Pre order would be: current, left, right and Post order: left, right, current
+
+
+- (100) Same tree: given 2 nodes of different trees q and p. If p and not q or q and not p,
+then not the same. If both are Nones, true. If values are different, false. For each node
+check left subtree whether its the same, them right. If both true, return true. 
+OR do the same iteratively using a queue putting corresponding nodes there (p, q).
+
+
+- (101) Symmetric tree: given a node check if its a mirror of itself. We must traverse
+left and right subtrees simultaneously, so the recursive f gets 2 nodes (root, root) initially
+and then we compare the values AND whether left.right matches right.left AND left.left 
+matches right.right. OR could be done iteratively, take 2 items from the queue at a time,
+two corresponding nodes (root, root) initially
+
+
+- (104) Max depth of binary tree: if not root: return 0. Else, check left and right depths
+and return 1 + max(left_depth, right_depth). OR solve iteratively, using a queue and putting
+a node with its depth level: (1, root) initially, and keeping track of the max depth by:
+max_depth = max(max_depth, curr_depth), where curr_depth comes from the queue alongside the
+corresponding node.
+
+
+- (110) Balanced binary tree: left and right subtrees height diff <= 1. If a subtree is
+imbalanced, the whole tree is imbalanced. For each node, check left, right subtrees: 
+height and whether they're balanced. If height diff > 1: return False, else the 
+subtrees are balanced: return True, 1 + max(left_depth, right_depth)
+
+
+- (226) Invert binary tree: exchange left and right subtrees. root.left = right, root.right = left
+
+
+- (235) Lowest common ancestor (LCA): given a tree root and 2 nodes p and q, find the LCA. Compare
+values of p and q with the root val. If both >, recursive call for the right subtree, if <
+for the left. If case one val is > the root and the other <, found LCA OR iteratively:
+```python
+p_val = p.val
+q_val = q.val
+node = root
+while node:
+    node_val = node.val
+    if node_val > p_val and node_val > q_val:
+        node = node.left
+    elif node_val < p_val and node_val < q_val:
+        node = node.right
+    else:
+        return node
+```
+
+- (450) Delete node BST: if value > root.val: root.right = delete_node(root.right, value),
+if value < root.val: root.left = delete_node(root.left, value). If root.val == value and
+root doesnt have kids, just root = None, return root. Else, we need to find a value to
+replace it with (successor or predecessor). If root.right, find the successor and then
+recussively delete the successor (since we took its value): root.val = find_successor(root), 
+root.right = delete_node(root.right, root.val); Same for the left - predecessor if replacing
+with a predecessor instead of a successor
+
+
+- (543) Diameter of binary tree: global variable that every recuraive call compares to or
+passing diameter as an argument. Diameter is left_diameter + right_diameter, essentially
+depth of a subtree. Doesn't necessarily have to go through the root.
+
+
+- (572) Subtree of another tree: slow but clear - iterate over tree BFS using a queue. For 
+each node run a helper function for the current node and the subtree. Check if its the same
+tree (problem 100)
+
+
+- (700) Search in BST: if root.val < value, search left subtree, else right subtree. If 
+not root, return None - haven't found the value
+
+
+- (701) Insert into BST: guaranteed the value is not in the BST. Iterate the tree, if 
+value < root.value, if root.left call recursively, else root.left = TreeNode(val). Same
+if value >. OR iteratively
+
+
+- (938) Range sum of BST: given root and 2 values, sum up all nodes within the range. 
+global var sum_, for current node: current = root.val; if low <= current <= high: sum_ 
++= current. Then, for recursive call if current > low, makes sense to go left, if
+current < high, makes sense to consider the right subtree.
+
 
 ---
 
