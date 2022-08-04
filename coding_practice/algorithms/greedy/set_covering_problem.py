@@ -11,7 +11,6 @@ def main():
     stations["kfive"] = {"ca", "az"}
 
     stations_selected = set()
-
     while len(states_needed):
         states_covered = set()
         best_station = None

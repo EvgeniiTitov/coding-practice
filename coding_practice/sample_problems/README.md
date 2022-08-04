@@ -35,9 +35,10 @@ shortest path between A and B in a graph of uniform weight.
 
 
 ---
+
 ## To remember:
 
-- ### 2D grid traversals
+- #### 2D grid traversals
 
 1. When it comes to solving 2D cell traversal graph problems quite often it is
 a good idea to reverse/flip the problem, which makes it easier to solve:
@@ -72,7 +73,7 @@ function calls.
 
 ---
 
-- ### Finding array rotation (wrapping)
+- #### Finding array rotation (wrapping)
 
 Say we have an array `[3,4,5,6,7,8,9,0,1,2]`, we need to know the pivot index:
 
@@ -103,7 +104,7 @@ def search(self, nums: List[int], target: int) -> int:
 
 ---
 
-- ### Binary Search
+- #### Binary Search
 
 When it comes to BS, we do not always want to do it in its standard way:
 ```python
@@ -145,7 +146,7 @@ keep iterating in case we find a slightly better speed. It is also CRUCIAL that 
 
 ---
 
-- ### Checking if intervals overlap and meting them
+- #### Checking if intervals overlap and meting them
 
 ```python
 Interval = List[int]
@@ -168,7 +169,7 @@ def _merge(*intervals: Interval) -> Interval:
 
 ---
 
-- ### Recursively processing 2D grid (DFS, BFS)
+- #### Recursively processing 2D grid (DFS, BFS)
 
 Remember you can check for out of bounds before or after the recursive call:
 
@@ -292,7 +293,7 @@ def numIslands(self, grid: List[List[str]]) -> int:
 
 ---
 
-- ### collections.Counter() 
+- #### collections.Counter() 
 Uses heap under the hood, so it could give you N most common items
 
 ```python
@@ -324,7 +325,7 @@ Counter({'three': 3, 'two': 2, 'one': 1})
 
 ---
 
-- ### Get key of the largest value in a dict
+- #### Get key of the largest value in a dict
 
 ```python
 d = {"A": 10, "B": 0, "C": 100}
@@ -335,7 +336,7 @@ largest_key = max(d, key=lambda k: d.get(k))
 
 ---
 
-- ### Two pointers approach to find longest, max, etc for a string/array
+- #### Two pointers approach to find longest, max, etc for a string/array
 
 ```
 - Seems to be the best approach as it requries a single pass only
@@ -356,7 +357,7 @@ largest_key = max(d, key=lambda k: d.get(k))
 
 ---
 
-- ### Iterating over string indices while slicing it. 
+- #### Iterating over string indices while slicing it. 
 
 You iterate 0 to length (or whatever) but when you slice you need to +1 to include the last character!
 
@@ -388,7 +389,7 @@ ABCDE
 
 ---
 
-- ### Backwards looping options
+- #### Backwards looping options
 
 ```python
 l = [1, 2, 3, 4, 5, 6]
@@ -411,7 +412,7 @@ Index 0; Value 1
 
 ---
 
-- ### When inserting/deleting nodes in a BST 
+- #### When inserting/deleting nodes in a BST 
 
 it is important to a) reassign a subtree when modifying it and b) return root from recursive calls otherwise subtrees would be Nones
 ```python
@@ -433,7 +434,7 @@ def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
 
 ---
 
-- ### Floyd's algorithm for finding cycles and entrance into them in LL:
+- #### Floyd's algorithm for finding cycles and entrance into them in LL:
 ```
 Slow and fast runners. slow = slow.next; fast = fast.next.next; If there is a 
 cycle they will meet, i.e. reference the same node -> slow == fast (intersection node),
@@ -470,14 +471,14 @@ Could use the Floyd's algorithm now to detect the cycle
 - When recursively working with trees, an action / modification could be done
 either before or after the recursive call(s). Be careful:
 ```python
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
-        left = self.invertTree(root.left)
-        right = self.invertTree(root.right)
-        root.left = right
-        root.right = left
-        return root
+ def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+     if not root:
+         return None
+     left = self.invertTree(root.left)
+     right = self.invertTree(root.right)
+     root.left = right
+     root.right = left
+     return root
 ```
 
 ---
@@ -486,27 +487,27 @@ either before or after the recursive call(s). Be careful:
 however reassinging the root variable itself within the loop is a viable approach 
 as well (inserting into BST)
 ```python
-    def insertIntoBST(
-        self, root: Optional[TreeNode], val: int
-    ) -> Optional[TreeNode]:
-        if not root:
-            return TreeNode(val)
-        head = root
-        while True:
-            if root.val == val:
-                return
-            elif val < root.val:
-                if root.left:
-                    root = root.left
-                else:
-                    root.left = TreeNode(val)
-                    return head
-            else:
-                if root.right:
-                    root = root.right
-                else:
-                    root.right = TreeNode(val)
-                    return head
+ def insertIntoBST(
+     self, root: Optional[TreeNode], val: int
+ ) -> Optional[TreeNode]:
+     if not root:
+         return TreeNode(val)
+     head = root
+     while True:
+         if root.val == val:
+             return
+         elif val < root.val:
+             if root.left:
+                 root = root.left
+             else:
+                 root.left = TreeNode(val)
+                 return head
+         else:
+             if root.right:
+                 root = root.right
+             else:
+                 root.right = TreeNode(val)
+                 return head
 ```
 
 ---
