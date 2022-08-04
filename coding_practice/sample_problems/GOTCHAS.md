@@ -1,6 +1,6 @@
 ### Tips / Tricks / To Remember:
 
-### The below does not include the brute force solutions (for the most part)
+#### The below does not include the brute force solutions (for the most part)
 
 ---
 
@@ -122,12 +122,6 @@ def validPalindrome(self, s: str) -> bool:
     return True
 ```
 
-
-- (1046) Last stone weight: get list of stone weights, keep smashing the heaviest stones,
-until 1 left or all destroyed. Use heap to get 2 heaviest stoned, smash them, 
-push to the heap if their sizes !=. Keep doing till there is just 1 or nothing 
-
-
 - (1047) Remove all adjacent duplicates in a str: Use a stack to drop letter there, 
 for each new char check if the last in the stack, if equal, pop off the stack. If
 stack is empty, just add a char and continue. Return "".join(stack)
@@ -142,11 +136,55 @@ not a good one
 - (1304) Find N unique ints sum to 0: Symmetric around 0. If n is odd, add 0, else
 i, -i for i in range(n // 2)
 
+
+- (155) Min stack: stack is a list: List[Tuple[int, int]], that stores 2 things:
+(val, curr_min). When adding a new item, check if the val < the curr min on the stack. If yes,
+stack.append((val, val)) else stack.append((val, last_min)). Popping is safe. The min
+is accessible at O(1) by self.stack[-1][1]
+
+
 ---
+
 
 #### Linked List
 
-- 
+- (21) Merge two sorted LLs: Dummy node for a new list. Them, keep looking till
+one of the pointers (list1, list2) reaches the end, connect the remaining nodes
+from the list which didn't reach the end. Return head.next() to skip the dummy 
+node. When moving pointers, move the one that gave the smaller value. Don't forget
+to move the head: head = head.next
+
+
+- (141) LL cycle: Could use a set and put nodes there while iterating. If a node is
+already in the set -> cycle! OR S: O(1) 2 pointers: 1 fast 1 slow. If they ever meet
+-> cycle. OR a cheesy one is to dynamically add a .seen = True attribute to every
+node and check it haha damn i love python
+
+
+- (160) Intersection of 2 LLs: S: O(N) is to have a set, iterate over one list adding
+all nodes to the set, then iterate over the second list checking if a node is in the 
+set. OR S: O(1) is to calculate distance of each list (diff), then move the longer 
+list's head diff nodes, now we're the same distance from the end for both lists, 
+start iterating simultaneously checking if the references point to the same node:
+if longer == shorter: return True
+
+
+- (206) Reverse LL: we need 3 references: previous, current, current.next;
+```
+previous = None
+current = head
+while current:
+    next_node = current.next
+    current.next = previous
+    previous = current  # When reaching the end, previous is the start
+    current = next_node  # When reaching the end, current becomes null
+return previous
+```
+
+- (234) Palindrom LL: Dummy is to accumulate all the values, check values == values[::-1] OR
+slow, fast runner. When fast reaches the end, the slow one is in the middle! Reverse the LL
+starting from middle.next, start iterating simultaneously from the beginning and the reversed
+middle checking if the values match
 
 ---
 
@@ -159,12 +197,24 @@ i, -i for i in range(n // 2)
 
 #### Graph
 
-- 
+- (997) Town judge: indegree/outdegree of a vertex. Judge's outdegree is 0, 
+whereas indegree is n - 1, where n is number of people. Use a set and a dict
+to keep track of who trusts in general and how many trusts each person gets
+
+
+- (1971) Find if path exists: BFS using a queue and a set of keep track of visited
+vertices. Since looking for a path, put an entire path in the queue checking each time
+if the last vertex == destination
+
 
 ---
 
 
 #### Heap
+
+- (1046) Last stone weight: get list of stone weights, keep smashing the heaviest stones,
+until 1 left or all destroyed. Use heap to get 2 heaviest stoned, smash them, 
+push to the heap if their sizes !=. Keep doing till there is just 1 or nothing 
 
 -
 

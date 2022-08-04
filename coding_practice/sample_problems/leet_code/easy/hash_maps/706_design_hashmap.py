@@ -1,7 +1,8 @@
 import typing
 
 
-# TODO: Complete me - watch designing a hashmap video before
+# REFER TO coding_practice/data_structures/hash_tables/improved_implementation 2 or 3
+
 
 """
 https://leetcode.com/problems/design-hashmap/
@@ -37,6 +38,3 @@ myHashMap.get(2);    // return 1, The map is now [[1,1], [2,1]]
 myHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]
 myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 """
-
-
-# REFER TO coding_practice/data_structures/hash_tables/improved_implementation 2 or 3

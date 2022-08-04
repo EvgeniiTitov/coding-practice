@@ -2,16 +2,13 @@ from typing import Optional
 
 
 """
+
+Summary: When dealing with LL' nodes, we don't always care about the data it 
+stores and where it refers. We could also operate on the reference to the node
+and check if 1+ LLs holds references to the same node in memory. 
+_______________________________________________________________________________
+
 https://leetcode.com/problems/intersection-of-two-linked-lists/
-
-
-------------------------------------------------------------------------------
-Summary / Insights:
-When dealing with LL' nodes, we don't always care about the data it stores and 
-where it refers. We could also operate on the reference to the node and check 
-if 1+ LLs holds references to the same node.
-------------------------------------------------------------------------------
-
 
 Given the heads of two singly linked-lists headA and headB, return the node at 
 which the two lists intersect. If the two linked lists have no intersection at 

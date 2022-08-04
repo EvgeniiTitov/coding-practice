@@ -65,39 +65,42 @@ class Solution:
         return values == values[::-1]
 
     # TODO: Throws a NoneType error, find the error
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        if not head:
+    def isPalindrome(self, head: ListNode) -> bool:
+        if head is None:
             return True
 
-        def _reach_end_first_half(head: ListNode) -> ListNode:
-            slow, fast = head, head
-            while slow.next and fast.next.next:
-                slow = slow.next
-                fast = fast.next.next
-            return slow
+        # Find the end of first half and reverse second half.
+        first_half_end = self.end_of_first_half(head)
+        second_half_start = self.reverse_list(first_half_end.next)
 
-        def _reverse_ll(head: ListNode) -> ListNode:
-            previous = None
-            current = head
-            while current:
-                next_node = current.next
-                current.next = previous
-                previous = current
-                current = next_node
-            return previous
+        # Check whether or not there's a palindrome.
+        result = True
+        first_position = head
+        second_position = second_half_start
+        while result and second_position is not None:
+            if first_position.val != second_position.val:
+                result = False
+            first_position = first_position.next
+            second_position = second_position.next
 
-        first_half_end = _reach_end_first_half(head)
-        reversed_second_half_start = _reverse_ll(head)
+        # Restore the list and return the result.
+        first_half_end.next = self.reverse_list(second_half_start)
+        return result
 
-        is_palindrom = True
-        first_pointer = head
-        second_pointer = reversed_second_half_start
-        while is_palindrom and second_pointer:
-            if first_pointer.val != second_pointer.val:
-                is_palindrom = False
-            first_pointer = first_pointer.next
-            second_pointer = second_pointer.next
+    def end_of_first_half(self, head):
+        fast = head
+        slow = head
+        while fast.next is not None and fast.next.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
 
-        # Restore the correct order
-        first_half_end.next = _reverse_ll(reversed_second_half_start)
-        return is_palindrom
+    def reverse_list(self, head):
+        previous = None
+        current = head
+        while current is not None:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+        return previous
