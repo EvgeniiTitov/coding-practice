@@ -12,7 +12,7 @@ We're given the total cost to reach the last cell
 Find the total N of paths to reach the end with the given total cost (=)
 
 Base cases:
-    - Out of bounds
+    - Out of bounds - Could be check before the call or after
     - Ran out of cost
 """
 
