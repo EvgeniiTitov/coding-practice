@@ -47,10 +47,20 @@ def rob_houses(houses: list[int], curr_index: int, cache: Cache) -> int:
     return cache[curr_index]
 
 
+@times_called
+def rob_houses_bottom_up(houses: list[int]) -> int:
+    steals = [0] * (len(houses) + 2)
+    for i in range(len(houses) - 1, -1, -1):
+        steals[i] = max(houses[i] + steals[i + 2], steals[i + 1])
+    return steals[0]
+
+
 def main():
     print(rob_houses_raw([6, 7, 1, 30, 8, 2, 4], 0))
 
     print(rob_houses([6, 7, 1, 30, 8, 2, 4], 0, {}))
+
+    print(rob_houses_bottom_up([6, 7, 1, 30, 8, 2, 4]))
 
 
 if __name__ == '__main__':
