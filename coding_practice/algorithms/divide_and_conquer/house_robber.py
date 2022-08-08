@@ -1,4 +1,4 @@
-import typing as t
+from coding_practice.utils import times_called
 
 
 """
@@ -33,6 +33,7 @@ and the base case(s).
 """
 
 
+@times_called
 def rob_houses(houses: list[int], curr_index: int) -> int:
     # Base case - out of bounds
     if curr_index >= len(houses):

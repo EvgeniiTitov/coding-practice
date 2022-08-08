@@ -2,6 +2,11 @@ import typing as t
 from functools import wraps
 
 
+"""
+Top-down approach using Memoization
+"""
+
+
 # ------------------------------ FIRST APPROACH -------------------------------
 def calculate_fibo_1(n: int, memo: t.MutableMapping[int, int]) -> int:
     if n == 1:
