@@ -61,7 +61,7 @@ class Solution:
 
         return starting_index if total_tank >= 0 else -1
 
-    # Correct but Time Limit Exceeded 33/37
+    # Correct but Time Limit Exceeded 33/37 as its O(N2)
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
 
         def _get_gas_cost_at_index(index: int) -> Tuple[int, int]:
@@ -103,7 +103,7 @@ class Solution:
 
         return -1
 
-    # Heap didn't help, still 33/37
+    # Heap didn't help, still 33/37, still T: O(2)
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
 
         import heapq
