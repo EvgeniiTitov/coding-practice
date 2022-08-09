@@ -73,5 +73,5 @@ def main():
     print("\nCache cleared.", cache)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

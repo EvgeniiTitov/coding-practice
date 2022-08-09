@@ -202,16 +202,18 @@ class Solution:
 
 
 def main():
-    print(Solution().maxAreaOfIsland(
-        grid=[
-            [0, 0, 1, 0, 0],
-            [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0],
-            [1, 1, 0, 0, 0],
-            [0, 1, 1, 1, 1],
-        ]
-    ))
+    print(
+        Solution().maxAreaOfIsland(
+            grid=[
+                [0, 0, 1, 0, 0],
+                [0, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0],
+                [1, 1, 0, 0, 0],
+                [0, 1, 1, 1, 1],
+            ]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

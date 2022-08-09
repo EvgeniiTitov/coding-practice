@@ -63,7 +63,6 @@ class Solution:
 
     # Correct but Time Limit Exceeded 33/37 as its O(N2)
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-
         def _get_gas_cost_at_index(index: int) -> Tuple[int, int]:
             length = len(gas)
             idx = index % length
@@ -149,11 +148,8 @@ class Solution:
 
 
 def main():
-    print(Solution().canCompleteCircuit(
-        gas=[2,3,4],
-        cost=[3,4,3]
-    ))
+    print(Solution().canCompleteCircuit(gas=[2, 3, 4], cost=[3, 4, 3]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

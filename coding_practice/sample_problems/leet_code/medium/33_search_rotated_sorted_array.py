@@ -58,7 +58,6 @@ class Solution:
         return -1
 
     def search(self, nums: List[int], target: int) -> int:
-
         def _find_rotation_index() -> int:
             left, right = 0, length - 1
 
@@ -109,13 +108,15 @@ class Solution:
 
 
 def main():
-    print(Solution().search(
-        # nums=[4,5,6,7,8,9,0,1,2],
-        # nums=[4,5,6,7,0,1,2],
-        nums=[1,3],
-        target=3
-    ))
+    print(
+        Solution().search(
+            # nums=[4,5,6,7,8,9,0,1,2],
+            # nums=[4,5,6,7,0,1,2],
+            nums=[1, 3],
+            target=3,
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

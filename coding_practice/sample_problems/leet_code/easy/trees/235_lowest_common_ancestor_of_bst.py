@@ -52,15 +52,9 @@ class Solution:
     # My recursive solution - seems to be working locally, fails with a weird
     # error not related to the test cases on Leetcode. Wtf?
     def lowestCommonAncestor(
-        self,
-        root: 'TreeNode',
-        p: 'TreeNode',
-        q: 'TreeNode'
-    ) -> 'TreeNode':
-
-        def _find_lca(
-            root: Optional[TreeNode], p: TreeNode, q: TreeNode
-        ):
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
+        def _find_lca(root: Optional[TreeNode], p: TreeNode, q: TreeNode):
             if not root:
                 return
 
@@ -82,11 +76,8 @@ class Solution:
         return _find_lca(root, p, q)
 
     def lowestCommonAncestor(
-        self,
-        root: 'TreeNode',
-        p: 'TreeNode',
-        q: 'TreeNode'
-    ) -> 'TreeNode':
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
         root_val = root.val
         p_val = p.val
         q_val = q.val
@@ -98,11 +89,8 @@ class Solution:
         return root
 
     def lowestCommonAncestor(
-        self,
-        root: 'TreeNode',
-        p: 'TreeNode',
-        q: 'TreeNode'
-    ) -> 'TreeNode':
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
         from queue import Queue
 
         p_val = p.val
@@ -136,14 +124,14 @@ class Solution:
 
 def main():
     tree = build_tree_from_list(
-        elements=[6,2,8,0,4,7,9,None,None,3,5]
+        elements=[6, 2, 8, 0, 4, 7, 9, None, None, 3, 5]
     )
-    print(Solution().lowestCommonAncestor(
-        root=tree,
-        p=TreeNode(0),
-        q=TreeNode(4)
-    ))
+    print(
+        Solution().lowestCommonAncestor(
+            root=tree, p=TreeNode(0), q=TreeNode(4)
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

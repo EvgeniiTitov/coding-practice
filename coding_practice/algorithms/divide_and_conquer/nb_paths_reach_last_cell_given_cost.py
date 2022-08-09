@@ -43,15 +43,10 @@ def find_paths(
 
 
 def main():
-    grid = [
-        [4, 7, 1, 6],
-        [5, 7, 3, 9],
-        [3, 2, 1, 2],
-        [7, 1, 6, 3]
-    ]
+    grid = [[4, 7, 1, 6], [5, 7, 3, 9], [3, 2, 1, 2], [7, 1, 6, 3]]
     cost = 25
     print(find_paths(grid, cost))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

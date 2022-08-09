@@ -29,7 +29,6 @@ Atlantic oceans.
 
 
 class Solution:
-
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         from queue import Queue
 
@@ -57,9 +56,11 @@ class Solution:
 
                     current_height = heights[curr_i][curr_j]
                     if (
-                        (next_i, next_j) not in reachable
-                        and current_height <= heights[next_i][next_j]
-                    ):
+                        next_i,
+                        next_j,
+                    ) not in reachable and current_height <= heights[next_i][
+                        next_j
+                    ]:
                         queue.put((next_i, next_j))
             return reachable
 
@@ -138,10 +139,18 @@ class Solution:
 
 
 def main():
-    print(Solution().pacificAtlantic(
-        heights=[[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
-    ))
+    print(
+        Solution().pacificAtlantic(
+            heights=[
+                [1, 2, 2, 3, 5],
+                [3, 2, 3, 4, 4],
+                [2, 4, 5, 3, 1],
+                [6, 7, 1, 4, 5],
+                [5, 1, 1, 2, 4],
+            ]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

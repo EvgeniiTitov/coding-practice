@@ -68,6 +68,7 @@ class Solution:
             return True
 
         from queue import Queue
+
         queue = Queue()
         queue.put((p, q))
         while queue.qsize():

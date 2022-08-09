@@ -35,9 +35,7 @@ Start merging them the way we divided it. When merging sort the subarray:
 """
 
 
-def _merge(
-    array: list[int], left: int, middle: int, right: int
-) -> None:
+def _merge(array: list[int], left: int, middle: int, right: int) -> None:
     nb_elements_left = middle - left + 1
     nb_element_right = right - middle  # +1?
 
@@ -93,5 +91,5 @@ def main():
     print("Sorted array:", array)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

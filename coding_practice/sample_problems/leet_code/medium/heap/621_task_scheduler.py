@@ -150,12 +150,14 @@ class Solution:
 
 
 def main():
-    print(Solution().leastInterval(
-        tasks=["A","A","A","A","A","A","B","C","D","E","F","G"],
-        # tasks=["A","A","A","B","B","B"],
-        n=2
-    ))
+    print(
+        Solution().leastInterval(
+            tasks=["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"],
+            # tasks=["A","A","A","B","B","B"],
+            n=2,
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

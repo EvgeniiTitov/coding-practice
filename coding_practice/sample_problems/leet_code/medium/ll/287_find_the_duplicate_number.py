@@ -61,9 +61,9 @@ class Solution:
 
 
 def main():
-    numbers = [2,5,9,6,9,3,8,9,7,1]
+    numbers = [2, 5, 9, 6, 9, 3, 8, 9, 7, 1]
     print(Solution().findDuplicate(numbers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

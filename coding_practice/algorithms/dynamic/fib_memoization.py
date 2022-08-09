@@ -67,5 +67,5 @@ def main():
     print(calculate_fibo_3(n, [0] * (n + 1)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

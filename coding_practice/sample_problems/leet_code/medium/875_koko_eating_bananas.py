@@ -73,11 +73,8 @@ class Solution:
 
 
 def main():
-    print(Solution().minEatingSpeed(
-        piles=[30,11,23,4,20],
-        h=6
-    ))
+    print(Solution().minEatingSpeed(piles=[30, 11, 23, 4, 20], h=6))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

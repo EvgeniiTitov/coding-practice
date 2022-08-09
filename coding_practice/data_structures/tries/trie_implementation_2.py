@@ -54,5 +54,5 @@ def main():
     print("Does the prefix appx exist?", trie.starts_with("appx"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

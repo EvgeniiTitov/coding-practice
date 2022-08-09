@@ -26,7 +26,7 @@ def run_func_async(func: t.Callable, *args, **kwargs) -> Future:
     future = Future()
     thread = threading.Thread(
         target=lambda: _run_function(future, func, *args, **kwargs),
-        daemon=True
+        daemon=True,
     )
     thread.start()
     return future
@@ -64,6 +64,6 @@ def sequential():
     print(resp_3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # sequential()
     threading_1()

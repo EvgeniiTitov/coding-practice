@@ -17,7 +17,6 @@ class VertexDoesntExistError(Exception):
 
 
 class Graph:
-
     def __init__(self) -> None:
         self.nodes = set()
         self.edges = defaultdict(list)
@@ -28,10 +27,7 @@ class Graph:
             self.nodes.add(vertex)
 
     def add_edge(
-        self,
-        vertex1: Vertex,
-        vertex2: Vertex,
-        dist: int | float
+        self, vertex1: Vertex, vertex2: Vertex, dist: int | float
     ) -> None:
         if vertex1 not in self.nodes or vertex2 not in self.nodes:
             raise VertexDoesntExistError()
@@ -130,5 +126,5 @@ def main():
         print(f"Distance to {k} is {distances[k]}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -14,7 +14,7 @@ class ListNode:
 
 
 def build_singly_ll_from_sequence(
-    elements: t.Sequence[t.Any]
+    elements: t.Sequence[t.Any],
 ) -> t.Optional[ListNode]:
     if not len(elements):
         return

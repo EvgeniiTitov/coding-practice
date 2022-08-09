@@ -82,11 +82,11 @@ def main():
         Item("Mango", 31, 3),
         Item("Apple", 26, 1),
         Item("Orange", 17, 2),
-        Item("Banana", 72, 5)
+        Item("Banana", 72, 5),
     ]
     capacity = 3
     print(do_zero_knapsack(items, capacity))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

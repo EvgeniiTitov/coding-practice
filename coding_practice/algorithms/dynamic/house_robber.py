@@ -42,7 +42,7 @@ def rob_houses(houses: list[int], curr_index: int, cache: Cache) -> int:
     if curr_index not in cache:
         cache[curr_index] = max(
             houses[curr_index] + rob_houses(houses, curr_index + 2, cache),
-            rob_houses(houses, curr_index + 1, cache)
+            rob_houses(houses, curr_index + 1, cache),
         )
     return cache[curr_index]
 
@@ -63,5 +63,5 @@ def main():
     print(rob_houses_bottom_up([6, 7, 1, 30, 8, 2, 4]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

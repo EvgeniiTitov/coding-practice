@@ -53,6 +53,7 @@ class Solution:
             trusted_people.append(pair[1])
 
         from collections import defaultdict
+
         trust_numbers = defaultdict(int)
         for person in trusted_people:
             trust_numbers[person] += 1
@@ -71,6 +72,7 @@ class Solution:
                 return -1
 
         from collections import defaultdict
+
         trust_numbers_per_person = defaultdict(int)
         people_who_trust = set()
 
@@ -82,4 +84,3 @@ class Solution:
             if trusted_person not in people_who_trust and n_of_trusts == n - 1:
                 return trusted_person
         return -1
-

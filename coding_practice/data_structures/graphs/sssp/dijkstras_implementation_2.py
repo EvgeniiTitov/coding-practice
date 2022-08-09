@@ -32,6 +32,7 @@ class Vertex:
     Represents a vertex, which could store a value like data - Node and a
     bunch of other related information
     """
+
     def __init__(self, node: Node) -> None:
         self.node = node
         self.adjacent: t.MutableMapping[Vertex, Weight] = {}
@@ -59,10 +60,7 @@ class Vertex:
         connections = [
             f"{pair[0].node, pair[1]}" for pair in self.adjacent.items()
         ]
-        return (
-            f"Vertex {self.node}; "
-            f"Connections: {' '.join(connections)}"
-        )
+        return f"Vertex {self.node}; " f"Connections: {' '.join(connections)}"
 
 
 class Graph:
@@ -88,11 +86,7 @@ class Graph:
         return self._vertices[node]
 
     def add_edge(
-        self,
-        node1: Node,
-        node2: Node,
-        weight: Weight,
-        undirected: bool = True
+        self, node1: Node, node2: Node, weight: Weight, undirected: bool = True
     ) -> None:
         if node1 not in self._vertices:
             raise VertexDoesntExistError(f"Vertex {node1} doesn't exist")
@@ -139,9 +133,8 @@ def calculate_paths(graph: Graph, start: Node):
                 continue
 
             # From start to the neighbouring vertex
-            new_dist = (
-                    current.distance
-                    + current.get_dist_to_neighbour(adjacent_neighbour)
+            new_dist = current.distance + current.get_dist_to_neighbour(
+                adjacent_neighbour
             )
             # Adjacent neighbours distance is either inf or another value
             # that could have already been calculated from a different vertex
@@ -167,15 +160,15 @@ def get_the_shortest_path(dest_vertex: Vertex, path: t.List[Node]) -> None:
 def main():
     graph = Graph()
     graph.add_vertices("a", "b", "c", "d", "e", "f")
-    graph.add_edge('a', 'b', 7)
-    graph.add_edge('a', 'c', 9)
-    graph.add_edge('a', 'f', 14)
-    graph.add_edge('b', 'c', 10)
-    graph.add_edge('b', 'd', 15)
-    graph.add_edge('c', 'd', 11)
-    graph.add_edge('c', 'f', 2)
-    graph.add_edge('d', 'e', 6)
-    graph.add_edge('e', 'f', 9)
+    graph.add_edge("a", "b", 7)
+    graph.add_edge("a", "c", 9)
+    graph.add_edge("a", "f", 14)
+    graph.add_edge("b", "c", 10)
+    graph.add_edge("b", "d", 15)
+    graph.add_edge("c", "d", 11)
+    graph.add_edge("c", "f", 2)
+    graph.add_edge("d", "e", 6)
+    graph.add_edge("e", "f", 9)
 
     calculate_paths(graph, start="a")
     dest = graph.get_vertex("d")
@@ -184,5 +177,5 @@ def main():
     print("Path to e:", path[::-1])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

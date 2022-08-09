@@ -62,10 +62,12 @@ class Solution:
 
 
 def main():
-    print(Solution().dailyTemperatures(
-        temperatures=[73,74,75,71,69,72,76,73]
-    ))
+    print(
+        Solution().dailyTemperatures(
+            temperatures=[73, 74, 75, 71, 69, 72, 76, 73]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

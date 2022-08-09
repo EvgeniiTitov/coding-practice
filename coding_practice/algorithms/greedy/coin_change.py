@@ -1,5 +1,3 @@
-
-
 """
 Given total amount of money and coins of different denominations. Find the min
 number of coins required to make up the given amount.
@@ -39,5 +37,5 @@ def main():
     print(get_coins(amount, coins))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

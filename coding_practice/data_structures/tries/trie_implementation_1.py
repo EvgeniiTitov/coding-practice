@@ -119,5 +119,5 @@ def main():
     print("Checking if apple exists:", trie.search_string("apple"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

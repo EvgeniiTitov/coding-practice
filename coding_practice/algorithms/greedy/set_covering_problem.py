@@ -1,5 +1,3 @@
-
-
 def main():
     states_needed = {"mt", "wa", "or", "id", "nv", "ut", "ca", "az"}
 
@@ -26,5 +24,5 @@ def main():
     print("Stations selected:", stations_selected)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -51,7 +51,6 @@ class Solution:
 
     # My head of brute force: Recursion
     def numIslands(self, grid: List[List[str]]) -> int:
-
         def _search_islands(i: int, j: int) -> bool:
             if grid[i][j] == "0" or (i, j) in visited_coordinates:
                 return False
@@ -85,7 +84,7 @@ class Solution:
         columns = len(grid[0])
         for i in range(rows):
             for j in range(columns):
-                found  = _search_islands(i, j)
+                found = _search_islands(i, j)
                 if found:
                     total_islands += 1
 
@@ -101,7 +100,13 @@ class Solution:
             Sets all visited island points from 1 to 0
             """
             # Check for out of bounds
-            if i < 0 or i >= rows or j < 0 or j >= columns or grid[i][j] == "0":
+            if (
+                i < 0
+                or i >= rows
+                or j < 0
+                or j >= columns
+                or grid[i][j] == "0"
+            ):
                 return
 
             grid[i][j] = "0"
@@ -154,9 +159,10 @@ class Solution:
                     for next_move in next_moves:
                         new_i, new_j = i + next_move[0], j + next_move[1]
                         if (
-                                Solution.are_valid_coords(new_i, new_j, rows,
-                                                          columns)
-                                and grid[new_i][new_j] == "1"
+                            Solution.are_valid_coords(
+                                new_i, new_j, rows, columns
+                            )
+                            and grid[new_i][new_j] == "1"
                         ):
                             queue.put((new_i, new_j))
                             grid[new_i][new_j] = "0"
@@ -165,25 +171,27 @@ class Solution:
 
 
 def main():
-    print(Solution().numIslands(
-        # grid=[
-        #   ["1","1","0","0","0"],
-        #   ["1","1","0","0","0"],
-        #   ["0","0","1","0","0"],
-        #   ["0","0","0","1","1"]
-        # ]
-        grid=[
-            ["1", "1", "0", "0", "0"],
-            ["1", "1", "0", "0", "0"],
-            ["0", "0", "1", "0", "0"],
-            ["0", "0", "0", "1", "1"],
-            ["0", "0", "0", "1", "1"],
-            ["0", "0", "1", "0", "0"],
-            ["0", "1", "0", "1", "1"],
-            ["1", "0", "1", "0", "0"]
-        ]  # 8 islands
-    ))
+    print(
+        Solution().numIslands(
+            # grid=[
+            #   ["1","1","0","0","0"],
+            #   ["1","1","0","0","0"],
+            #   ["0","0","1","0","0"],
+            #   ["0","0","0","1","1"]
+            # ]
+            grid=[
+                ["1", "1", "0", "0", "0"],
+                ["1", "1", "0", "0", "0"],
+                ["0", "0", "1", "0", "0"],
+                ["0", "0", "0", "1", "1"],
+                ["0", "0", "0", "1", "1"],
+                ["0", "0", "1", "0", "0"],
+                ["0", "1", "0", "1", "1"],
+                ["1", "0", "1", "0", "0"],
+            ]  # 8 islands
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

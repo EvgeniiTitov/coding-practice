@@ -25,11 +25,7 @@ class Solution:
 
     # My BFS solution
     def validPath(
-        self,
-        n: int,
-        edges: List[List[int]],
-        source: int,
-        destination: int
+        self, n: int, edges: List[List[int]], source: int, destination: int
     ) -> bool:
 
         from collections import defaultdict
@@ -62,13 +58,15 @@ class Solution:
 
 
 def main():
-    print(Solution().validPath(
-        n=5,
-        edges=[[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]],
-        source=0,
-        destination=5
-    ))
+    print(
+        Solution().validPath(
+            n=5,
+            edges=[[0, 1], [0, 2], [3, 5], [5, 4], [4, 3]],
+            source=0,
+            destination=5,
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

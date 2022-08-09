@@ -42,10 +42,8 @@ class Solution:
 
 
 def main():
-    print(Solution().canAttendMeetings(
-        intervals=[[0, 30], [5, 10], [15, 20]]
-    ))
+    print(Solution().canAttendMeetings(intervals=[[0, 30], [5, 10], [15, 20]]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

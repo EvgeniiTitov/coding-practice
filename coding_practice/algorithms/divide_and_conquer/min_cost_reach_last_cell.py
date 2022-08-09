@@ -52,7 +52,7 @@ def main():
         [6, 7, 3, 9, 2],
         [3, 8, 1, 2, 4],
         [7, 1, 7, 3, 7],
-        [2, 9, 8, 9, 3]
+        [2, 9, 8, 9, 3],
     ]
     rows = len(grid)
     cols = len(grid[0])
@@ -60,5 +60,5 @@ def main():
     print("Direct:", find_min_cost_path(grid, 0, 0))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

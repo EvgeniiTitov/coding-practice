@@ -70,5 +70,5 @@ def main():
     print(find_min_operations("table", "tbrles", 0, 0))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

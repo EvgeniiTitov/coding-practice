@@ -50,5 +50,5 @@ def main():
     print(get_lcs("elephant", "erepat"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -31,9 +31,7 @@ class TreeNode:
 
 class Solution:
     def isSubtree(
-        self,
-        root: Optional[TreeNode],
-        subRoot: Optional[TreeNode]
+        self, root: Optional[TreeNode], subRoot: Optional[TreeNode]
     ) -> bool:
 
         from queue import Queue

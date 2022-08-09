@@ -1,5 +1,3 @@
-
-
 class Item:
     def __init__(self, weight: float, value: float) -> None:
         if weight == 0.0:
@@ -37,11 +35,11 @@ def main():
     items = [
         Item(weight=20, value=100),
         Item(weight=30, value=120),
-        Item(weight=10, value=60)
+        Item(weight=10, value=60),
     ]
     capacity = 50
     print(get_item_ratios(items, capacity))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

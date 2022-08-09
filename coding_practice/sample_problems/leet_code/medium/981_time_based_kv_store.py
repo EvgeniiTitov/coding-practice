@@ -56,9 +56,9 @@ timeMap.get("foo", 5);         // return "bar2"
 
 # Exceeds time limit after 44/47 tests
 class TimeMap:
-
     def __init__(self):
         from collections import defaultdict
+
         self._data = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
@@ -91,10 +91,11 @@ class TimeMap:
 # TODO: Sorting causes Exceeded Time Limit  - I guess we assume timestamp is
 #       always growing
 
-class TimeMap:
 
+class TimeMap:
     def __init__(self):
         from collections import defaultdict
+
         self._data = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
@@ -136,5 +137,5 @@ def main():
     print(25, time_map.get("love", 25))  # low
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

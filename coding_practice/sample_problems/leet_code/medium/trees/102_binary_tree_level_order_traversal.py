@@ -38,6 +38,7 @@ class TreeNode:
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         from queue import Queue
+
         LEVEL_END = "end"
 
         if not root:
@@ -75,11 +76,9 @@ class Solution:
 
 
 def main():
-    tree = build_tree_from_list(
-        elements=[3,9,20,None,None,15,7]
-    )
+    tree = build_tree_from_list(elements=[3, 9, 20, None, None, 15, 7])
     print(Solution().levelOrder(tree))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

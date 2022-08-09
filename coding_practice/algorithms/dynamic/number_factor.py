@@ -31,9 +31,7 @@ Then, we could solve it top-down OR bottom-up
 def find_factors_bottom_up(n: int) -> int:
     factors = [1, 1, 1, 2]
     for i in range(4, n + 1):
-        factors.append(
-            factors[i - 1] + factors[i - 3] + factors[i - 4]
-        )
+        factors.append(factors[i - 1] + factors[i - 3] + factors[i - 4])
     return factors[n]
 
 
@@ -67,5 +65,5 @@ def main():
     print(find_factors_bottom_up(7))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

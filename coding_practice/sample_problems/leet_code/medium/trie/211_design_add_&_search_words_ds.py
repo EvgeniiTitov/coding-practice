@@ -71,6 +71,7 @@ class WordDictionary:
 
 # -------------------------- proper solution 1 (bugged)------------------------
 
+
 class Node:
     def __init__(self) -> None:
         self.children: t.MutableMapping[str, Node] = {}
@@ -78,7 +79,6 @@ class Node:
 
 
 class WordDictionary:
-
     def __init__(self):
         self.root = Node()
 
@@ -109,7 +109,7 @@ class WordDictionary:
             if char == ".":
                 for curr_lvl_char in current.children:
                     does_exist = self._search(
-                        curr_lvl_char + word[i + 1:], current
+                        curr_lvl_char + word[i + 1 :], current
                     )
                     if does_exist:
                         return True
@@ -127,7 +127,6 @@ WordEnd = "$"
 
 
 class WordDictionary:
-
     def __init__(self):
         self._trie = {}
 
@@ -142,15 +141,13 @@ class WordDictionary:
         current[WordEnd] = True
 
     def search(self, word: str) -> bool:
-
         def _search(word: str, node: TrieNode) -> bool:
             for i, char in enumerate(word):
                 if char not in node:
                     if char == ".":
                         for node_char in node:
-                            if (
-                                node_char != WordEnd and
-                                _search(word[i + 1:], node[node_char])
+                            if node_char != WordEnd and _search(
+                                word[i + 1 :], node[node_char]
                             ):
                                 return True
                     return False
@@ -184,5 +181,5 @@ def main():
     print(trie.search(".a"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

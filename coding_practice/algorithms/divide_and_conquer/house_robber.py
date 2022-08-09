@@ -49,5 +49,5 @@ def main():
     print(rob_houses([6, 7, 1, 30, 8, 2, 4], 0))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

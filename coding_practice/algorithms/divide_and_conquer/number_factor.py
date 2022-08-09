@@ -73,6 +73,7 @@ def cache(func: t.Callable) -> t.Callable:
         res = func(num)
         _cache[num] = res
         return res
+
     return wrapper
 
 
@@ -102,5 +103,5 @@ def main():
     print(find_ways(7))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

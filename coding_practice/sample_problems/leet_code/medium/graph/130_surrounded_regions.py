@@ -145,7 +145,7 @@ class Solution:
             return must_be_flipped
 
         def _does_end_with_zero(
-                i: int, j: int, direction: tuple[int, int]
+            i: int, j: int, direction: tuple[int, int]
         ) -> bool:
             is_on_edge = _check_if_on_edge(i, j)
             if is_on_edge and board[i][j] == "O":
@@ -188,7 +188,6 @@ class Solution:
 
     # # DFS. T: O(N) - all cells are traversed. S: O(N) - border cells, recursion
     def solve(self, board: List[List[str]]) -> None:
-
         def _retrieve_border_cells() -> Set[Tuple[int, int]]:
             border_cells = set()
             for i in range(rows):
@@ -304,7 +303,6 @@ class Solution:
                     board[i][j] = "O"
 
 
-
 def main():
     # board = [
     #     ["X","X","X","X"],
@@ -312,11 +310,7 @@ def main():
     #     ["X","X","O","X"],
     #     ["X","O","X","X"]
     # ]
-    board = [
-        ["O","O","O"],
-        ["O","O","O"],
-        ["O","O","O"]
-    ]
+    board = [["O", "O", "O"], ["O", "O", "O"], ["O", "O", "O"]]
 
     print("BOARD BEFORE:")
     for row in board:
@@ -329,5 +323,5 @@ def main():
         print(row)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

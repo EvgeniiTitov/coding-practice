@@ -63,13 +63,14 @@ class Solution:
 
             for neighbour, curr_to_neighbour_dist in graph[curr_vertex]:
                 new_dist_to_neighbour = (
-                        curr_dist_from_src + curr_to_neighbour_dist
+                    curr_dist_from_src + curr_to_neighbour_dist
                 )
                 if new_dist_to_neighbour < distances[neighbour]:
                     distances[neighbour] = new_dist_to_neighbour
                     if neighbour not in visited_vertices:
                         heapq.heappush(
-                            closest_vertices, (new_dist_to_neighbour, neighbour)
+                            closest_vertices,
+                            (new_dist_to_neighbour, neighbour),
                         )
         return distances
 
@@ -78,11 +79,11 @@ class Solution:
         from collections import defaultdict
         import heapq
 
-        '''
+        """
         [[1,2,1],[2,3,7],[1,3,4],[2,1,2]] 
         results in
         defaultdict(<class 'dict'>, {1: {2: 1, 3: 4}, 2: {3: 7, 1: 2}})
-        '''
+        """
         graph = defaultdict(dict)
         for source, dest, delay in times:
             graph[source][dest] = delay
@@ -96,7 +97,7 @@ class Solution:
                 distances[curr_vertex] = curr_vertex_delay
                 for neighbour in graph[curr_vertex]:
                     neighbour_delay = (
-                            curr_vertex_delay + graph[curr_vertex][neighbour]
+                        curr_vertex_delay + graph[curr_vertex][neighbour]
                     )
                     heapq.heappush(heap, (neighbour_delay, neighbour))
         return max(distances.values()) if len(distances) == n else -1
@@ -113,7 +114,7 @@ class Solution:
         for i in range(n - 1):
             for source, dest, delay in times:
                 if (
-                        distances[source] != float("inf")
+                    distances[source] != float("inf")
                     and distances[source] + delay < distances[dest]
                 ):
                     distances[dest] = distances[source] + delay
@@ -135,12 +136,12 @@ class Solution:
 
 
 def main():
-    print(Solution().networkDelayTime(
-        times=[[1,2,1],[2,3,7],[1,3,4],[2,1,2]],
-        n=4,
-        k=1
-    ))
+    print(
+        Solution().networkDelayTime(
+            times=[[1, 2, 1], [2, 3, 7], [1, 3, 4], [2, 1, 2]], n=4, k=1
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

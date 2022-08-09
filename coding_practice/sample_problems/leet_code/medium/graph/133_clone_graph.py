@@ -38,7 +38,7 @@ the copy of the given node as a reference to the cloned graph.
 
 
 class Node:
-    def __init__(self, val = 0, neighbors = None):
+    def __init__(self, val=0, neighbors=None):
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
@@ -46,11 +46,12 @@ class Node:
 class Solution:
 
     # KEKL
-    def cloneGraph(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node: "Node") -> "Node":
         from copy import deepcopy
+
         return deepcopy(node)
 
-    def cloneGraph(self, node: 'Node') -> 'Node':
+    def cloneGraph(self, node: "Node") -> "Node":
         if not node:
             return node
 

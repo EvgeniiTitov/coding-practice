@@ -23,5 +23,5 @@ def main():
     print("Sorted array:", quicksort_array(arr))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

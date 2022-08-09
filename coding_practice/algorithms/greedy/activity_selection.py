@@ -1,6 +1,3 @@
-
-
-
 """
 Greedily pick activities coming right after each other
 """
@@ -13,7 +10,7 @@ def main():
         ["A3", 1, 2],
         ["A4", 5, 8],
         ["A5", 5, 7],
-        ["A6", 8, 9]
+        ["A6", 8, 9],
     ]
     activities.sort(key=lambda item: item[-1])
 
@@ -28,5 +25,5 @@ def main():
     print(picked_activities)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

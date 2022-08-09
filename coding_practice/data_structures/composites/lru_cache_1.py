@@ -113,5 +113,5 @@ def main():
     print(cache)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

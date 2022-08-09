@@ -13,5 +13,5 @@ def main():
     print(sum(arr))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -40,9 +40,7 @@ class Solution:
 
     # Single pass
     def insert(
-        self,
-        intervals: List[List[int]],
-        newInterval: List[int]
+        self, intervals: List[List[int]], newInterval: List[int]
     ) -> List[List[int]]:
 
         Interval = List[int]
@@ -88,9 +86,7 @@ class Solution:
 
     # That is not good, unnecessary sorting at the end, we need just one pass
     def insert(
-        self,
-        intervals: List[List[int]],
-        newInterval: List[int]
+        self, intervals: List[List[int]], newInterval: List[int]
     ) -> List[List[int]]:
 
         Interval = List[int]
@@ -141,13 +137,15 @@ class Solution:
 
 
 def main():
-    print(Solution().insert(
-        intervals=[[1,5]],
-        newInterval=[2,3]
-        # intervals=[[1,3],[6,9]],
-        # newInterval=[2,5]
-    ))
+    print(
+        Solution().insert(
+            intervals=[[1, 5]],
+            newInterval=[2, 3]
+            # intervals=[[1,3],[6,9]],
+            # newInterval=[2,5]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -2,10 +2,7 @@ import typing as t
 from queue import Queue
 
 
-__all__ = [
-    "build_tree_from_list",
-    "print_tree_inorder"
-]
+__all__ = ["build_tree_from_list", "print_tree_inorder"]
 
 
 class TreeNode:
@@ -13,7 +10,7 @@ class TreeNode:
         self,
         val: t.Any = 0,
         left: t.Optional["TreeNode"] = None,
-        right: t.Optional["TreeNode"] = None
+        right: t.Optional["TreeNode"] = None,
     ):
         self.val = val
         self.left = left
@@ -67,7 +64,7 @@ def _traverse_tree_inorder(tree: TreeNode) -> t.List[t.Any]:
     return elements
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     tree = build_tree_from_list(
         elements=[6, 2, 8, 0, 4, 7, 9, None, None, 3, 5]
     )

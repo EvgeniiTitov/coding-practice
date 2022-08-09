@@ -55,7 +55,7 @@ class Solution:
         longest_substr = 0
         for i in range(length):
             for j in range(i + 1, length):
-                is_valid = _check_if_valid(s[i: j + 1])
+                is_valid = _check_if_valid(s[i : j + 1])
                 if is_valid:
                     longest_substr = max(longest_substr, j - i + 1)
         return longest_substr
@@ -94,5 +94,5 @@ def main():
     print(Solution().characterReplacement("AABABBA", k=1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

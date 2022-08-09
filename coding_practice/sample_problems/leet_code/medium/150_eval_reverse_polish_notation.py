@@ -50,7 +50,6 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 
 
 class Solution:
-
     def evalRPN(self, tokens: List[str]) -> int:
         operators = {
             "+": lambda a, b: a + b,
@@ -73,12 +72,28 @@ class Solution:
 
 
 def main():
-    print(Solution().evalRPN(
-        # tokens=["2","1","+","3","*"]
-        # tokens=["4","13","5","/","+"],
-        tokens=["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
-    ))
+    print(
+        Solution().evalRPN(
+            # tokens=["2","1","+","3","*"]
+            # tokens=["4","13","5","/","+"],
+            tokens=[
+                "10",
+                "6",
+                "9",
+                "3",
+                "+",
+                "-11",
+                "*",
+                "/",
+                "*",
+                "17",
+                "+",
+                "5",
+                "+",
+            ]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -57,7 +57,9 @@ def find_min_operations(
     if key not in cache:
         delete = 1 + find_min_operations(s1, s2, index1, index2 + 1, cache)
         insert = 1 + find_min_operations(s1, s2, index1 + 1, index2, cache)
-        replace = 1 + find_min_operations(s1, s2, index1 + 1, index2 + 1, cache)
+        replace = 1 + find_min_operations(
+            s1, s2, index1 + 1, index2 + 1, cache
+        )
         cache[key] = min(delete, insert, replace)
 
     return cache[key]
@@ -67,5 +69,5 @@ def main():
     print(find_min_operations("table", "tbrles", 0, 0, {}))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

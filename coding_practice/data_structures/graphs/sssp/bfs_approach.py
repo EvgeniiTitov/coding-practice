@@ -19,14 +19,11 @@ class VertexDoesntExistError(Exception):
 
 
 class Graph:
-
     def __init__(self, graph: t.Optional[GraphRepr] = None) -> None:
         self._graph = graph or {}
 
     def find_path_bfs(
-        self,
-        start: Vertex,
-        end: Vertex
+        self, start: Vertex, end: Vertex
     ) -> t.Optional[t.List[Vertex]]:
         if start not in self._graph or end not in self._graph:
             raise VertexDoesntExistError()
@@ -51,21 +48,21 @@ def main():
         "D": ["F"],
         "E": ["F"],
         "G": ["F"],
-        "F": []
+        "F": [],
     }
     graph = Graph(graph_repr)
 
-    '''
+    """
     Searching path from A to A: ['A']
     Searching path from A to F: ['A', 'B', 'D', 'F']
     Searching path from C to F: ['C', 'D', 'F']
     Searching path from C to G: None
-    '''
+    """
     print("Searching path from A to A:", graph.find_path_bfs("A", "A"))
     print("Searching path from A to F:", graph.find_path_bfs("A", "F"))
     print("Searching path from C to F:", graph.find_path_bfs("C", "F"))
     print("Searching path from C to G:", graph.find_path_bfs("C", "G"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -19,6 +19,7 @@ class Vertex:
     """
     Represents a vertex in the G. Holds references to its connections.
     """
+
     def __init__(self, key: Key) -> None:
         self.key = key
         self.neighbours: t.MutableMapping["Vertex", Weight] = {}
@@ -44,6 +45,7 @@ class Graph:
     Holds the master list of vertices, mapping keys to vertices that
     store it.
     """
+
     def __init__(self) -> None:
         self.vertices: t.MutableMapping[Key, Vertex] = {}
 
@@ -98,5 +100,5 @@ def main():
             print(f"Vertex {vertex.key} -> {connection.key}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -67,6 +67,7 @@ class Solution:
 
         return minutes_elapsed if fresh_oranges == 0 else -1
 
+
 # ----- My solution (close but bugged somewhere dealing with edge cases) ------
 
 # class Solution:
@@ -137,14 +138,16 @@ class Solution:
 
 
 def main():
-    print(Solution().orangesRotting(
-        grid=[[2,1,1],[1,1,0],[0,1,1]]
-        # grid=[[2,1,1],[0,1,1],[1,0,1]]
-        # grid=[[0,2]]
-        # grid=[[0]]
-        # grid=[[0,1]]
-    ))
+    print(
+        Solution().orangesRotting(
+            grid=[[2, 1, 1], [1, 1, 0], [0, 1, 1]]
+            # grid=[[2,1,1],[0,1,1],[1,0,1]]
+            # grid=[[0,2]]
+            # grid=[[0]]
+            # grid=[[0,1]]
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

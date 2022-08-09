@@ -32,7 +32,6 @@ class TreeNode:
 
 
 class Solution:
-
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         return self._is_balanced(root)[0]
 
@@ -58,7 +57,6 @@ class Solution:
 
     # Shorter one
     def isBalanced(self, root):
-
         def check(root):
             if root is None:
                 return 0
@@ -69,4 +67,3 @@ class Solution:
             return 1 + max(left, right)
 
         return check(root) != -1
-

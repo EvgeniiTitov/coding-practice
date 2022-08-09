@@ -49,7 +49,6 @@ is obtained with our getNext(n) function above.
 
 
 class Solution:
-
     def isHappy(self, n: int) -> bool:
         char_numbers = [int(char) for char in str(n)]
         seen = set()

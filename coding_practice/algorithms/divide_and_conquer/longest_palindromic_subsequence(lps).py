@@ -63,5 +63,5 @@ def main():
     print(get_lps(string, 0, len(string) - 1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

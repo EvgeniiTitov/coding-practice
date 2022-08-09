@@ -1,7 +1,8 @@
 from typing import Optional
 
 from coding_practice.utils import (
-    build_singly_ll_from_sequence, print_ll_values
+    build_singly_ll_from_sequence,
+    print_ll_values,
 )
 
 
@@ -41,9 +42,7 @@ class ListNode:
 class Solution:
     # T: O(N); S: O(1)
     def removeNthFromEnd(
-        self,
-        head: Optional[ListNode],
-        n: int
+        self, head: Optional[ListNode], n: int
     ) -> Optional[ListNode]:
         if not head or not head.next:
             return
@@ -69,9 +68,9 @@ class Solution:
 
 
 def main():
-    ll = build_singly_ll_from_sequence(elements=(1,2))
+    ll = build_singly_ll_from_sequence(elements=(1, 2))
     print_ll_values(Solution().removeNthFromEnd(ll, 2))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
