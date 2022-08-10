@@ -30,7 +30,6 @@ import pandas as pd
 # import cv2
 
 
-
 # ------------------ Simple examples ------------------
 def greet_by_name(name: str) -> None:
     print("Hello", name)
@@ -271,7 +270,6 @@ def run_model(data: pd.DataFrame, model: BaseModel):
     model.predict(data)
 
 
-
 def main():
     # file_iterator = get_file_paths("/Users/etitov1/Downloads")
     # print(next(file_iterator))
@@ -309,15 +307,6 @@ def main():
 
     random_model = RandomModel()
     run_model(df, random_model)
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
