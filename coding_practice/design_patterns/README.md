@@ -1,4 +1,22 @@
-### General info:
+#### TODO:
+
+- https://refactoring.guru/design-patterns/catalog
+
+---
+
+#### General info:
+
+Design patterns are typical solutions to commonly occurring problems in software
+design, like pre-made blueprints that could be customized to solve a recurring 
+design problem in your code. 
+
+The pattern is not a specific piece of code that could be copied and used, but
+a general concept for solving a particular problem.
+
+Often confused with algorithms because both describe typical solutions to some
+known problems. Algorithms always define a clear set of actions, while a pattern
+is a more high-level description of a solution. The code of the same pattern 
+applied to two different programs could be different. 
 
 Design patterns are usually split into 3 categories:
 
@@ -10,17 +28,21 @@ Design patterns are usually split into 3 categories:
 
 - Structural Patterns
 
-  - Concerned with the structure (class members, etc)
+  - Concerned with the structure (assembling objects and classes into larger 
+  structures while keeping them flexible and efficient)
   - Many patterns are wrappers that mimic the underlying class's interface
   - Stress the importance of good API design
 
 - Behavioural Patterns
 
-  - All quite different, no central theme
+  - Takes cares of effective communication and the assignment of responsibilities
+  between objects.
+
+![alt text](../../images/dp.PNG?raw=true)
 
 ---
 
-###Summary:
+#### Summaries:
 
 
 - Facade design pattern
