@@ -1,17 +1,10 @@
 ### TODO:
 
-- Write time complexities for ALL data structures
-
-
-- Queue with pointers
-
-
 - AVL trees and why self balancing is important for trees
-- Graphs (stopped at 355)
+- Graphs (stopped at 355, pending: Floyd Warshall, Kruskal and Prim's)
 
 
-- Summary for LL
-- Watch Doubly LL and Circular Doubly LL
+- Watch Circular Doubly LL
 - Watch Binary Heap
 
 ---

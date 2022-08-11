@@ -40,7 +40,7 @@ shortest path between A and B in a graph of uniform weight.
 
 - #### 2D grid traversals
 
-1. When it comes to solving 2D cell traversal graph problems quite often it is
+-  When it comes to solving 2D cell traversal graph problems quite often it is
 a good idea to reverse/flip the problem, which makes it easier to solve:
 
    - Instead of flowing from the mountains into the ocean (edges), lets start from
@@ -55,7 +55,7 @@ a good idea to reverse/flip the problem, which makes it easier to solve:
   and is often quicker.
 
 
-2. To keep track of visited/processed cells you could:
+- To keep track of visited/processed cells you could:
 
    - Have a set to drop visited/processed coords there and then check before/after
    recursively/iteratively going to the next coord if its been already processed - 
@@ -66,7 +66,7 @@ a good idea to reverse/flip the problem, which makes it easier to solve:
    passed grid - O(1) space complexity
 
 
-3. Check if the next coordinate you want to go to satisfies your condition before
+- Check if the next coordinate you want to go to satisfies your condition before
 making the call rather than straight away in the recursive call (out of bounds, 
 cell value is what we want etc) - reduces overhead associated with unnecessary 
 function calls.
