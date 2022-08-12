@@ -1,5 +1,13 @@
 #### Software development *best* practices (with a pinch of salt):
 
+
+#### TODO: 
+
+- Open/Closed principle
+- 
+
+---
+
 - YAGNI (you aint gonna need it)
     - Do you really need it?
     - Simpler way?
