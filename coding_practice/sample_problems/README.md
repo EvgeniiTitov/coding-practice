@@ -210,6 +210,108 @@ def rob(self, nums: List[int]) -> int:
 
     return robbed_amounts[0]
 ```
+
+---
+
+- #### DP (2D)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _Top-down with memoization:_
+
+Unique paths
+```python
+def uniquePaths(self, m: int, n: int) -> int:
+
+    def _cache(func):
+        _cache = {}
+        def wrapper(m: int, n: int, i: int, j: int) -> int:
+            if (i, j) not in _cache:
+                _cache[(i, j)] = func(m, n, i, j)
+            return _cache[(i, j)]
+        return wrapper
+
+    @_cache
+    def _find_paths(m: int, n: int, i: int, j: int) -> int:
+        # Base cases
+        # 1. Out of bounds
+        if i >= m or j >= n:
+            return 0
+
+        # 2. Reached the end
+        if i == m - 1 and j == n - 1:
+            return 1
+
+        path1 = _find_paths(m, n, i + 1, j)
+        path2 = _find_paths(m, n, i, j + 1)
+
+        return path1 + path2
+
+    return _find_paths(m, n, 0, 0)
+```
+
+Paths to reach last cell within given cost (needs cache)
+```python
+Matrix = t.List[t.List[int]]
+
+
+def find_paths(
+    matrix: Matrix, cost: int, i: int = 0, j: int = 0
+) -> t.Union[int, float]:
+    # Base cases
+
+    # 1. Out of bounds
+    rows = len(matrix)
+    cols = len(matrix[0])
+    if i >= rows or j >= cols:
+        return 0
+
+    # Ran out of cost
+    remaining_cost = cost - matrix[i][j]
+    if remaining_cost < 0:
+        return 0
+
+    # Reached the last cell
+    if i == rows - 1 and j == cols - 1:
+        return 1 if remaining_cost == 0 else 0
+
+    path1 = find_paths(matrix, remaining_cost, i + 1, j)
+    path2 = find_paths(matrix, remaining_cost, i, j + 1)
+
+    return path1 + path2
+```
+
+Min cost reach last cell (needs cache)
+```python
+def find_min_cost_path(matrix: Matrix, i: int, j: int) -> t.Union[int, float]:
+    rows = len(matrix)
+    cols = len(matrix[0])
+    # Out of bounds
+    if i >= rows or j >= cols:
+        return float("inf")
+    # Reached the last cell
+    if i == rows - 1 and j == cols - 1:
+        return matrix[i][j]
+
+    path1 = find_min_cost_path(matrix, i + 1, j)
+    path2 = find_min_cost_path(matrix, i, j + 1)
+
+    return matrix[i][j] + min(path1, path2)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _Bottom-up with tabulation_:
+
+Unique paths - since we can go just down and right, the first row and col are
+just 1s. Then, we could come up with logic to populate other grid cells
+```python
+def uniquePaths(self, m: int, n: int) -> int:
+    grid = [[1 for _ in range(n)] for _ in range(m)]
+
+    for row in range(1, m):
+        for col in range(1, n):
+            grid[row][col] = grid[row - 1][col] + grid[row][col - 1]
+
+    return grid[-1][-1]
+```
+
 ---
 
 - #### 2D grid traversals

@@ -24,21 +24,24 @@ def find_paths(
     matrix: Matrix, cost: int, i: int = 0, j: int = 0
 ) -> t.Union[int, float]:
     # Base cases
+
+    # 1. Out of bounds
     rows = len(matrix)
     cols = len(matrix[0])
     if i >= rows or j >= cols:
         return 0
 
+    # 2. Ran out of cost
     remaining_cost = cost - matrix[i][j]
     if remaining_cost < 0:
         return 0
 
+    # 3. Reached the last cell
     if i == rows - 1 and j == cols - 1:
         return 1 if remaining_cost == 0 else 0
 
     path1 = find_paths(matrix, remaining_cost, i + 1, j)
     path2 = find_paths(matrix, remaining_cost, i, j + 1)
-
     return path1 + path2
 
 

@@ -34,9 +34,10 @@ def find_min_cost_path_reverse(
 def find_min_cost_path(matrix: Matrix, i: int, j: int) -> t.Union[int, float]:
     rows = len(matrix)
     cols = len(matrix[0])
-
+    # Out of bounds
     if i >= rows or j >= cols:
         return float("inf")
+    # Reached the last cell
     if i == rows - 1 and j == cols - 1:
         return matrix[i][j]
 
