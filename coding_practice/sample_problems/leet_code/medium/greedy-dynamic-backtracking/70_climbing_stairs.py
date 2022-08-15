@@ -5,13 +5,20 @@ from coding_practice.utils import timer
 
 """
 Summary: 
+    
+    Each step, you could either go 1 or 2 steps: 2 options. 
+    
+    If you draw the tree, you could see the problem satisfies the overlapping
+    subproblems property --> DP is possible. 
+    
     Brute force: Comes down to knowing the formula of i'th stare
     climb_stairs(i, n) = climb_stairs(i + 1, n) + climb_stairs(i + 2, n), 
     where n is the number of stairs. Pay attention to the base cases.
     
     Dynamic: Create an array of length n + 1. 0 stairs, 0 ways to climb it; 1
     stair - 1 way, 2 stairs - 2; For the rest use the formula to populate the
-    array. Return the last element
+    array. Return the last element  
+      
 ------------------------------------------------------------------------------
 
 https://leetcode.com/problems/climbing-stairs/
@@ -36,35 +43,15 @@ Explanation: There are three ways to climb to the top.
 2. 1 step + 2 steps
 3. 2 steps + 1 step
 
-Thoughts: 
-Somewhat reminds the Fibo stuff. 
-
 The formula at each step would be: 
 climb_stairs(i, n) = climb_stairs(i + 1, n) + climb_stairs(i + 2, n)
-
-! Dynamic programming is a good way to solve this problem as well considering
-we know the formula:
-public class Solution {
-    public int climbStairs(int n) {
-        if (n == 1) {
-            return 1;
-        }
-        int[] dp = new int[n + 1];
-        dp[1] = 1;
-        dp[2] = 2;
-        for (int i = 3; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
-        }
-        return dp[n];
-    }
-}
 """
 
 
 class Solution:
 
     # D&C brute force. T: O(2^N); S: O(N)
-    # Optimised. T: O(N); S: O(N)
+    # Optimised with memoization. T: O(N); S: O(N)
     def climbStairs(self, n: int) -> int:
         def _cache(func):
             cache = {}
@@ -84,22 +71,25 @@ class Solution:
                 return 0
             elif current_step == stairs:
                 return 1
-            else:
-                return _climb_stairs(current_step + 1, stairs) + _climb_stairs(
-                    current_step + 2, stairs
-                )
+
+            return (
+                    _climb_stairs(current_step + 1, stairs) +
+                    _climb_stairs(current_step + 2, stairs)
+            )
 
         return _climb_stairs(0, n)
 
-    # Dynamic
+    # Bottom-up dynamic
     def climbStairs(self, n: int) -> int:
         if n == 1:
             return 1
+
         l = [0] * (n + 1)
         l[1] = 1
         l[2] = 2
         for i in range(3, len(l)):
             l[i] = l[i - 1] + l[i - 2]
+
         return l[n]
 
 

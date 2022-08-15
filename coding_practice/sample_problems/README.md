@@ -16,6 +16,17 @@ ordering on the subsets of three elements of S = {1,2,3,4,5,6} is:
 
 - Power set - all possible combinations of all possible lengths, from 0 to N.
 
+
+- Optimal substructure - a problem is said to have optimal substructure if an 
+optimal solution could be constructed from optimal solutions of its subproblems. 
+Say, Fib(N) = Fib(N - 1) + Fib(N - 2)
+
+
+- Overlapping subproblems - a problem is said to have overlapping subproblems 
+if the problem can be broken down into subproblems which are reused several 
+times or a recursive algorithm for the problem solves the same subproblem over 
+and over rather than generating new subproblems - good example is calculating Fibonacci
+
 ---
 
 ## General information:
@@ -37,6 +48,169 @@ shortest path between A and B in a graph of uniform weight.
 ---
 
 ## To remember:
+
+- #### DP (1D)
+
+If a problem satisfies both Optimal Substructure and Overlapping Subproblems
+properties, it could be solved using DP.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _Top-down with memoization:_
+
+We start top to bottom, breaking down the problem into smaller subproblems till we
+reach the simplest possible subproblems that we know how to solve. Involves a
+bunch of recursive calls. 
+
+In general, we need the following:
+
+- Base case: when to stop recursive calls (out of bounds, ran out of capacity, etc)
+- Logic to perform recursive calls and do something with their results (add, max, min, compare etc.)
+- Cache (passed as a parameter or a use decorator)
+
+^ This heavily reminds dealing with trees when you have bases cases + calling logic.
+
+Examples:
+```python
+def climbStairs(self, n: int) -> int:
+    def _cache(func):
+        cache = {}
+        def wrapper(n: int, stairs: int) -> int:
+            if n in cache:
+                return cache[n]
+            result = func(n, stairs)
+            cache[n] = result
+            return result
+
+        return wrapper
+
+    @_cache
+    def _climb_stairs(current_step: int, stairs: int) -> int:
+        if current_step > stairs:
+            return 0
+        elif current_step == stairs:
+            return 1
+        return (
+                _climb_stairs(current_step + 1, stairs) +
+                _climb_stairs(current_step + 2, stairs)
+        )
+
+    return _climb_stairs(0, n)
+```
+Here we could start either from first (0) or second (1) step
+
+```python
+# Top-down DP
+def minCostClimbingStairs(self, cost: List[int]) -> int:
+
+    def _cache(func):
+        _cache = {}
+        def wrapper(num: int, *args, **kwargs):
+            if num not in _cache:
+                _cache[num] = func(num, *args, **kwargs)
+            return _cache[num]
+        return wrapper
+
+    @_cache
+    def _climb_stairs(step_index: int, cost: List[int]) -> int:
+        if step_index >= len(cost):
+            return 0
+
+        option1 = _climb_stairs(step_index + 1, cost)
+        option2 = _climb_stairs(step_index + 2, cost)
+
+        return cost[step_index] + min(option1, option2)
+
+
+    if len(cost) == 1:
+        return cost[0]
+
+    option1 = _climb_stairs(0, cost)
+    option2 = _climb_stairs(1, cost)
+
+    return min(option1, option2)
+```
+Example of a cache that gets passed in
+```python
+def rob(self, nums: List[int]) -> int:
+
+    Cache = MutableMapping[int, int]
+
+    def _rob_houses(
+        house_index: int, houses: List[int], cache: Cache
+    ) -> int:
+        if house_index >= len(houses):
+            return 0
+
+        if house_index in cache:
+            return cache[house_index]
+
+        rob_current = (
+                houses[house_index] +
+                _rob_houses(house_index + 2, houses, cache)
+        )
+        rob_next = _rob_houses(house_index + 1, houses, cache)
+
+        max_steal = max(rob_current, rob_next)
+        cache[house_index] = max_steal
+
+        return max_steal
+
+    return _rob_houses(0, nums, {})
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _Bottom-up with tabulation:_
+
+Once a problem's solved top-down, we could try to reformulate the solution to
+solve the subproblems first (bottom-up). 
+
+In general you need:
+
+- A way to store subproblems results (array, table, etc)
+- Knowing base cases: simplest possible problems. Often its okay to go out of bounds.
+- Filling the array right-to-left or left-to-right depending on the base cases
+- When filling the array, often you use data from both the temp array and input data
+
+Examples:
+```python
+def climbStairs(self, n: int) -> int:
+    if n == 1:
+        return 1
+    
+    l = [0] * (n + 1)
+    # If you draw you notice that to climb 1st there is only 1 way, 2nd 2 ways
+    l[1] = 1
+    l[2] = 2
+    for i in range(3, len(l)):
+        l[i] = l[i - 1] + l[i - 2]
+    
+    return l[n]
+```
+```python
+def minCostClimbingStairs(self, cost: List[int]) -> int:
+
+    min_cost = [0] * (len(cost) + 1)
+
+    for i in range(2, len(cost) + 1):
+        take_one_step = min_cost[i - 1] + cost[i - 1]
+        take_two_steps = min_cost[i - 2] + cost[i - 2]
+        min_cost[i] = min(take_one_step, take_two_steps)
+
+    return min_cost[-1]
+```
+```python
+def rob(self, nums: List[int]) -> int:
+    length = len(nums)
+    robbed_amounts = [0] * (length + 1)
+
+    robbed_amounts[-2] = nums[-1]
+    for i in range(length - 2, -1, -1):
+        robbed_amounts[i] = max(
+            robbed_amounts[i + 1],
+            nums[i] + robbed_amounts[i + 2]
+        )
+
+    return robbed_amounts[0]
+```
+---
 
 - #### 2D grid traversals
 

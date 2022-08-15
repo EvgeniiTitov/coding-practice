@@ -23,7 +23,7 @@ duplicates get skipped
 - (66) Plus one: value (%) + carry over (//)
 
 
-- (70) Climbing stairs: dynamic or D&C with memoization. Base case: current index > stairs? 
+- (70) Climbing stairs: D&C or top-down/bottom-up DP. Base case: current index > stairs? 
 return 0 OR if on the final step return 1; Else: `return climb(curr_step + 1, nb_stairs) + 
 climb(curr_step + 2, nb_stairs)`
 
