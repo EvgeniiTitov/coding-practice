@@ -51,32 +51,6 @@ class LLNode:
 
 
 class DoublyLL:
-    """
-    dll = DoublyLL()
-
-    for i in range(5):
-        dll.prepend(i)
-    print(dll)
-
-    dll.pop()
-    print(dll)
-
-    dll.prepend(7)
-    print(dll)
-
-    second_node = dll._head.next
-    print(second_node.value)
-
-    dll.unwire_node(second_node)
-    print(dll)
-
-    Stdout:
-    DLL. Items: [4, 3, 2, 1, 0]
-    DLL. Items: [3, 2, 1, 0]
-    DLL. Items: [7, 3, 2, 1, 0]
-    3
-    DLL. Items: [7, 2, 1, 0]
-    """
     def __init__(self) -> None:
         self._head = None
         self._tail = None
@@ -147,52 +121,61 @@ class DoublyLL:
 
 class MaxStack:
 
-    """
-    Might not need to store node on the heap!
-    """
-
     def __init__(self):
-        self._max_elements_heap = []
-        heapq.heapify(self._max_elements_heap)
+        # Imitates out stack
         self._dll = DoublyLL()
+
+        # To keep track of DLL nodes for each value
         self._values_nodes_mapping = defaultdict(set)
 
+        # To keep track of the largest values stored on the heap
+        self._max_elements_heap = []
+        heapq.heapify(self._max_elements_heap)
+
     def push(self, x: int) -> None:
+        # Add new number to the stack
         node = self._dll.prepend(x)
-        # Heap doesn't support duplicates, append only if unique number
-        if x in self._values_nodes_mapping:
-            self._values_nodes_mapping[x].add(node)
-        else:
-            self._values_nodes_mapping[x].add(node)
-            heapq.heappush(self._max_elements_heap, -x)
-
-    def pop(self) -> int:
-        node = self._dll.pop()
-        value = node.value
-        self._values_nodes_mapping[value].remove(node)
-
-        max_value = -self._max_elements_heap[0]
-        if value == max_value and len(self._values_nodes_mapping[value]) == 0:
-            heapq.heappop(self._max_elements_heap)
-
-        return value
+        # Keep track of its node
+        self._values_nodes_mapping[x].add(node)
+        # Update the heap
+        heapq.heappush(self._max_elements_heap, -x)
 
     def top(self) -> int:
         return self._dll.top()
 
     def peekMax(self) -> int:
-        max_value  = self._max_elements_heap[0]
-        return -max_value
+        return -self._max_elements_heap[0]
+
+    def pop(self) -> int:
+        # Pop the node off the stack
+        node = self._dll.pop()
+        value = node.value
+
+        # Remove the node associated with its value
+        self._values_nodes_mapping[value].remove(node)
+
+        # Update the heap
+        more_values = len(self._values_nodes_mapping[value]) > 0
+        if not more_values:
+            heapq.heappop(self._max_elements_heap)
+
+        return value
 
     def popMax(self) -> int:
+        # Get the current largest value on the stack
         max_value = -self._max_elements_heap[0]
-        such_values_stored = len(self._values_nodes_mapping[max_value])
-        if such_values_stored == 1:
-            heapq.heappop(self._max_elements_heap)
-            node = self._values_nodes_mapping[max_value].pop()  # O(1) as set
-        else:
-            node = self._values_nodes_mapping[max_value].pop()
+
+        # Get the top-most node on the stack associated with such value
+        node = self._values_nodes_mapping[max_value].pop()  # THIS IS WRONG - RETURNS THE FIRST, NEED THE LAST!
+
+        # Remove the node from the stack
         self._dll.unwire_node(node)
+
+        # Update the heap
+        more_values = len(self._values_nodes_mapping[max_value]) > 0
+        if not more_values:
+            heapq.heappop(self._max_elements_heap)
+
         return max_value
 
     def __str__(self) -> str:
@@ -204,7 +187,53 @@ def main():
     # stack.push(5)
     # stack.push(1)
     # stack.push(5)
+    # stack.push(0)
     #
+    # print(stack)
+    # print(stack.top())
+    # print(stack.peekMax())
+    #
+    # print()
+    # print(stack.pop())
+    # print(stack.pop())
+    # print(stack)
+    # print(stack.peekMax())
+    # ---
+
+    # stack = MaxStack()
+    # stack.push(5)
+    # stack.push(7)
+    # stack.push(1)
+    # stack.push(7)
+    # stack.push(5)
+    # stack.push(0)
+    #
+    # print(stack)
+    # print(stack.peekMax())
+    #
+    # print()
+    # print(stack.pop())
+    # print(stack)
+    #
+    # print()
+    # print(stack.popMax())
+    # print(stack)
+    # ---
+
+    stack = MaxStack()
+    stack.push(5)
+    stack.push(1)
+    stack.push(5)
+
+    print(stack.top())
+    print(stack.popMax())
+    print(stack.top())
+    print(stack.peekMax())
+    print(stack.pop())
+    print(stack.top())
+
+    # ---
+
     # # print(stack)
     # # print("Peeking:", stack.top())
     # # print("Popping:", stack.pop())
@@ -225,15 +254,15 @@ def main():
     # print("Peeking max:", stack.peekMax())
 
     # -----------
-    stack = MaxStack()
-    stack.push(-2)
-    print(stack.popMax())
-
-    stack.push(-45)
-    stack.push(-82)
-    stack.push(29)
-
-    print(stack.pop())
+    # stack = MaxStack()
+    # stack.push(-2)
+    # print(stack.popMax())
+    #
+    # stack.push(-45)
+    # stack.push(-82)
+    # stack.push(29)
+    #
+    # print(stack.pop())
 
 
 if __name__ == '__main__':
