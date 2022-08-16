@@ -49,6 +49,46 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+
+- #### Find Binary Tree paths (using a param to keep track of different paths)
+
+Given a root, find all root-to-leaf paths.
+
+Notice how we keep track of paths using a function parameter. Each recursive
+call results in a different path! Strings are immutable simple objects, so 
+passing them to functions results in copies.
+
+```python
+def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+
+    def _find_paths(root: TreeNode, curr_path: str):
+        if curr_path:
+            curr_path += f"->{root.val}"
+        else:
+            curr_path = f"{root.val}"
+
+        # If reached the leaf node, save the constructed path
+        if not root.left and not root.right:
+            paths.append(curr_path)
+
+        if root.left:
+            _find_paths(root.left, curr_path)
+        if root.right:
+            _find_paths(root.right, curr_path)
+
+    if not root:
+        return [""]
+    elif root and not root.left and not root.right:
+        return [str(root.val)]
+
+    paths = []
+    _find_paths(root, "")
+
+    return paths
+```
+
+---
+
 - #### DP (1D)
 
 If a problem satisfies both Optimal Substructure and Overlapping Subproblems

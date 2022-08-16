@@ -1,11 +1,10 @@
 ### TODO:
 
 - AVL trees and why self balancing is important for trees
-- Graphs (stopped at 355, pending: Floyd Warshall, Kruskal and Prim's)
 
+- Graphs (stopped at 355, pending: Min spanning trees, Floyd Warshall, Kruskal and Prim's)
 
-- Watch Circular Doubly LL
-- Watch Binary Heap
+- Watch Circular Singly/Doubly LL
 
 ---
 

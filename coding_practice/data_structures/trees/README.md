@@ -416,7 +416,7 @@ def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
 
 ---
 
-- Height balanced tree
+- #### Height balanced tree
 
 A binary tree in which the left and right subtrees of every node differ in height by no more than 1.
 
@@ -451,7 +451,7 @@ def _is_balanced(self, root: Optional[TreeNode]) -> tuple:
 
 --- 
 
-- Lowest Common Ancestor (LCA) in BST
+- #### Lowest Common Ancestor (LCA) in BST
 
 LCA - The lowest common ancestor is defined between two nodes p and q as the 
 lowest node in T that has both p and q as descendants (where we allow a node 
