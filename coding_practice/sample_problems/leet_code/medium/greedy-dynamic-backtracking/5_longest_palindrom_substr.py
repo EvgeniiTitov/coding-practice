@@ -2,7 +2,8 @@ from typing import Tuple
 
 
 """
-Summary:
+Summary: Proper DP way is not complete. Other brute force approaches are
+possible.
 _______________________________________________________________________________
 
 https://leetcode.com/problems/longest-palindromic-substring/
