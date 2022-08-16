@@ -13,9 +13,6 @@ We could iterate through subproblems starting from the smallest ones and store
 the answer for each. When dealing with the larger subproblems, the smaller ones
 they depend on will already have been solved. 
 Could use a 2D array to do it. 
-
-
-
 _______________________________________________________________________________
 
 https://leetcode.com/problems/longest-common-subsequence/
