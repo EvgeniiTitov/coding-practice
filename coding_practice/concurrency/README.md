@@ -1,3 +1,5 @@
+![alt text](../../images/process_vs_thread.PNG?raw=true)
+
 #### Threading summary
 
 - General info (bullet points from the notes):
@@ -95,6 +97,50 @@ signalling when to stop. OR mark your thread asa daemon
 обращение в элементам списков, ключам словарей и атрибутом объектов etc. 
 На практике лучше всё же использовать блокировки, т.к. набор атомарных 
 операций может изменяться от версии к версии. 
+
+There are two types of threads to be managed in a modern system: User threads 
+and kernel threads.
+
+User threads are supported above the kernel, without kernel support. These are 
+the threads that application programmers would put into their programs.
+
+Kernel threads are supported within the kernel of the OS itself. All modern 
+OSes support kernel level threads, allowing the kernel to perform multiple 
+simultaneous tasks and/or to service multiple kernel system calls simultaneously.
+
+In a specific implementation, the user threads must be mapped to kernel 
+threads, using one of the following strategies.
+
+    - Many-to-one model:
+        - Multiple user threads (fibers), one kernel thread. Many user-level 
+        threads are all mapped onto a single kernel thread. 
+        - Thread management  is handled by the thread library in user space, 
+        which is very efficient (coroutines in python using asyncio or similar).
+        - However, if a blocking system call is made, then the entire process 
+        blocks, even if the other user threads would otherwise be able to continue.
+        - Because a single kernel thread can operate only on a single CPU, the 
+        many-to-one model does not allow individual processes to be split across 
+        multiple CPUs.
+        
+    - One-to-one model:
+        - The one-to-one model creates a separate kernel thread to handle each 
+        user thread.
+        - One-to-one model overcomes the problems listed above involving 
+        blocking system calls and the splitting of processes across multiple CPUs.
+        - However the overhead of managing the one-to-one model is more 
+        significant, involving more overhead and slowing down the system.
+        - Most implementations of this model place a limit on how many threads 
+        can be created.
+        
+    - Many-to-many model:
+        - The many-to-many model multiplexes any number of user threads onto 
+        an equal or smaller number of kernel threads, combining the best 
+        features of the one-to-one and many-to-one models.
+        - Users have no restrictions on the number of threads created.
+        - Blocking kernel system calls do not block the entire process.
+        - Processes can be split across multiple processors.
+        - Individual processes may be allocated variable numbers of kernel 
+        threads, depending on the number of CPUs present and other factors.
 
 - How to run:
     - instance of threading.Thread(target=, args=(), ...)
