@@ -33,8 +33,6 @@ Development related:
 
 - Why gRPC? gRPC vs HTTP (speed, ease of use, public facing API, trade offs)
 
-- General approach to writing good software (separation of concerns, interfaces, etc)
-
 - Actor model
 
 
@@ -42,14 +40,6 @@ Development related:
 
 Leetcode / Data Structures:
 
-- Divide and conquer
-
-- Dynamic
-
-  - top-down vs bottom-up
-  
 - Backtracking
-
 - Bits
-
   - Least Significant Bit (LSB) / Most Significant Bit (MSB)
