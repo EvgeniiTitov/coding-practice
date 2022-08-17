@@ -2,14 +2,21 @@ import typing as t
 
 
 """
-NOTICE how below we append curr_path to our container of permutations only
+Points to remember:
+
+    Notice how below we append curr_path to our container of permutations only
 when we the length of curr_path reaches the size of nums? This guarantees that
 all permutations will be of the same size! We could omit this condition and
 add the curr_path to the container every iter which would give us all subsets!
 
-The solutions below pass the available numbers for permutations to every call,
-a new copy is created every time, its expensive. Ideally we would love to do it
-in place.
+    The solutions below pass the available numbers for permutations to every 
+call, a new copy is created every time, its expensive. Ideally we would love 
+to do it in place.
+
+    Also notice how every iteration we extract only a single number (current) 
+from the pool of available numbers (nums) for permutations: 
+remaining_nums = nums[:i] + nums[i + 1:]
+So, at some point we run out of the numbers to permutate on.
 """
 
 
