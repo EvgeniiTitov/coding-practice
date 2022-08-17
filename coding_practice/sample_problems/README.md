@@ -64,7 +64,6 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
-
 - #### Passing a copy of the list VS original value
 ```
 l = [1]
