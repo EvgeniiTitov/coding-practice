@@ -13,10 +13,6 @@ ordering on the subsets of three elements of S = {1,2,3,4,5,6} is:
 ```
 123 < 124 < 125 < 126 < 134 < 135 < 136 < 145 < 146 < 156 < 234 < 235 < 236 < 245 < 246 < 256 < 345 < 346 < 356 < 456
 ```
-
-- Power set - all possible combinations of all possible lengths, from 0 to N.
-
-
 - Optimal substructure - a problem is said to have optimal substructure if an 
 optimal solution could be constructed from optimal solutions of its subproblems. 
 Say, Fib(N) = Fib(N - 1) + Fib(N - 2)
@@ -27,6 +23,25 @@ if the problem can be broken down into subproblems which are reused several
 times or a recursive algorithm for the problem solves the same subproblem over 
 and over rather than generating new subproblems - good example is calculating Fibonacci
 
+- A subset - any combination of elements from a set. A set with N elements, 
+subsets: 2 ^ N. Example: {1, 5} --> 2 ^ 2 = 4 --> {}, {1}, {5}, {1, 5}. A set 
+with 3 elements has 2 ^ 3 = 8 subsets, etc.
+
+- Power set - all possible combinations of all possible lengths, from 0 to N.
+
+![alt text](../../images/combinations_vs_permutations.png?raw=true)
+
+^ 5 letters available (A, B, C, D, E)
+
+- Permutations and Combinations are the ways in which objects from a set may be
+selected to form subsets.
+
+  - Combinations - order doesn't matter: {A, C, B} and {A, B, C} are the same 
+  combination.
+
+  - Permutations - ordered combination, the total length must be equal to the
+    original input
+  
 ---
 
 ## General information:
@@ -49,6 +64,39 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+
+- #### Passing a copy of the list VS original value
+```
+l = [1]
+def pass_me_a_list(input_l):
+    print(input_l is l)
+    
+l2 = l
+l3 = l + [2]
+l2.append(2)
+pass_me_a_list(l2)
+True
+pass_me_a_list(l3)
+False
+```
+
+```list + [...] creates a copy!```
+
+Ways to copy:
+```python
+original_l = [1, 2]
+l_1 = original_l  
+# Proper copies
+l_2 = original_l.copy()
+l_3 = original_l[:]
+l_4 = original_l[::]
+l_5 = list(original_l)
+
+original_l.append(3)  # Affects l_1 as its reference to the same list in memory
+
+l_6 = original_l + [4]  # Creates a copy and adds 4 to it: [1, 2, 3, 4]
+```
+---
 
 - #### Find Binary Tree paths (using a param to keep track of different paths)
 
