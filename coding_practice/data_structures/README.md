@@ -1,6 +1,12 @@
 ### TODO:
 
-- AVL trees and why self balancing is important for trees
+- AVL trees and why self-balancing is important for trees
+
+- B-tree (relevant to DB design)
+
+- LSM-tree (relevant to DB design)
+
+- Merkle tree implementation (relevant to DB design)
 
 - Graphs (stopped at 355, pending: Min spanning trees, Floyd Warshall, Kruskal and Prim's)
 
@@ -106,6 +112,16 @@ memory chunk as it grows etc
   - Size - O(1)
   - Creating a heap by pushing N elements to an empty (initially heap) is - O(N log N), 
   don't do it, heapify an array instead
+
+
+- ### Merkle Tree (hash tree)
+
+  - Space - O(N)
+  - Searching - O(log N)
+  - Traversal - O(N)
+  - Insertion - O(log N)
+  - Deletion - O(log N)
+  - Synchronization - O(log N)
 
 
 - ### Tries (TBA)
