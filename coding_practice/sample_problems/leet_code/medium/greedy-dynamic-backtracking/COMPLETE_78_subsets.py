@@ -45,6 +45,27 @@ class Solution:
             )
             curr_subset.pop()
 
+    # --- Another way ---
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+
+        def _generate_subsets(
+            length_required: int, start: int, curr_path: List[int]
+        ) -> None:
+            if len(curr_path) == length_required:
+                subsets.append(curr_path[:])
+                return
+
+            for i in range(start, length):
+                curr_path.append(nums[i])
+                _generate_subsets(length_required, i + 1, curr_path)
+                curr_path.pop()
+
+        subsets = []
+        length = len(nums)
+        for i in range(length + 1):
+            _generate_subsets(i, 0, [])
+        return subsets
+
 
     # --- THIS IS SLIGHTLY INCORRECT AS IT GENERATES COPIES AS WELL ---
     # [[], [1], [1, 2], [1, 3], [2], [2, 1], [2, 3], [3], [3, 1], [3, 2]]
