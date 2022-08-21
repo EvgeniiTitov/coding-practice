@@ -12,6 +12,9 @@ class ListNode:
     def __str__(self) -> str:
         return f"ListNode: value {self.val}"
 
+    def __repr__(self) -> str:
+        return f"ListNode: value {self.val}"
+
 
 def build_singly_ll_from_sequence(
     elements: t.Sequence[t.Any],
@@ -27,7 +30,8 @@ def build_singly_ll_from_sequence(
     return out
 
 
-def print_ll_values(head: ListNode) -> None:
+def print_ll_values(head: ListNode, sep: str = " ") -> None:
+    print()
     while head:
-        print(head.val, end=" ")
+        print(head.val, end=sep)
         head = head.next

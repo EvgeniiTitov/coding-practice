@@ -3,7 +3,9 @@ import heapq
 
 
 """
-Summary:
+Summary: OOP, separation of concerns. Users could be treated as nodes in a graph.
+Each node keep track of the nodes it connects to (followers -> followees). Use
+heap to keep track of the most recent tweets for each user. 
 _______________________________________________________________________________
 
 https://leetcode.com/problems/design-twitter/

@@ -254,6 +254,20 @@ slow, fast runner. When fast reaches the end, the slow one is in the middle! Rev
 starting from middle.next, start iterating simultaneously from the beginning and the reversed
 middle checking if the values match
 
+- (19) Removing n'th node: 2 pointers, move the first one n steps. Then, start moving
+both of them simultaneously until the first one reaches the end. The second one now
+points to the node to delete (prev.next = current.next)
+
+- (142) Cycle 2, return the node where the cycle begins: Floyd algorithm: 2 runners slow
+and fast. If there is a cycle, at some point slow == fast. if not, the fast reaches the end ->
+no cycle. If there is, then the phase 2 is to have 2 pointers: one starts from the intersection,
+the other from the start, move them simultaneously at the same speed. The node where they
+intersect - the entrance to the cycle.
+
+- (287) Find the duplicate number: The list has N + 1 ints, each [1, n]. Its a LL under the hood.
+Floyds algorithm: slow = fast = nums[0]. Then, search for the intersection (slow == fast). Once
+found, find the entrance by using 2 pointers (from start and intersection)
+
 ---
 
 #### Trees
@@ -366,7 +380,12 @@ if the last vertex == destination
 until 1 left or all destroyed. Use heap to get 2 heaviest stoned, smash them, 
 push to the heap if their sizes !=. Keep doing till there is just 1 or nothing 
 
--
+- (355) OOP, separation of concerns. Users could be treated as nodes in a graph.
+Each node keep track of the nodes it connects to (followers -> followees). Use
+heap to keep track of the most recent tweets for each user. Tweets could be represented
+as a class, just define __ lt() __ method for the heap to sort them. + Tweet id
+is not a timestamp to sort on, use Tweet class attriute to generate IDs fo each
+new tweet.
 
 ---
 

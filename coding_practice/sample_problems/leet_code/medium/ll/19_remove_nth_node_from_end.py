@@ -8,7 +8,7 @@ from coding_practice.utils import (
 
 """
 Summary: The idea is to use 2 pointers. Move one N steps, and then move both 
-of them until the one moved reached the end of the list - that results in the
+of them until the one moved reaches the end of the list - that results in the
 first one being on the node that needs deletion.
 _______________________________________________________________________________
 
@@ -16,7 +16,6 @@ https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 Given the head of a linked list, remove the nth node from the end of the list 
 and return its head.
-
 
 Example 1:
 Input: head = [1,2,3,4,5], n = 2
