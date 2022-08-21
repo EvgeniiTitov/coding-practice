@@ -1,0 +1,22 @@
+Data Structures:
+    - Graphs:
+        - All pair shortest path
+        - Floyd Warshall
+        - Min Spanning Tree
+        - Kruskal and Prims
+
+    - Circular LL
+
+    - Trees:
+        - AVL Trees
+        - Merkle Trees
+        - B-tree
+        - LSM Tree
+
+
+Algorithms:
+    - Further practice: Greedy, DP
+
+    - Further practice: Backtracking
+
+    - Bit manipulation
