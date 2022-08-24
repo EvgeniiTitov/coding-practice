@@ -1,6 +1,10 @@
 import typing as t
 
 
+# TODO: Forgot to update self._tail when insert_value position is the end,
+#       see how I fixed it in circular_doubly_ll
+
+
 """
 When it comes to dealing with circular linked lists, regardless whether its
 singly or doubly ll, we want to have a HEAD and a TAIL:

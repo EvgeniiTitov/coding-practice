@@ -5,8 +5,6 @@ Data Structures:
         - Min Spanning Tree
         - Kruskal and Prims
 
-    - Circular LL
-
     - Trees:
         - AVL Trees
         - Merkle Trees
@@ -15,8 +13,4 @@ Data Structures:
 
 
 Algorithms:
-    - Further practice: Greedy, DP
-
-    - Further practice: Backtracking
-
     - Bit manipulation
