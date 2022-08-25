@@ -64,6 +64,41 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+- #### Possible palindrom centers
+
+1. When it comes to finding all palindrome substrings, there could be 2N - 1 centres,
+say, you have a string: `aaa`, there're 5 possible centers (between letters as well)
+
+2. Left and right either coincide or not (odd / even). //2 because i ranges [0, 2N - 1]
+
+Finding all palindrome substrings:
+```python
+def countSubstrings(self, s: str) -> int:
+
+    def _expand_around_centre(centre: int) -> int:
+        counter = 0
+
+        left = centre // 2
+        right = left + centre % 2
+        while left >= 0 and right <= length - 1 and s[left] == s[right]:
+            counter += 1
+            left -= 1
+            right += 1
+        return counter
+
+    length = len(s)
+    if length == 1:
+        return 1
+
+    counter = 0
+    for i in range(2 * length - 1):
+        counter += _expand_around_centre(i)
+
+    return counter
+```
+
+---
+
 - #### Passing a copy of the list VS original value
 ```
 l = [1]

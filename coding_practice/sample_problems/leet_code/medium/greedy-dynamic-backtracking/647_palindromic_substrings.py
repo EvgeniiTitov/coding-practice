@@ -2,14 +2,9 @@ import typing as t
 
 
 """
-Thoughts:
-    The solution needs pointers, how do we pick them?
-        - Left, right (ends of the string)
-        - Both at the start
-        - Both at the middle and then expand from there
-    
-
-Summary:
+Summary: Brute force is a good start, expanding around center (2N - 1) centres
+is a good solution. DP bottom-up is hard to come up with, slow and takes a lot of
+space anyways
 _______________________________________________________________________________
 
 https://leetcode.com/problems/palindromic-substrings/
@@ -50,20 +45,67 @@ class Solution:
 
         return counter
 
-    # D&C
+    # T: O(N2); S: O(1)
     def countSubstrings(self, s: str) -> int:
 
-        def _count_palindromic_substrings(
-            string: str, left: int, right: int
-        ) -> int:
-            # TODO: Start from the centre - expand
-            pass
+        def _expand_around_centre(centre: int) -> int:
+            counter = 0
+            left = centre // 2  # // 2 because i [0, 2N - 1]
+            right = left + centre % 2
+            while left >= 0 and right <= length - 1 and s[left] == s[right]:
+                counter += 1
+                left -= 1
+                right += 1
+            return counter
 
         length = len(s)
         if length == 1:
             return 1
 
-        return _count_palindromic_substrings(s, 0, length - 1)
+        counter = 0
+        for i in range(2 * length - 1):
+            counter += _expand_around_centre(i)
+
+        return counter
+
+    # Recursive Brute Force, Time Limit Exceeded, super slow haha
+    def countSubstrings(self, s: str) -> int:
+
+        def _is_palindrome(left: int, right: int) -> int:
+            if left >= right:
+                return 1
+            if s[left] != s[right]:
+                return 0
+            else:
+                return _is_palindrome(left + 1, right - 1)
+
+        length = len(s)
+        if length == 1:
+            return 1
+        counter = 0
+        for i in range(length):
+            for j in range(i, length):
+                if _is_palindrome(i, j):
+                    counter += 1
+        return counter
+
+    # DP bottom-up - the fuck am I doing with my life dude
+    # T: O(N2); S: O(N2)
+    def countSubstrings(self, s: str) -> int:
+        length = len(s)
+        if length == 1:
+            return 1
+
+        arr = [[0] * length for _ in range(length)]
+        counter = 0
+        for i in range(length - 1, -1, -1):
+            for j in range(i, length):
+                arr[i][j] = (
+                        s[i] == s[j]
+                        and ((j - i + 1) < 3 or arr[i + 1][j - 1])
+                )
+                counter += arr[i][j]
+        return counter
 
 
 def main():
