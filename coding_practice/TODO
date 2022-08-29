@@ -1,7 +1,6 @@
 Data Structures:
+
     - Graphs:
-        - All pair shortest path
-        - Floyd Warshall
         - Min Spanning Tree
         - Kruskal and Prims
 
@@ -14,3 +13,5 @@ Data Structures:
 
 Algorithms:
     - Bit manipulation
+
+- How to calculate time complexity for graphs and trees
