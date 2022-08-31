@@ -26,6 +26,11 @@ roots of each node (each node is a set of its own, unite them into a greater
 one representing the nodes/set of the current solution - min spanning tree).
 
 IMPORTANT: MST property is its number of edges = number of vertices - 1.
+
+The intermediate solution, say a list, could contain multiple subsets. As you
+add edges, they are sorted in the ascending order, so they could come from
+different parts of our graph. Eventually, all these subsets will merge into 
+the single set once the MST is reached.
 """
 
 
@@ -63,13 +68,16 @@ class Graph:
             ds_source_root = disjoint_set.find(source)
             ds_dest_root = disjoint_set.find(dest)
 
-            # Check if they belong to the same set, i.e there is a cycle
+            # Check if they belong to the same set, i.e there is a cycle. If
+            # not, add the edge to the solution, increment the edges counter
+            # and unite the edges into a single set.
             if ds_source_root != ds_dest_root:
                 curr_nb_edges_in_mst += 1
                 min_spanning_tree.append((source, dest, weight))
 
                 # Union edges together
                 disjoint_set.union(ds_source_root, ds_dest_root)
+
         return min_spanning_tree
 
     def __str__(self) -> str:
