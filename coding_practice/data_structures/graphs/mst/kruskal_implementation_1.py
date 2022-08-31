@@ -24,6 +24,8 @@ to the same subset.
 If that's not the case, add the current edge to the solution AND unite the 
 roots of each node (each node is a set of its own, unite them into a greater
 one representing the nodes/set of the current solution - min spanning tree).
+
+IMPORTANT: MST property is its number of edges = number of vertices - 1.
 """
 
 
@@ -51,9 +53,9 @@ class Graph:
         self._graph = sorted(self._graph, key=lambda item: item[-1])
 
         min_spanning_tree = []
-        curr_edge_index = 0
-        curr_iter = 0
-        while curr_iter < self._nb_vertices - 1:  # [0, N)
+        curr_edge_index = 0  # Edge index
+        curr_nb_edges_in_mst = 0  # MST has nb vertices - 1
+        while curr_nb_edges_in_mst < self._nb_vertices - 1:
             source, dest, weight = self._graph[curr_edge_index]
             curr_edge_index += 1
 
@@ -63,7 +65,7 @@ class Graph:
 
             # Check if they belong to the same set, i.e there is a cycle
             if ds_source_root != ds_dest_root:
-                curr_iter += 1
+                curr_nb_edges_in_mst += 1
                 min_spanning_tree.append((source, dest, weight))
 
                 # Union edges together
