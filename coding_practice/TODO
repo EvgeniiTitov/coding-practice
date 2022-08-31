@@ -1,8 +1,7 @@
 Data Structures:
 
     - Graphs:
-        - Min Spanning Tree
-        - Kruskal and Prims
+        - Prims algorithm
 
     - Trees:
         - AVL Trees
@@ -14,4 +13,6 @@ Data Structures:
 Algorithms:
     - Bit manipulation
 
-- How to calculate time complexity for graphs and trees
+General:
+    - How to calculate time complexity for graphs and trees
+    - Amortized time
