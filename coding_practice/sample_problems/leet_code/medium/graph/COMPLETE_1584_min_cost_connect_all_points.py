@@ -1,6 +1,9 @@
 from typing import List, Any, MutableMapping
 
 
+# TODO: Solve it with Prim algorithm as well
+
+
 """
 Summary:
     Kruskals + DisJoint set. Generate edges between the points, sort them,
