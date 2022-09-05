@@ -1,6 +1,6 @@
 import typing as t
 
-from coding_practice.data_structures.disjoint_set import DisjointSet
+from coding_practice.data_structures.disjointSet_unionFind import DisjointSet
 
 
 """

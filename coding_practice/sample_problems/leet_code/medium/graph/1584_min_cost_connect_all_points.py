@@ -3,6 +3,12 @@ from typing import List, Any, MutableMapping
 
 """
 Summary:
+    Kruskals + DisJoint set. Generate edges between the points, sort them,
+    then create a disjoint set with vertices = points. Implement the Kruskal's 
+    algorithm - pick an edge, get its parents from the disjoint set, if they
+    are not the same (no cycle), edge the edge to the solution, merge the sets,
+    else, skil the edge.
+
     When generating edges you did it:
         edges = []
         for i in range(number_points):
