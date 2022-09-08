@@ -1,5 +1,5 @@
 private_*
-playground.py
+playground*.py
 
 .idea/
 *.weights
