@@ -1,9 +1,6 @@
 from typing import List, Any, MutableMapping
 
 
-# TODO: Solve it with Prim algorithm as well
-
-
 """
 Summary:
     Kruskals + DisJoint set. Generate edges between the points, sort them,
@@ -59,7 +56,7 @@ Output: 18
 """
 
 
-
+# MY KRUSKALS SOLUTION
 # THIS SOLUTION BELOW IS CRAZY YET CORRECT! GOOD REFERENCE EUGENE FOR INDEPTH
 
 Vertex = Any
@@ -149,6 +146,108 @@ class Solution:
                 disjoint_set.union(ds_source_root, ds_dest_root)
 
         return sum(min_spanning_tree)
+
+
+# MY PRIMS SOLUTION
+# TIME LIMIT EXCEEDED 71 / 72 test cases passed.
+class Solution:
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+
+        from collections import defaultdict
+        import heapq
+
+        def _calculate_distance(point_1: list[int], point_2: list[int]) -> int:
+            x1, y1 = point_1
+            x2, y2 = point_2
+            return abs((x1 - x2)) + abs((y1 - y2))
+
+        def _build_graph_repr() -> dict:
+            graph = defaultdict(dict)
+            for i in range(number_of_points):
+                for j in range(number_of_points):
+                    if i == j:
+                        continue
+                    source = points[i]
+                    dest = points[j]
+                    distance = _calculate_distance(source, dest)
+                    graph[tuple(source)][tuple(dest)] = distance
+            return graph
+
+        number_of_points = len(points)
+        if number_of_points == 2:
+            return _calculate_distance(*points)
+        elif number_of_points == 1:
+            return 0
+
+        graph = _build_graph_repr()
+        """
+        Vertex: (0, 0). Neighbours: {(2, 2): 4, (3, 10): 13, (5, 2): 7, (7, 0): 7}
+        Vertex: (2, 2). Neighbours: {(0, 0): 4, (3, 10): 9, (5, 2): 3, (7, 0): 7}
+        Vertex: (3, 10). Neighbours: {(0, 0): 13, (2, 2): 9, (5, 2): 10, (7, 0): 14}
+        Vertex: (5, 2). Neighbours: {(0, 0): 7, (2, 2): 3, (3, 10): 10, (7, 0): 4}
+        Vertex: (7, 0). Neighbours: {(0, 0): 7, (2, 2): 7, (3, 10): 14, (5, 2): 4}
+        """
+
+        source = list(graph.keys())[0]
+        visited = {source}
+        edges = [
+            (weight, source, to)
+            for to, weight in graph[source].items()
+        ]
+        heapq.heapify(edges)
+
+        total_weight = 0
+        while len(edges):
+            weight, from_vertex, to_vertex = heapq.heappop(edges)
+            if to_vertex not in visited:
+                visited.add(to_vertex)
+                total_weight += weight
+
+                for vertex_next, weight in graph[to_vertex].items():
+                    if vertex_next not in visited:
+                        heapq.heappush(edges, (weight, to_vertex, vertex_next))
+
+        return total_weight
+
+
+# PRIMS FROM SOLUTION
+class Solution:
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+        import heapq
+
+        n = len(points)
+
+        # Min-heap to store minimum weight edge at top.
+        heap = [(0, 0)]
+
+        # Track nodes which are included in MST.
+        in_mst = [False] * n
+
+        mst_cost = 0
+        edges_used = 0
+
+        while edges_used < n:
+            weight, curr_node = heapq.heappop(heap)
+
+            # If node was already included in MST we will discard this edge.
+            if in_mst[curr_node]:
+                continue
+
+            in_mst[curr_node] = True
+            mst_cost += weight
+            edges_used += 1
+
+            for next_node in range(n):
+                # If next node is not in MST, then edge from curr node
+                # to next node can be pushed in the priority queue.
+                if not in_mst[next_node]:
+                    next_weight = (
+                            abs(points[curr_node][0] - points[next_node][0]) +
+                            abs(points[curr_node][1] - points[next_node][1])
+                    )
+                    heapq.heappush(heap, (next_weight, next_node))
+
+        return mst_cost
 
 
 def main():

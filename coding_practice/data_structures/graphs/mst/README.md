@@ -25,3 +25,8 @@ While T is not yet a spanning tree
 A safe edge is an edge that connects a vertex that is in the spanning tree T to
 a vertex that is not in the spanning tree (avoiding cycles).
 
+---
+
+- Prim's needs a source whereas Kruskal doesn't. It sorts the edges and then
+slowly builds the solution.
+
