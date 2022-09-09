@@ -60,6 +60,7 @@ class Solution:
 
         return total_coins if current_amount == amount else -1
 
+    # Divide and Conquer, EXCEEDED TIME LIMIT
     def coinChange(self, coins: List[int], amount: int) -> int:
 
         def _reach_amount(
@@ -74,6 +75,7 @@ class Solution:
             if curr_amount == amount:
                 return True, curr_coins_used
 
+            has_reached, coins_took = False, float("inf")
             for denomination_index in range(curr_denomination_idx, total_coins):
                 is_reached, nb_coins = _reach_amount(
                     curr_denomination_idx=denomination_index,
@@ -81,9 +83,10 @@ class Solution:
                     curr_coins_used=curr_coins_used + 1
                 )
                 if is_reached:
-                    return True, nb_coins
+                    has_reached = True
+                    coins_took = min(coins_took, nb_coins)
 
-            return False, 0
+            return (True, coins_took) if has_reached else (False, 0)
 
         if amount == 0:
             return 0
