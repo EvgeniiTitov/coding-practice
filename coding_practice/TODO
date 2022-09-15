@@ -3,6 +3,12 @@ https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-struct
 
 Data Structures:
 
+    - Composites:
+        - Max Stack (complete, almost done)
+        - Timed LRU Cache
+        - MRU Cache
+        - LFU Cache
+
     - Trees:
         - AVL Trees (MUST DO)
         - B-tree (MUST DO)
