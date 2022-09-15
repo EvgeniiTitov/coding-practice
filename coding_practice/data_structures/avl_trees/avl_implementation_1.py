@@ -2,15 +2,21 @@ import typing as t
 from queue import Queue
 
 
-# TODO: Complete me (stopped 261)
+# TODO: Complete me (stopped 260)
 
 
 """
 TODO: I don't like we call traversal for Nones, unnecessary calls, just check
 TODO: To aggregate values pass a list to a function and keep adding there
 TODO: To use a generator instead implement the traversal iteratively
+-------------------------------------------------------------------------------
 
-
+--> Inserting nodes into AVL tree:
+    Case 1 - rotation is not required
+    Case 2 - rotation is required (some part of the tree is imbalanced)
+    
+    If rotation is not required, the logic is the same as in BST
+    
 """
 
 
@@ -21,6 +27,8 @@ class AVLNode:
         self.right = None
         self.height = 1
 
+
+# ------------------------------- TRAVERSALS ----------------------------------
 
 def pre_order_traversal(root: t.Optional[AVLNode]) -> None:
     if not root:
@@ -62,22 +70,24 @@ def level_order_traversal(root: t.Optional[AVLNode], sep: str = "\n") -> None:
     print()
 
 
-def _insert_bst_node_no_balancing(root: AVLNode, child: AVLNode) -> None:
-    if child.data == root.data:
+# ----------------------------- BST OPERATIONS --------------------------------
+
+def _insert_bst_node_no_balancing(root: AVLNode, new_node: AVLNode) -> None:
+    if new_node.data == root.data:
         return
-    elif child.data < root.data:
+    elif new_node.data < root.data:
         if not root.left:
-            root.left = child
+            root.left = new_node
         else:
-            _insert_bst_node_no_balancing(root.left, child)
+            _insert_bst_node_no_balancing(root.left, new_node)
     else:
         if not root.right:
-            root.right = child
+            root.right = new_node
         else:
-            _insert_bst_node_no_balancing(root.right, child)
+            _insert_bst_node_no_balancing(root.right, new_node)
 
 
-def build_avl_from_iterable(items: t.Sequence[t.Any]) -> t.Optional[AVLNode]:
+def build_bst_from_iterable(items: t.Sequence[t.Any]) -> t.Optional[AVLNode]:
     if not len(items):
         return
     root = AVLNode(items[0])
@@ -106,7 +116,7 @@ def search_value(root: AVLNode, value: t.Any) -> bool:
 
 def main():
     items = [70, 50, 90, 30, 60, 20, 40, 80, 100]
-    root = build_avl_from_iterable(items)
+    root = build_bst_from_iterable(items)
     level_order_traversal(root, sep=" ")
     print("Searching value 200", search_value(root, 200))
     print("Searching value 20", search_value(root, 20))

@@ -1,16 +1,17 @@
 https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide
 
+
 Data Structures:
 
     - Trees:
         - AVL Trees (MUST DO)
-        - Merkle Trees (READ ABOUT)
         - B-tree (MUST DO)
+
+        - Merkle Trees (READ ABOUT)
         - LSM Tree (READ ABOUT)
         - Fenwick Tree (READ ABOUT)
 
     - Sparse table (READ ABOUT)
-
 
 
 Algorithms:
