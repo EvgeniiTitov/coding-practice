@@ -2,7 +2,8 @@ import typing as t
 
 
 """
-Summary:
+Summary: Brute force in the D&C manner consider all possibilities for * OR
+a smart way with a couple of passes keeping track of the ( and ) occurrences
 _______________________________________________________________________________
 
 https://leetcode.com/problems/valid-parenthesis-string/
