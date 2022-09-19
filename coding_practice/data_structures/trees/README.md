@@ -519,3 +519,32 @@ def lowestCommonAncestor(
         else:
             return node
 ```
+
+- #### Kth smallest element in BST
+
+The element could be done either recursively or iteratively. Below is the iterative
+solution showing how to reach the smallest node (left down), and then iterate through
+them.
+
+We go left and down as far as we can. Then, we pop a node, count it, and go to
+the right as it might have more nodes!
+
+
+```python
+ def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+    stack = []
+    while True:
+        # ! Reach the smallest value while accumulating the nodes
+        while root:
+            stack.append(root)
+            root = root.left
+
+        root = stack.pop()
+        k -= 1
+
+        if not k:
+            return root.val
+        
+        # THIS IS IMPORTANT
+        root = root.right
+```
