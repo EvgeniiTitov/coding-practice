@@ -23,6 +23,16 @@ Data Structures:
 Algorithms:
     - Bit manipulation (MUST DO)
 
+    - Backtracking problems to solve:
+        - 78. Subsets
+        - 90. Subsets II
+        - 46. Permutations (SOLVED)
+        - 47. Permutations II
+        - 77. Combinations
+        - 40. Combination Sum II
+        - 216. Combination Sum III (SOLVED)
+        - 131. Palindrome Partition
+
 
 General:
     - How to calculate time complexity for graphs and trees
