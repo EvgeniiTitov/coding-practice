@@ -64,6 +64,37 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+- #### FOR loops (linear time) does not always mean left --> right or right --> left passes.
+
+Consider this example - find the longest consecutive sequence in the array. We
+turn nums into a set to eliminate duplicates AND allow constant time lookups. Then,
+we iterate over nums and search for starts of ascending sequences - start num wouldnt
+have num - 1 in the set. For each start, we check how long the ascending sequence is!
+SO, we iterate through nums but not left to right, we find a certain value we're
+interesated in and then *go up*. 
+
+```python
+# T: O(N); S: O(N)
+def longestConsecutive(self, nums: List[int]) -> int:
+    nums = set(nums)  # O(N)
+    longest_global = 0
+
+    for num in nums:
+        # Found a new potential start for the ascending sequence
+        if num - 1 not in nums:
+            current_num = num
+            longest_current = 1
+
+            while current_num + 1 in nums:
+                current_num += 1
+                longest_current += 1
+
+            longest_global = max(longest_global, longest_current)
+
+    return longest_global
+```
+
+
 - #### Possible palindrom centers
 
 1. When it comes to finding all palindrome substrings, there could be 2N - 1 centres,
