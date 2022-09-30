@@ -64,38 +64,32 @@ class Solution:
         _build_expression([])
         return evaluated_to_target
 
-    def cache(self, func):
-        cache = {}
-        def wrapper(nums, curr_index, *args):
-            if curr_index not in cache:
-                cache[curr_index] = func(nums, curr_index, *args)
-            return cache[curr_index]
-        return wrapper
-
     # Top-down
+    # TODO: Add memoization
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        return self.build_expression(nums, 0, 0, target, 0)
 
-    @cache(self)  # TODO: HOW TO WRITE CLASS DECORATOR EUGENE?
-    def build_expression(
-        self,
-        nums: List[int],
-        curr_index: int,
-        curr_sum: int,
-        target: int,
-        evaluated_to_target: int
-    ) -> int:
-        if curr_index >= len(nums):
-            if curr_sum == target:
-                evaluated_to_target += 1
-            return evaluated_to_target
+        def build_expression(
+            nums: List[int],
+            curr_index: int,
+            curr_sum: int,
+            target: int
+        ) -> None:
+            nonlocal evaluated_to_target
 
-        evaluated_to_target = self.build_expression(nums, curr_index + 1,
-                              curr_sum + nums[curr_index], target,
-                              evaluated_to_target)
-        evaluated_to_target = self.build_expression(nums, curr_index + 1,
-                              curr_sum - nums[curr_index], target,
-                              evaluated_to_target)
+            if curr_index >= len(nums):
+                if curr_sum == target:
+                    evaluated_to_target += 1
+                return
+
+            build_expression(
+                nums, curr_index + 1, curr_sum + nums[curr_index], target
+            )
+            build_expression(
+                nums, curr_index + 1, curr_sum - nums[curr_index], target
+            )
+
+        evaluated_to_target = 0
+        build_expression(nums, 0, 0, target)
         return evaluated_to_target
 
 
