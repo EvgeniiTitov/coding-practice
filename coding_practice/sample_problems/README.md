@@ -64,7 +64,8 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
-- #### Keeping track of intermediate result/state
+- #### Keeping track of intermediate result/state (variable VS list/set)
+
 Often when dealing with recursion etc, I accumulate results in a list/set and then
 pass it to the next call. However, often it is not necessary, just calculate a value.
 Say, when reaching a target value, there is no point accumulating numbers in a list
