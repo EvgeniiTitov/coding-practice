@@ -64,6 +64,43 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+- #### Keeping track of intermediate result/state
+Often when dealing with recursion etc, I accumulate results in a list/set and then
+pass it to the next call. However, often it is not necessary, just calculate a value.
+Say, when reaching a target value, there is no point accumulating numbers in a list
+and then passing it, just sum them up.
+
+```python
+def findTargetSumWays(self, nums: List[int], target: int) -> int:
+
+    def build_expression(
+        nums: List[int],
+        curr_index: int,
+        curr_sum: int,
+        target: int
+    ) -> None:
+        nonlocal evaluated_to_target
+
+        if curr_index >= len(nums):
+            if curr_sum == target:
+                evaluated_to_target += 1
+            return
+
+        build_expression(
+            nums, curr_index + 1, curr_sum + nums[curr_index], target
+        )
+        build_expression(
+            nums, curr_index + 1, curr_sum - nums[curr_index], target
+        )
+
+    evaluated_to_target = 0
+    build_expression(nums, 0, 0, target)
+    return evaluated_to_target
+```
+In my first iteration of ^, I accumulated the signs + and - in a list and then
+evaluated the expression, which is not as clean as just passing a single number - 
+current sum.
+
 - #### FOR loops (linear time) does not always mean left --> right or right --> left passes.
 
 Consider this example - find the longest consecutive sequence in the array. We
