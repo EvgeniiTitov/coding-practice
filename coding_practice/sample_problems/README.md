@@ -64,6 +64,14 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+
+---
+
+- #### When accumulating a set of numbers to add up to a target sometimes its beneficial to go down (reaching 0 while subtracking what you picked)
+Instead of having a variable, say, summed_numbers where you keep track of the current sum.
+
+---
+
 - #### Keeping track of intermediate result/state (variable VS list/set)
 
 Often when dealing with recursion etc, I accumulate results in a list/set and then
@@ -103,6 +111,8 @@ In my first iteration of ^, I accumulated the signs + and - in a list and then
 evaluated the expression, which is not as clean as just passing a single number - 
 current sum.
 
+---
+
 - #### FOR loops (linear time) does not always mean left --> right or right --> left passes.
 
 Consider this example - find the longest consecutive sequence in the array. We
@@ -133,6 +143,7 @@ def longestConsecutive(self, nums: List[int]) -> int:
     return longest_global
 ```
 
+---
 
 - #### Possible palindrom centers
 
