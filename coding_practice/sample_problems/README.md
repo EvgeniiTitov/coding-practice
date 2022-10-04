@@ -69,7 +69,8 @@ shortest path between A and B in a graph of uniform weight.
 Often when dealing with recursion etc, I accumulate results in a list/set and then
 pass it to the next call. However, often it is not necessary, just calculate a value.
 Say, when reaching a target value, there is no point accumulating numbers in a list
-and then passing it, just sum them up.
+and then passing it, just sum them up, unless you need to know the combination 
+(numbers that made up the sum)
 
 ```python
 def findTargetSumWays(self, nums: List[int], target: int) -> int:
