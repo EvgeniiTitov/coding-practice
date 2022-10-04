@@ -1,8 +1,14 @@
 from typing import List
 
 
+# TODO: Memoization (Top-Down). Bottom-up
+
+
 """
-Summary:
+Summary: 
+    Backtracking: Here base case is when we've processed all numbers, we can't
+    end earlier like in a task when search for all combinations that add up to 
+    the target. 
 _______________________________________________________________________________
 
 https://leetcode.com/problems/target-sum/
@@ -64,8 +70,7 @@ class Solution:
         _build_expression([])
         return evaluated_to_target
 
-    # Top-down
-    # TODO: Add memoization
+    # T: O(2 ^ N); S: O(N)
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
 
         def build_expression(
