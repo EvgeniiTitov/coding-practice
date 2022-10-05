@@ -64,6 +64,15 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+---
+
+- #### Slicing out a single char from a string. Good for D&C etc
+
+```python
+s = 'abcde'
+for i in range(len(s)):
+    print(s[:i] + s[i + 1:])
+```
 
 ---
 
