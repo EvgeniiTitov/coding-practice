@@ -95,6 +95,7 @@ memory chunk as it grows etc
   - Insertion - O(1)
   - Deletion - O(1)
 
+
 - ### Circular Singly Linked List
 
   - Creation - O(1)
@@ -103,6 +104,7 @@ memory chunk as it grows etc
   - Traversing - O(N)
   - Node deletion - O(N)
   - Deletion of the entire LL - O(1)
+
 
 - ### Circular Doubly Linked List
 
@@ -113,7 +115,8 @@ memory chunk as it grows etc
   - Node deletion (on edges its O(1)) - O(N)
   - Deletion of the entire LL - O(N)
 
-- ### Binary Search Tree
+
+- ### Binary Search Tree (balanced)
   
   - Access - O(log N)
   - Search - O(log N)
