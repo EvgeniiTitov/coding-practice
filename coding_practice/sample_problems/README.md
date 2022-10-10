@@ -64,6 +64,30 @@ shortest path between A and B in a graph of uniform weight.
 
 ## To remember:
 
+
+---
+
+- #### Picking graph algorithm to solve a problem at hand
+
+When dealing wih graph questions, pay attention to:
+```
+1. Directed / Undirected
+2. Weighted / Unweighted
+3. Cyclic / Acyclic
+```
+^ will define the algorithm(s) to consider to solve the problem at hand. 
+Usually:
+```
+- Shortest path problem for unweighted G - BFS
+- Shortest path weighted (positive) graph - Dijkstra
+- Shortest path weighted (negative -> potential cycles) graph - Bellman Ford
+```
+
+On top of that, there're intereating variations of problems such as find min
+path within K stops. We can't just use D or B because they minimise the cost,
+not the number of vertices. Further modifications are needed, or use BFS while
+keeping track of the cost for each branch. 
+
 ---
 
 - #### Slicing out a single char from a string. Good for D&C etc
