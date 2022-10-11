@@ -3,6 +3,10 @@ from typing import List, Tuple
 
 """
 Summary:
+    Brute force - pick valid starting coordinates. Then, from each coordinate
+    try making a full circle.
+    
+    Greedy - Single pass magic
 _______________________________________________________________________________
 
 https://leetcode.com/problems/gas-station/
@@ -46,7 +50,6 @@ Therefore, you can't travel around the circuit once no matter where you start.
 
 class Solution:
 
-    # Nice dude I sure could come up with this fucking stupid ass solution fuck off
     # TODO: Explanation https://leetcode.com/problems/gas-station/discuss/1004074/Greedy-Method-or-Explanation-%2B-Visual-or-Python
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         total_tank, curr_tank = 0, 0

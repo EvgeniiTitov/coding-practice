@@ -6,6 +6,7 @@ from typing import List
 
 """
 Summary:
+    Brute force - D&C pretty much or a top-down DP variation. 
 _______________________________________________________________________________
 
 https://leetcode.com/problems/jump-game-ii/
@@ -70,6 +71,7 @@ class Solution:
 
             # Avoid out of bounds jumps
             furthest_jump = min(curr_index + nums[curr_index], length - 1)
+
             min_jumps = float("inf")
             for i in range(furthest_jump, curr_index, -1):
                 jumps_took = _find_shortest_path_up(
@@ -95,7 +97,7 @@ class Solution:
     def jump(self, nums: List[int]) -> int:
 
         def _find_shortest_path_up(
-                curr_index: int = 0, curr_jumps: int = 0
+            curr_index: int = 0, curr_jumps: int = 0
         ) -> int:
             # Base case
             if curr_index == destination:
@@ -103,6 +105,8 @@ class Solution:
 
             # Avoid out of bounds jumps
             furthest_jump = min(curr_index + nums[curr_index], length - 1)
+
+            # Greedily start from jumping as far as possible
             min_jumps = float("inf")
             for i in range(furthest_jump, curr_index, -1):
                 jumps_took = _find_shortest_path_up(
