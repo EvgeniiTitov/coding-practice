@@ -3,6 +3,11 @@ from typing import List
 
 """
 Summary:
+    Both solutions pick a number, then either pick the same number OR start
+    picking other available numbers (tree structure). The second solution is
+    easier to cache though because we are going right to left. The cache
+    tells us if we can reach the amount required with the current sum and the
+    remaining coins (curr_coins).
 _______________________________________________________________________________
 
 https://leetcode.com/problems/coin-change-ii/
@@ -43,7 +48,7 @@ class Solution:
     # Brute force. T: O(2 ^ N); Time Limit Exceeded: 14/28
     def change(self, amount: int, coins: List[int]) -> int:
 
-        def _generate_combinations(curr_index: int, curr_amount: int):
+        def _generate_combinations(curr_index: int, curr_amount: int) -> None:
             nonlocal nb_combinations
 
             # Base cases:
@@ -77,15 +82,18 @@ class Solution:
         return nb_combinations
 
     # Top-down
-    # TODO: Complete me, I am failing
     def change(self, amount: int, coins: List[int]) -> int:
 
+        # ! Cache tells us if we can reach the amount required with the current
+        # sum and remaining coins
         def _cache(func):
             _cache = {}
-            def wrapper(index: int, coins: tuple[int]) -> int:
-                if (index, coins) not in _cache:
-                    _cache[(index, coins)] = func(index, amount)
-                return _cache[(index, coins)]
+            def wrapper(curr_amount: int, curr_coins: tuple[int]) -> int:
+                if (curr_amount, curr_coins) not in _cache:
+                    _cache[(curr_amount, curr_coins)] = func(
+                        curr_amount, curr_coins
+                    )
+                return _cache[(curr_amount, curr_coins)]
             return wrapper
 
         @_cache
@@ -98,14 +106,20 @@ class Solution:
                 return 1
 
             # 2. Overshoot
-            if curr_amount > amount or len(curr_coins) == 0:
+            if curr_amount > amount:
                 return 0
 
-            # Probe the solution space
-            return (
-                _generate_combinations(curr_amount + coins[-1], curr_coins)
-                + _generate_combinations(curr_amount, curr_coins[:-1])
-            )
+            # 3. Run out of coins
+            if len(curr_coins) == 0:
+                return 0
+
+            # Keep picking the same coin
+            option_1 = _generate_combinations(curr_amount + curr_coins[-1], curr_coins)
+
+            # Do not pick the current coin, pick the next one
+            option_2 = _generate_combinations(curr_amount, curr_coins[:-1])
+
+            return option_1 + option_2
 
         length = len(coins)
         if length == 1 and coins[0] == amount:
