@@ -65,6 +65,21 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+
+- #### Manual list reversing by hand
+
+Works for both odd and even arrays
+
+```python
+def reverse_array(array: list[T]) -> None:
+    left, right = 0, len(array) - 1
+    while left < right:
+        array[left], array[right] = array[right], array[left]
+        left += 1
+        right -= 1
+```
+
+
 ---
 
 - #### Picking graph algorithm to solve a problem at hand
