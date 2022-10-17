@@ -65,6 +65,13 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+- #### String's .split() works with multiple spaces as well
+
+```python
+s = "   hello                 world "
+print(s.split())  # ['hello', 'world']
+```
+
 
 - #### Manual list reversing by hand
 
