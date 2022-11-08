@@ -34,3 +34,9 @@ General:
     - How to calculate time complexity for graphs and trees
     - Amortized time
     - Two heaps (find the median of a number stream)
+
+
+ML:
+    - XGBoost
+    - Feature Stores
+    - Recommendation engines
