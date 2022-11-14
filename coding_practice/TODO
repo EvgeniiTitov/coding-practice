@@ -37,6 +37,10 @@ General:
 
 
 ML:
-    - XGBoost
+    - XGBoost (propernsity model)
+        - How do we train (what data, preprocessing, GPU, distributed?)
+        - How do we score
+        - Model optimisation (like ONNX/TensorRT)
     - Feature Stores
     - Recommendation engines
+    - Tensorflow Extended
