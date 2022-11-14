@@ -39,7 +39,7 @@ class Solution:
                 return
 
             # Probe the solution space
-            # TODO: You start from index 0 every call, is it correct?
+            # TODO: You start from index 0 every call, is it correct? Yes
             for i, num in enumerate(remaining_nums):
                 nums_left = remaining_nums[: i] + remaining_nums[i + 1:]
                 curr_permutation.append(num)

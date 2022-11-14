@@ -65,6 +65,14 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+- #### `while curr and curr.next`:
+
+Having just `while curr` is NOT enough when you're also checking for the next
+reference. When it reaches None, it throws an error saying None has no .next
+attribute -> `while curr and curr.next:`
+
+---
+
 - #### String's .split() works with multiple spaces as well
 
 ```python
