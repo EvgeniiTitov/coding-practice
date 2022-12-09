@@ -71,6 +71,24 @@ Having just `while curr` is NOT enough when you're also checking for the next
 reference. When it reaches None, it throws an error saying None has no .next
 attribute -> `while curr and curr.next:`
 
+```python
+original = build_singly_ll_from_sequence((1, 2, 3, 4, 5))
+
+# 1) Reaching an actual end of LL (beyond the last node)
+head = original
+while head:
+    print(head)
+    head = head.next
+print("Last:", head)  # None
+
+# 2) Reaching the last node
+head = original
+while head and head.next:
+    print(head)
+    head = head.next
+print("Last:", head)  # 5
+```
+
 ---
 
 - #### String's .split() works with multiple spaces as well
@@ -79,7 +97,7 @@ attribute -> `while curr and curr.next:`
 s = "   hello                 world "
 print(s.split())  # ['hello', 'world']
 ```
-
+---
 
 - #### Manual list reversing by hand
 
@@ -329,7 +347,7 @@ bunch of recursive calls.
 In general, we need the following:
 
 - Base case: when to stop recursive calls (out of bounds, ran out of capacity, etc)
-- Logic to perform recursive calls and do something with their results (add, max, min, compare etc.)
+- Logic to perform recursive calls (probing the solution space) and do something with their results (add, max, min, compare etc.)
 - Cache (passed as a parameter or a use decorator)
 
 ^ This heavily reminds dealing with trees when you have bases cases + calling logic.
@@ -663,7 +681,11 @@ def binary_search(array: list[int], target: int) -> bool:
     return False
 ```
 Sometimes, we could use one of the pointers as the *result*, i.e. we will return
-it. Koko eating bananas:
+it. We find a solution, one of the pointers holds it, but then we also want to check
+just in case we find a better one. We could also try to maximize (as with Koko's banana eating speed) 
+or minimise the result, which I GUESS affects which pointer acts as a result.
+
+Koko eating bananas:
 ```python
 def minEatingSpeed(piles: List[int], h: int) -> int:
     import math
@@ -1010,17 +1032,43 @@ Could use the Floyd's algorithm now to detect the cycle
 
 ---
 
-- When recursively working with trees, an action / modification could be done
+- When recursively working with trees, graphs etc, an action / modification could be done
 either before or after the recursive call(s). Be careful:
 ```python
  def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+     # Base case  
      if not root:
          return None
+     
+     # Recursive call (solution space)
      left = self.invertTree(root.left)
      right = self.invertTree(root.right)
+     
+     # Logic
      root.left = right
      root.right = left
      return root
+```
+
+When doing topological sort, we first need to reach the leaf nodes before we add them
+to the stack:
+
+```python
+def _perform_topological_sort(
+    self, vertex: Vertex, visited: set, stack: Stack
+) -> None:
+    visited.add(vertex)
+    
+    # If a vertex has *kids*, keep propagating deeper
+    for dependent_vertex in self._graph[vertex]:  # T: O(E)
+        if dependent_vertex not in visited:
+            self._perform_topological_sort(
+                dependent_vertex, visited, stack
+            )
+    # Once the vertex with no *kids* reached, add it to stack and go one
+    # level up in the recursive call stack to check if the previous vertex
+    # has other dependent nodes to go to
+    stack.push(vertex)
 ```
 
 ---
