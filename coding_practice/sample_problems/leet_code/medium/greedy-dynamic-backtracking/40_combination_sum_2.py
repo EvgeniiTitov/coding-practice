@@ -111,6 +111,7 @@ class Solution:
                 return
             elif curr_sum == target:
                 generated_combinations.add(tuple(curr_combination))
+                return
             elif curr_sum > target:
                 return
 

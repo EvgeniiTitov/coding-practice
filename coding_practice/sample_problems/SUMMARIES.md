@@ -705,4 +705,136 @@ new tweet.
 ## Greedy / Divide and Conquer / Backtracking
 
 
--
+- `(5) Longest palindrom substring:` Given a string S, return the longest palindromic 
+substring in S.
+
+Brute force is to just generate slices and check each one if its a palindrome
+
+Expanding around the center, iterate over your string (`i in range(len(s))`), for each i
+try expanding around the centre + also check i + 1 (within the same loop) for the even case
+
+---
+
+- `(17) Letter combinations of phone number:` Given a string containing digits [2, 9], return
+all possible letter combinations the number could repr (old phones ~ 3 letters per number)
+
+Text book backtracking, start with the first number, for each letter for the first number consider
+letters for the second number (tree like structure). Base case is when you've run out of numbers,
+accumulate combinations in a list that you pass to your backtracking function. Do not forget to pop()
+the last char you add to your current combination after the recursive call
+
+---
+
+- `(22) Generate parentheses:` Given N pairs of parentheses, generate all combinations of well-formed
+parentheses
+
+Brute force is to generate all combinations (textbook backtracking), and then validate each 
+solution to verify the combination is valid (using a stack).
+
+Better approach is to not generate combinations that are invalid at runtime. To keep track of 
+what is valid, keep track of the number of open and close parentheses used so far (pass them
+to your backtracking function that generates combinations). The number of open ( must be smaller 
+than total_pathentheses // 2 (50% max). The number of closed ones must be < number of open ones,
+if you add more there will be a mismatch! 
+
+--- 
+
+- `(31) Next permutation:` Given an array, return next lexicographically greater permutation
+
+Brute force is to SORT the input array and then generate all lexicographically greater permutations:
+```python
+def generate_permutations(arr: list[int]) -> list[list[int]]:
+
+    def _generate_permutations(
+        curr_nums: list[int],
+        curr_permutation: list[int],
+        permutations: list[list[int]]
+    ) -> None:
+        if not len(curr_nums):
+            permutations.append(curr_permutation.copy())
+            return
+
+        for i, num in enumerate(curr_nums):
+            curr_permutation.append(curr_nums[i])
+            remaining_nums = curr_nums[:i] + curr_nums[i + 1:]
+            _generate_permutations(remaining_nums, curr_permutation, permutations)
+            curr_permutation.pop()
+
+    permutations = []
+    _generate_permutations(arr, [], permutations)
+    return permutations
+```
+Sorting allows to generate lexicographically greater perms.
+Then, iterate through your generated permutations looking for the one you were given,
+pick the next one (first one if the given one is the last in the sequence of generated perms)
+
+
+The proper way is to analyse the provided sequence, we need to find the first ascending pair of numbers
+starting from the right so that a[i] > a[i - 1]. 
+
+Initial: [1, 5, 8, 4, 7, 6, 5, 3, 1]
+
+Starting from the right looking for an ascending subsequence (4, 7). 
+
+From 4 start looking for the smallest number greater than 4. Its 5. Swap [1, 5, 8, 5, 7, 6, 4, 3, 1]
+
+The numbers after 5 now need to be reversed to ensure the smallest perm [1, 5, 8, 5, 1, 3, 4, 6, 7]
+
+---
+
+- `(39) Combination sum:` Given an arr of unique ints and a target. Return all unique combinations of nums 
+that sum up to the target. 
+
+Backtracking - you start from the number index 0. Your base case is checking the sum of the current
+combination: if its > target, prune the branch, return; elif its == target, append to the list of 
+valid combinations. When it comes to probing the solution space, we consider numbers in a loop from 
+current index to len(input_arr), so we never go out of bounds. Do not forget to .pop() after the
+backtracking call.
+
+---
+
+- `(40) Combination sum 2:` Similar to 39, must input array might contain duplicates but the output
+must contain only unique combinations
+
+Two approaches: a) proper algorithm that doesn't generate duplicates, b) data structure that filters
+them out
+
+For b) you could sort your input array, and then use a set that would accumulate combinations
+as tuples, that way you eliminate duplicates.
+
+For a), when probing the solution space you can skip adjacent duplicates (we sorted the input array). 
+In addition, there is no point considering numbers beyond a certain one which already results in us
+overshooting the target (prunning subtrees):
+```python
+def _generate_combinations(
+    curr_index: int,
+    curr_combination: List[int],
+    remaining: int,
+    combinations: List[List[int]]
+) -> None:
+    # Base case
+    if remaining == 0:  # Reached the target
+        combinations.append(curr_combination.copy())
+        return
+
+    for i in range(curr_index, length):
+
+        # ! Skip adjacent duplicates, while addressing the edge case
+        if i > curr_index and candidates[i] == candidates[i - 1]:
+            continue
+
+        num = candidates[i]
+
+        # ! Optimization: To the right only bigger numbers, sorted
+        if remaining - num < 0:
+            break
+
+        curr_combination.append(num)
+        _generate_combinations(
+            curr_index=i + 1,
+            curr_combination=curr_combination,
+            remaining=remaining - num,
+            combinations=combinations
+        )
+        curr_combination.pop()
+```

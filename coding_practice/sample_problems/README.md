@@ -65,6 +65,123 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+- #### Skipping adjacent duplicates
+
+You might need something like this when doing backtracking generating combinations
+and you need to avoid duplicated combinations so you skip adjacent numbers 
+```python
+l = [1, 2, 3, 3, 3, 4, 5, 5, 5, 6]
+
+# Picks all unique numbers looking -1 backwards
+for i in range(len(l)):    
+    if i > 0 and l[i] == l[i - 1]:
+        continue
+    print(l[i])
+
+# Picks all unique numbers looking +1 forward
+for i in range(len(l)):
+    if i != len(l) - 1 and l[i] == l[i + 1]:
+        continue
+    print(l[i])
+```
+
+---
+
+- #### Generating unique combinations
+
+When dealing with such a problem, there're usually two ways:
+
+    - Proper one: algorithm doesn't generate duplicates 
+    - Cheesy one: use a data structure that filters them out with a simpler algorithm that generateds dups
+
+When implementing both, SORT the input array, then you could use a set
+to accumulate combinations as tuples (for a cheesy solution) or skip adjacent duplicates
+when solving it properly.
+
+Proper solution:
+```python
+def _generate_combinations(
+    curr_index: int,
+    curr_combination: List[int],
+    remaining: int,
+    combinations: List[List[int]]
+) -> None:
+    # Base case
+    if remaining == 0:  # Reached the target
+        combinations.append(curr_combination.copy())
+        return
+
+    for i in range(curr_index, length):
+
+        # ! Skip adjacent duplicates, while addressing the edge case
+        if i > curr_index and candidates[i] == candidates[i - 1]:
+            continue
+
+        num = candidates[i]
+
+        # ! Optimization: To the right only bigger numbers, sorted
+        if remaining - num < 0:
+            break
+
+        curr_combination.append(num)
+        _generate_combinations(
+            curr_index=i + 1,
+            curr_combination=curr_combination,
+            remaining=remaining - num,
+            combinations=combinations
+        )
+        curr_combination.pop()
+```
+
+---
+
+- #### Backtracking - solution space probing logic 
+
+It is common when solving a backtracking problem to use a loop to iterate over
+all possible cases. But sometimes it is not required, we need to prune those 
+solutions that are incorrect as we generate combinations instead of generating all
+of them and then validating them at the end. 
+
+An example is generating valid parentheses. A dummy way is to generate all combinations
+and then keep only the validated ones. The better way is to avoid generating invalid 
+ones entirely
+
+```python
+def generateParenthesis(self, n: int) -> List[str]:
+
+    def _generate_solutions(
+        curr_solution: List[str],
+        open: int,
+        close: int,
+        solutions: List[str]
+    ) -> None:
+        if len(curr_solution) == nb_parentheses:
+            solutions.append("".join(curr_solution))
+            return
+
+        if open < n:
+            curr_solution.append("(")
+            _generate_solutions(curr_solution, open + 1, close, solutions)
+            curr_solution.pop()
+
+        if close < open:
+            curr_solution.append(")")
+            _generate_solutions(curr_solution, open, close + 1, solutions)
+            curr_solution.pop()
+
+    if n == 0:
+        return []
+    elif n == 1:
+        return ["()"]
+
+    nb_parentheses = n * 2
+    solutions = []
+    _generate_solutions([], 0, 0, solutions)
+    return solutions
+```
+
+---
+
 - #### Using pointers to keep track of state and while loop to solve a problem
 
 When solving a problem, which involves keep track of a state between the pointers,

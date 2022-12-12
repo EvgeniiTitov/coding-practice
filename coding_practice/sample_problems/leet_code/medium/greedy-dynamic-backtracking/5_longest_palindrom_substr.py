@@ -78,6 +78,28 @@ class Solution:
                 end = i + length // 2
         return s[start : end + 1]
 
+    def longestPalindrome(self, s: str) -> str:
+        if not s:
+            return s
+        if len(s) == 1:
+            return s
+
+        def expand_around_centre(s: str, left: int, right: int) -> str:
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            # return right - left - 1  # LENGTH
+            return s[left + 1: right]
+
+        longest = ""
+        for i in range(len(s)):
+            longest = max(longest, expand_around_centre(s, i, i),
+                          key=len)  # ODD
+            longest = max(longest, expand_around_centre(s, i, i + 1),
+                          key=len)  # EVEN
+
+        return longest
+
     # Top-down DP
     # TODO: Complete me - cannot come up with an idea how to return a string
     #       as we keep shrinking it down when left and right chars match. Return
