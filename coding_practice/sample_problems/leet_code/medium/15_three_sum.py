@@ -52,12 +52,13 @@ class Solution:
 
     # T: O(N2); S: O(N)
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        def _solve_two_sum_problem(i: int, out: List[List[int]]):
-            left, right = i + 1, len(nums) - 1
+
+        def _solve_two_sum_problem(fixed_i: int, out: List[List[int]]):
+            left, right = fixed_i + 1, len(nums) - 1
             while left < right:
-                sum_ = nums[i] + nums[left] + nums[right]
+                sum_ = nums[fixed_i] + nums[left] + nums[right]
                 if sum_ == 0:
-                    out.append([nums[i], nums[left], nums[right]])
+                    out.append([nums[fixed_i], nums[left], nums[right]])
                     left += 1
                     right -= 1
                     # Addressing same number to the left, it would get
@@ -81,6 +82,7 @@ class Solution:
     # Similar to ^ but hashset solution instead of pointers
     # Skipped avoiding duplicates, as I wouldnt have noticed that
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+
         def _solve_two_sum_problem(start_i: int):
             numbers_seen = {}
             for j in range(start_i + 1, len(nums)):

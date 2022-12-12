@@ -56,6 +56,7 @@ class Solution:
     def sortColors(self, nums: List[int]) -> None:
 
         def _quick_sort(nums: List[int]) -> List[int]:
+            # Base case
             if len(nums) <= 1:
                 return nums
 

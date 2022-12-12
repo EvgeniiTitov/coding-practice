@@ -58,6 +58,7 @@ class Solution:
         return -1
 
     def search(self, nums: List[int], target: int) -> int:
+
         def _find_rotation_index() -> int:
             left, right = 0, length - 1
 

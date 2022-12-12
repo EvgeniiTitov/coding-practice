@@ -29,7 +29,9 @@ class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         n_rows = len(matrix)
         items_per_row = len(matrix[0])
+
         left, right = 0, n_rows * items_per_row - 1
+
         while left <= right:
             middle_index = (left + right) // 2
             middle_index_value = self._get_item_at_index(

@@ -102,7 +102,8 @@ class Solution:
 
         # TODO: You could just generate a tree and then once you've reached
         #       the end validate the curr_stack, you tried to combine the two
-        #       which overcomplicated the shit out of your solution its disgusting
+        #       which overcomplicated the shit out of your solution its disgusting,
+        #       -> true lmao reading it 4 months later it terrible jesus christ
         def _check_if_valid(
             string: str, curr_index: int, curr_stack: list[str]
         ) -> bool:

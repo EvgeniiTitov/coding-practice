@@ -65,6 +65,48 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+- #### Using pointers to keep track of state and while loop to solve a problem
+
+When solving a problem, which involves keep track of a state between the pointers,
+before you enter the loop and define the initial state it is often convenient to leave out 
+an item so that at the beginning of the while loop you could straight away do some updates
+instead of dealing with an edge case (we've just started).
+
+Example - finding anangrams from one string in the other
+
+```python
+def findAnagrams(self, s: str, p: str) -> List[int]:
+    from collections import defaultdict
+
+    def _get_chars_count(string: str) -> dict:
+        char_counts = defaultdict(int)
+        for char in string:  # O(N)
+            char_counts[char] += 1
+        return char_counts
+
+    indices = []
+    p_counts = _get_chars_count(p)
+    s_subset_counts = _get_chars_count(s[: len(p) - 1])  # LEFT OUT LAST CHAR
+
+    left, right = 0, len(p) - 1
+    while right < len(s):
+        s_subset_counts[s[right]] += 1  # ADDED THE CHAR
+
+        if p_counts == s_subset_counts:
+            indices.append(left)
+
+        s_subset_counts[s[left]] -= 1
+        if s_subset_counts[s[left]] == 0:
+            del s_subset_counts[s[left]]
+
+        left += 1
+        right += 1
+
+    return indices
+```
+
+---
+
 - #### `while curr and curr.next`:
 
 Having just `while curr` is NOT enough when you're also checking for the next
@@ -191,6 +233,34 @@ def findTargetSumWays(self, nums: List[int], target: int) -> int:
 In my first iteration of ^, I accumulated the signs + and - in a list and then
 evaluated the expression, which is not as clean as just passing a single number - 
 current sum.
+
+Another examples (overlapping intervals), I would straight away want to have a stack
+where I would put intervals and then compare the last one on the stack with the one
+I am iterating over / processing now. BUT,  it is unnecessary, we are not asked to return
+len / intervals, we need to know how many we need to remove, so just keep track of the
+LAST interval:
+
+```python
+def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+    if not len(intervals):
+        return 0
+
+    intervals.sort(key=lambda interval: interval[0])
+    intervals_removed = 0
+    prev_interval = intervals[0]
+    for curr_interval in intervals[1:]:
+        # If there's an overlap (case 2), we don't update the prev, we just
+        # increment the counter. If case 3, ignore the longer one, prev
+        # is the current one (shorter)
+        if prev_interval[1] > curr_interval[0]:
+            if prev_interval[1] > curr_interval[1]:  # Case 3 ^
+                prev_interval = curr_interval
+            intervals_removed += 1
+        else:
+            prev_interval = curr_interval
+
+    return intervals_removed
+```
 
 ---
 

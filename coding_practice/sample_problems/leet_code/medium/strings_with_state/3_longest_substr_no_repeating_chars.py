@@ -1,10 +1,61 @@
-"""
-Longest Substring Without Repeating Characters - https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
+
+"""
+Summary:
+_______________________________________________________________________________
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Given a string s, find the length of the longest substring without repeating 
+characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not
+a substring.
 """
 
 
 class Solution:
+
+    # My brute force. TLE: 986 / 987 test cases passed.
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if not s:
+            return 0
+        if len(s) == 1:
+            return 1
+
+        def _check_len_and_if_repeated_chars(string: str) -> tuple[bool, int]:
+            set_string = set(string)
+            has_repeated = not (len(string) == len(set_string))
+            return has_repeated, len(set_string)
+
+        max_len = 0
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                sub_string = s[i: j + 1]
+
+                has_repeated, length = _check_len_and_if_repeated_chars(
+                    sub_string
+                )
+                if has_repeated:
+                    continue
+                max_len = max(max_len, length)
+
+        return max_len
 
     # My brute force - slow (O(n2)) and takes a lot of memory
     def lengthOfLongestSubstring(self, s: str) -> int:

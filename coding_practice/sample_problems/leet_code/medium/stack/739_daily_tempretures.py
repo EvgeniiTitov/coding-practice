@@ -36,6 +36,7 @@ class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         out = [-1] * len(temperatures)
         stack = [(0, temperatures.pop(0))]
+
         for i, temperature in enumerate(temperatures, start=1):
             j, prev_day_temp = stack[-1]
 
