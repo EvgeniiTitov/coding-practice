@@ -52,6 +52,36 @@ class Solution:
         _generate_permutations(nums, [], permutations)
         return [list(permutation) for permutation in permutations]
 
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        from collections import defaultdict
+
+        def _generate_unique_permutations(
+            num_counts: dict,
+            curr_permutation: List[int],
+            permutations: List[List[int]]
+        ) -> None:
+            if len(curr_permutation) == len(nums):
+                permutations.append(curr_permutation[:])
+                return
+
+            for num, count in num_counts.items():
+                if count > 0:
+                    curr_permutation.append(num)
+                    num_counts[num] -= 1
+                    _generate_unique_permutations(
+                        num_counts, curr_permutation, permutations
+                    )
+                    num_counts[num] += 1
+                    curr_permutation.pop()
+
+        permutations = []
+        num_counts = defaultdict(int)
+        for num in nums:
+            num_counts[num] += 1
+
+        _generate_unique_permutations(num_counts, [], permutations)
+        return permutations
+
 
 def main():
     print(Solution().permuteUnique(nums=[1, 2, 3]))

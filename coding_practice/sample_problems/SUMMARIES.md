@@ -838,3 +838,57 @@ def _generate_combinations(
         )
         curr_combination.pop()
 ```
+
+---
+
+- `(45) Jump game 2:` Given array representing jump length, we're at 0. Reach the last at MIN num
+of jumps.
+
+D&C solution with some greedy optimisations. The base case is when we reach the last index. Then,
+from each position we could get the furthest jump we can legally make: min(len(arr) - 1, curr_i + nums[curr_i]). 
+Then, in this range we can iterate going to every step and keeping track of the min num of jumps for every
+recursive call: min_jumps = min(min_jumps, recursive_call). An optimisation is to start iterating from the 
+furthest allowed index down to curr + 1 because we want to reach the end at min number of steps, 
+so its fair to assume jumping further is more efficient + use MEMOIZATION!
+
+---
+
+- `(46) Permutations:` Given array of nums, return all possible perms
+
+Textbook backtracking:
+```python
+def _generate_permutations(
+    self,
+    nums: List[int],
+    curr_path: List[int],
+    permutations: List[int]
+) -> None:
+    if not len(nums):
+        permutations.append(curr_path[:])
+        return
+
+    for i, num in enumerate(nums):
+        curr_path.append(num)
+        remaining_nums = nums[:i] + nums[i + 1:]
+        self._generate_permutations(
+            remaining_nums, curr_path, permutations
+        )
+        curr_path.pop()
+```
+Could do in place using indices
+
+--- 
+
+- `(47) Permutations 2:` Given array of nums that might contain duplicates, return
+all unique perms.
+
+Use a set to accumulate permutations as tuples, then convert to lists when returning (lazy way)
+
+A proper logic to avoid even generating duplicates would be to use a defaultdict to keep track
+of chars that are available for generating current permutation. You cant use a char unless its 
+counter > 0, else it means it has already been used within your current permutation. When generating
+permutations inside your recursive call, iterate over keys (numbers at your disposal) and only
+call recursively if the number's count > 0.
+
+--- 
+

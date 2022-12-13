@@ -65,6 +65,48 @@ shortest path between A and B in a graph of uniform weight.
 ## To remember:
 
 
+- #### Avoid generating duplicated permutations
+
+Your typical approach to generating permutations could result in duplicates if
+input array contains. Lazy way is to aggregate permutations as tuples in a set that would
+get rid of any duplicates. The smart way, instead, suggests to keep track of numbers available when
+generating a new permutation. If a number's count == 0, it means this number has 
+already been used in the permutation, so we cant use it again
+
+```python
+def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+    from collections import defaultdict
+
+    def _generate_unique_permutations(
+        num_counts: dict,
+        curr_permutation: List[int],
+        permutations: List[List[int]]
+    ) -> None:
+        if len(curr_permutation) == len(nums):
+            permutations.append(curr_permutation[:])
+            return
+
+        for num, count in num_counts.items():
+            if count > 0:
+                curr_permutation.append(num)
+                num_counts[num] -= 1
+                _generate_unique_permutations(
+                    num_counts, curr_permutation, permutations
+                )
+                num_counts[num] += 1
+                curr_permutation.pop()
+
+    permutations = []
+    num_counts = defaultdict(int)  # OR collections.Counter()
+    for num in nums:
+        num_counts[num] += 1
+
+    _generate_unique_permutations(num_counts, [], permutations)
+    return permutations
+```
+
+---
+
 - #### Skipping adjacent duplicates
 
 You might need something like this when doing backtracking generating combinations
