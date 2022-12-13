@@ -61,11 +61,14 @@ class Solution:
 
             # Skip current coin
             coins_needed = _reach_amount(curr_index - 1, amount_left)
+
             # Use current coin
             if amount_left >= coins[curr_index]:
                 coins_needed = min(
                     coins_needed,
-                    _reach_amount(curr_index, amount_left - coins[curr_index]) + 1
+                    _reach_amount(
+                        curr_index, amount_left - coins[curr_index]
+                    ) + 1  # Used a coin, try again the same one (curr_index)
                 )
 
             return coins_needed

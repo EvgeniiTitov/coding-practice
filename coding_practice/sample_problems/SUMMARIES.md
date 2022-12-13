@@ -1046,7 +1046,7 @@ for i in range(curr_index + 1, numbers_length):
     _generate_combinations(i, curr_combination, combinations)
     curr_combination.pop()
 ```
-Dont accumulate numbers in a list (curr_combination), pass a sum of them already as a parameter
+Don't accumulate numbers in a list (curr_combination), pass a sum of them already as a parameter
 
 ---
 
