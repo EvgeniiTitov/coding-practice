@@ -46,7 +46,7 @@ class Solution:
                 subsets.append(curr_subset.copy())
                 return
 
-            for i in range(curr_index, length):
+            for i in range(curr_index, length):  # Never go out of bounds
                 curr_subset.append(nums[i])
                 _generate_subset(i + 1, curr_subset, subsets, required_length)
                 curr_subset.pop()

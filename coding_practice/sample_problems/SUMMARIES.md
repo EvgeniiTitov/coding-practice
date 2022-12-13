@@ -921,3 +921,115 @@ Could use MEMOIZATION based on x, y coordinates
 Also, could be solved iteratively using a queue.
 
 --- 
+
+- `(70) Climbing stairs:` Climbing a staircase, can go either 1 or 2 steps. Total N of ways
+to reach the end given N - number of steps to reach the top.
+
+We can either to choose to go 1 or 2 steps up, which would result in different possible
+ways to reach the top (probing the solution space), so we add them. As for the base cases we
+can either overshoot (return 0), or `current_step == total_stairs`, then we return 1
+
+Could use MEMOIZATION
+
+---
+
+- `(78) Subsets:` Given array of unique elements, return all possible subsets (power set)
+
+The mechanics of generating actual sequences of numbers (subsets) is the same as for combinations. But
+the trick is to pass an extra parameter to your recursive bakctracking function - length. Subsets include
+seqeuences of lengths [0, len(input_arr)]. Then, as you recursively genenrate subsets, the base case
+is to check if the length of current subset matches the expected length, then we stop and add the 
+subset to the result list. This is not the most efficient one though.
+
+```python
+def subsets(self, nums: List[int]) -> List[List[int]]:
+
+    def _generate_subset(
+        curr_index: int,
+        curr_subset: List[int],
+        subsets: List[List[int]],
+        required_length: int
+    ) -> None:
+        # Base case
+        if len(curr_subset) == required_length:
+            subsets.append(curr_subset.copy())
+            return
+
+        for i in range(curr_index, length):  # Never go out of bounds
+            curr_subset.append(nums[i])
+            _generate_subset(i + 1, curr_subset, subsets, required_length)
+            curr_subset.pop()
+
+    subsets = []
+    length = len(nums)
+    for l in range(length + 1):
+        _generate_subset(0, [], subsets, l)
+    return subsets
+```
+
+---
+
+- `(79) Word search:` TBA
+
+---
+
+- `(90) Subsets 2:` Given int array that may contain duplicates, return all possible subsets (power set)
+
+Store generates subsets in a SET. In order for that to work, sort the array beforehand. Then, the same
+idea as Subsets 1 (78).
+
+---
+
+- `(134) Gas station:` TBA
+
+---
+
+- `(198) House robber:` Houses along the street (array of ints represent money), cant rob adjucent,
+maximize the amount you could steal. 
+
+We can either choose to rob the current house and then curr_index + 2, OR we could
+skip the current and curr_index + 1. The base case is when we've run out of houses (out of bounds). 
+So you consider both cases every recursive call and pick the max: `max(rob_current, rob_next)`.
+
+Could use MEMOIZATION
+
+---
+
+- `(213) House robber 2:` Houses are arranged in a circle (first house is the last one), 
+cant rob adjacent houses, return the max amount we can rob? 
+
+Here your base case (when to stop, current index reaches the end) depends on whether you stole
+from the first house or not. So, you could have a flag which specifies that and the starting index
+will be different.
+
+```python
+ def rob(self, nums: List[int]) -> int:
+
+    def _rob_houses(
+        house_index: int, houses: List[int], first_stolen: bool
+    ) -> int:
+        if first_stolen:
+            if house_index >= length - 1:
+                return 0
+        else:
+            if house_index >= length:
+                return 0
+  
+        steal_current = (
+                houses[house_index]
+                + _rob_houses(house_index + 2, houses, first_stolen)
+        )
+        steal_next = _rob_houses(house_index + 1, houses, first_stolen)
+        return max(steal_current, steal_next)
+  
+    length = len(nums)
+    if length == 1:
+        return nums[0]
+  
+    return max(_rob_houses(0, nums, True), _rob_houses(1, nums, False))
+```
+Could use MEMOIZATION
+
+---
+
+- `(216) Combination sum 3:` 
