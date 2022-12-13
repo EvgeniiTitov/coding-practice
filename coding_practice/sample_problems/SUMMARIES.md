@@ -892,3 +892,32 @@ call recursively if the number's count > 0.
 
 --- 
 
+- `(55) Jump game:` Array of ints, position at index 0, return true if we can reach the end.
+
+Base cases are: if you reached the destination, return True. If overshoot, return False (might not need
+this one depending on how you call the function, could check the furthest jump in advance).
+
+Then, get the furtherst jump you can make min(len(arr) - 1, curr_i + arr[curr_i]). Start iterating
+greedily from the further legal jump `for i in range(furtherst_jump, curr_index, -1)`. If a call returns
+True, we reached the end, shut down the call stack (return true), else keep looking. If tried all jumps
+and havent reached the end (exited the loop), return false af the end. 
+
+---
+
+- `(62) Unique paths:` There's robot on M n N grid located at 0, 0 (top-left). 
+It needs to reach bot-right. Total number of paths?
+
+Base cases is when we go out of bounds: `if i >= m or j >= n: return 0`. If we reach
+the end, we cool: `if i == m - 1 and j == n - 1: return 1`
+
+Then, we probe the solution space by going right and bot and summing up:
+```python
+path1 = _find_paths(m, n, i + 1, j)
+path2 = _find_paths(m, n, i, j + 1)
+return path1 + path2
+```
+Could use MEMOIZATION based on x, y coordinates
+
+Also, could be solved iteratively using a queue.
+
+--- 

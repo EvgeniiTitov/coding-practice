@@ -35,7 +35,7 @@ the bottom-right corner:
 
 class Solution:
 
-    # D&C
+    # D&C recursive. TLE (needs caching)
     def uniquePaths(self, m: int, n: int) -> int:
 
         def _find_paths(m: int, n: int, i: int, j: int) -> int:
@@ -55,7 +55,34 @@ class Solution:
 
         return _find_paths(m, n, 0, 0)
 
-    # Top-down DP
+    # Iterative. TLE (needs caching)
+    def uniquePaths(self, m: int, n: int) -> int:
+        from queue import Queue
+
+        unique_paths = 0
+        queue = Queue()
+        queue.put((0, 0))
+        while queue.qsize():
+            curr_m, curr_n = queue.get()
+
+            # Base cases
+
+            # 1. Out of bounds
+            if curr_m == m or curr_n == n:
+                continue
+
+            # 2. Reached the bottom right
+            if curr_m == m - 1 and curr_n == n - 1:
+                unique_paths += 1
+                continue
+
+            # Probe solution space
+            queue.put((curr_m + 1, curr_n))
+            queue.put((curr_m, curr_n + 1))
+
+        return unique_paths
+
+    # Top-down DP with memoization
     def uniquePaths(self, m: int, n: int) -> int:
 
         def _cache(func):
