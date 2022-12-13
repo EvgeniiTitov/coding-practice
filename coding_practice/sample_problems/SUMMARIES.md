@@ -1033,3 +1033,20 @@ Could use MEMOIZATION
 ---
 
 - `(216) Combination sum 3:` 
+
+Textbook backtracking generating combinations. The base case is sum(curr_combination) == target
+and len(curr_combination) == k, then we accept it. Else we could overshoot (sum > target) or len of 
+our combination > k. 
+
+As for solution space probing:
+```python
+# ! Start from curr + 1 as the same number can't be reused twice
+for i in range(curr_index + 1, numbers_length):
+    curr_combination.append(numbers[i])
+    _generate_combinations(i, curr_combination, combinations)
+    curr_combination.pop()
+```
+Dont accumulate numbers in a list (curr_combination), pass a sum of them already as a parameter
+
+---
+
