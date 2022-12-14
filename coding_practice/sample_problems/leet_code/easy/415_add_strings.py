@@ -33,7 +33,9 @@ class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
         num1_len = len(num1)
         num2_len = len(num2)
+
         longest = max(num1_len, num2_len)
+
         carry_over = 0
         number_out = []
         ascii_zero = ord("0")
@@ -50,8 +52,10 @@ class Solution:
             value = sum_ % 10
             carry_over = sum_ // 10
             number_out.append(str(value))  # !
+
         if carry_over:
             number_out.append(str(carry_over))
+
         return "".join(reversed(number_out))
 
     # From solutions

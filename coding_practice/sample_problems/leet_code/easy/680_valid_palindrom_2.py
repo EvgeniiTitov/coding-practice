@@ -2,7 +2,14 @@ import typing as t
 
 
 """
-Summary: TBA
+Summary: 
+    Brute force - iterate over the string slicing out a char and checking the
+        remaining string if its a palindrom.
+        
+    Two pointers - left and right. Move them towards each other checking if
+    chars match. If they do not, consider two cases (skip char on left, skip
+    char on right) and see if any of them results in a valid palindrom. We do
+    it just once we can delete "at most one char"
 ------------------------------------------------------------------------------
 
 https://leetcode.com/problems/valid-palindrome-ii/
@@ -38,40 +45,17 @@ class Solution:
                 return True
         return False
 
-    # Mine, doesn't seem to work
-    def validPalindrome(self, s: str) -> bool:
-        length = len(s)
-        left, right = 0, length - 1
-
-        one_error_pass_granted = False
-        while left <= right:
-            char_left = s[left]
-            char_right = s[right]
-
-            if char_left == char_right:
-                left += 1
-                right -= 1
-                continue
-
-            if not one_error_pass_granted and length > 3:
-                one_error_pass_granted = True
-                left += 1
-                right -= 1
-                continue
-            else:
-                return False
-
-        return True
-
     def validPalindrome(self, s: str) -> bool:
         def _check_if_palindrom(s: str, left: int, right: int) -> bool:
             if not s or len(s) == 1:
                 return True
+
             while left < right:
                 if s[left] != s[right]:
                     return False
                 left += 1
                 right -= 1
+
             return True
 
         """
