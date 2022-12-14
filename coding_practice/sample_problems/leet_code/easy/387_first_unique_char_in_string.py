@@ -27,6 +27,19 @@ Output: -1
 
 class Solution:
 
+    def firstUniqChar(self, s: str) -> int:
+        from collections import defaultdict
+
+        num_counts = defaultdict(int)
+        for char in s:
+            num_counts[char] += 1
+
+        for i, char in enumerate(s):
+            if num_counts[char] == 1:
+                return i
+
+        return -1
+
     # T: O(N); S: (N)
     def firstUniqChar(self, s: str) -> int:
         from collections import defaultdict
