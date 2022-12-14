@@ -25,6 +25,19 @@ Output: false
 
 
 class Solution:
+
+    def isAnagram(self, s: str, t: str) -> bool:
+        from collections import defaultdict
+
+        def _get_num_counts(string: str) -> dict:
+            num_counts = defaultdict(int)
+            for char in string:
+                num_counts[char] += 1
+
+            return num_counts
+
+        return _get_num_counts(s) == _get_num_counts(t)
+
     # Suuuuper slow. T: O(N2); S: O(N)
     def isAnagram(self, s: str, t: str) -> bool:
         t_letters = list(t)
