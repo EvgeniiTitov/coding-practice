@@ -45,32 +45,6 @@ class Solution:
             root = root.left if val < root.val else root.right
         return root
 
-    # Mine - its incorrect though haha, you scanned the whole tree!
-    # This is  O(N), you visit all nodes instead of discarding half every iter
-    def searchBST(
-        self, root: Optional[TreeNode], val: int
-    ) -> Optional[TreeNode]:
-        def _find_value_in_tree(
-            root: Optional[TreeNode], val: int
-        ) -> Optional[TreeNode]:
-            if not root:
-                return None
-
-            if root.val == val:
-                return root
-
-            left_subtree_result = (
-                None if not root.left else _find_value_in_tree(root.left, val)
-            )
-            right_subtree_result = (
-                None
-                if not root.right
-                else _find_value_in_tree(root.right, val)
-            )
-            return left_subtree_result or right_subtree_result
-
-        return _find_value_in_tree(root, val)
-
     # From solutions
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
         if root is None or val == root.val:

@@ -2,18 +2,20 @@ from typing import Optional
 
 
 """
+Summary:
+    Recursive solution:
+    Time complexity : O(n). Because we traverse the entire input tree once, 
+    the total run time is O(n), where n is the total number of nodes in the tree.
+    
+    Space complexity : The number of recursive calls is bound by the height of the tree. 
+    In the worst case, the tree is linear and the height is in O(n). Therefore, 
+    space complexity due to recursive calls on the stack is O(n) in the worst case.
+_______________________________________________________________________________
+
 https://leetcode.com/problems/symmetric-tree/
 
 Given the root of a binary tree, check whether it is a mirror of itself 
 (i.e., symmetric around its center).
-
-Recursive solution:
-Time complexity : O(n). Because we traverse the entire input tree once, 
-the total run time is O(n), where n is the total number of nodes in the tree.
-
-Space complexity : The number of recursive calls is bound by the height of the tree. 
-In the worst case, the tree is linear and the height is in O(n). Therefore, 
-space complexity due to recursive calls on the stack is O(n) in the worst case.
 """
 
 
@@ -67,36 +69,3 @@ class Solution:
             queue.put(node_2.left)
 
         return True
-
-    # Mine - doesn't seem to work
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        def _accumulate_left_subtree_values(root: TreeNode) -> list:
-            values = []
-            if root.left:
-                values.extend(_accumulate_left_subtree_values(root.left))
-            else:
-                values.append(None)
-            values.append(root.val)
-            if root.right:
-                values.extend(_accumulate_left_subtree_values(root.right))
-            else:
-                values.append(None)
-            return values
-
-        def _accumulate_right_subtree_values(root: TreeNode) -> list:
-            values = []
-            if root.right:
-                values.extend(_accumulate_right_subtree_values(root.right))
-            else:
-                values.append(None)
-            values.append(root.val)
-            if root.left:
-                values.extend(_accumulate_right_subtree_values(root.left))
-            else:
-                values.append(None)
-            return values
-
-        left_subtree_values = _accumulate_left_subtree_values(root.left)
-        right_subtree_values = _accumulate_right_subtree_values(root.right)
-
-        return left_subtree_values == right_subtree_values
