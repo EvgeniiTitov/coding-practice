@@ -2,16 +2,19 @@ from typing import Optional
 
 
 """
-https://leetcode.com/problems/reverse-linked-list/
-Given the head of a singly linked list, reverse the list, and return the reversed list.
-
-The idea is we need to keep 3 references: previous, current, and next_node.
+Summary:
+    The idea is we need to keep 3 references: previous, current, and next_node.
 Current gets relinked to previous, previous gets moved to the right, current
 becomes the next node. 
 Once the end has been reached (last node), next_node is null, previous becomes
 the new start of the LL, current becomes null so the loop ends. 
 Return the reference to the start of the LL
+_______________________________________________________________________________
 
+https://leetcode.com/problems/reverse-linked-list/
+
+Given the head of a singly linked list, reverse the list, and return the 
+reversed list.
 """
 
 # Definition for singly-linked list.

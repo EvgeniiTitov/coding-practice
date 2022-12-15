@@ -23,34 +23,6 @@ class ListNode:
 
 class Solution:
 
-    # Mine head on solution ( T complexity: O(n), S complexity: O(n) )
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        def _collect_ll_values(head: ListNode) -> list:
-            # Takes a lot of space, could use a gen?
-            values = []
-            while head:
-                values.append(head.val)
-                head = head.next
-            return values
-
-        values = _collect_ll_values(head)
-        length = len(values)
-        # That's dumb haha values == values[::-1]
-        if length == 1:
-            return True
-        elif length % 2:
-            middle_i = length // 2
-            left_subarray = values[: middle_i + 1]
-            right_subarray = values[middle_i:]
-
-        else:
-            left_subarray = values[: length // 2]
-            right_subarray = values[length // 2 :]
-        right_subarray.reverse()
-
-        return left_subarray == right_subarray
-
-    # TODO: Wtf - just do: values == values[::-1] !
     # Head on improved ( T complexity: O(n), S complexity: O(n) )
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         def _collect_ll_values(head: ListNode) -> list:
